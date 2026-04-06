@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AyurSlim Gold — Ayurvedic Weight Management | VaidyaKart</title>
+<meta name="description" content="100% Ayurvedic weight loss capsules. Free shipping. COD available. AYUSH certified."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --green:#1a5c38;--green-light:#2d7a50;--gold:#d4a017;--cream:#fdf6ec;
+  --dark:#1a1a1a;--muted:#6b7280;--white:#fff;--red:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);}
+a{text-decoration:none;color:inherit;}
+
+/* ANNOUNCEMENT BAR */
+.ann-bar{background:var(--green);color:#fff;text-align:center;padding:8px 16px;font-size:13px;font-weight:700;overflow:hidden;white-space:nowrap;}
+.ann-inner{display:inline-block;animation:scroll-ann 20s linear infinite;}
+@keyframes scroll-ann{0%{transform:translateX(100vw);}100%{transform:translateX(-100%);}}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1);padding:0 20px;}
+.navbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{font-size:22px;font-weight:900;color:var(--green);}
+.btn-order-nav{background:var(--green);color:#fff;border:none;padding:10px 20px;border-radius:25px;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;}
+.btn-order-nav:hover{background:var(--green-light);}
+.trust-strip{background:var(--gold);color:#fff;text-align:center;padding:7px;font-size:12px;font-weight:700;letter-spacing:.5px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d3a22 0%,#1a5c38 50%,#0d3a22 100%);color:#fff;padding:30px 20px 40px;}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;}}
+.viewers{background:rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:20px;font-size:13px;margin-bottom:16px;}
+.viewers span{color:#4ade80;font-weight:900;}
+.dot-live{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse-dot 1.5s infinite;}
+@keyframes pulse-dot{0%,100%{opacity:1;}50%{opacity:.3;}}
+.badge-ayush{background:var(--gold);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:12px;}
+.hero-title{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:8px;}
+.hero-subtitle{font-size:1rem;color:#a7f3d0;margin-bottom:16px;}
+.price-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+.mrp{text-decoration:line-through;color:#9ca3af;font-size:1rem;}
+.sale-price{font-size:2rem;font-weight:900;color:#4ade80;}
+.save-badge{background:#dc2626;color:#fff;padding:4px 10px;border-radius:12px;font-size:13px;font-weight:700;}
+.rating-row{display:flex;align-items:center;gap:10px;font-size:13px;color:#d1fae5;margin-bottom:20px;}
+.stars{color:var(--gold);font-size:16px;}
+.btn-cta{background:var(--gold);color:#fff;border:none;padding:16px 36px;border-radius:30px;font-size:1.1rem;font-weight:900;cursor:pointer;animation:pulse-btn 2s infinite;width:100%;max-width:340px;display:block;margin-bottom:16px;}
+@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,.5);}50%{box-shadow:0 0 0 12px rgba(212,160,23,0);}}
+.trust-badges{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#a7f3d0;}
+.trust-badges span{display:flex;align-items:center;gap:4px;}
+
+/* IMAGE SWIPER */
+.swiper-wrap{position:relative;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.08);aspect-ratio:1;max-width:420px;margin:0 auto;}
+.swiper-track{display:flex;transition:transform .4s ease;}
+.swiper-track img{width:100%;flex-shrink:0;object-fit:cover;aspect-ratio:1;border-radius:16px;}
+.swiper-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:5;}
+.swiper-btn.prev{left:8px;}.swiper-btn.next{right:8px;}
+.swiper-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+.swiper-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:.2s;}
+.swiper-dot.active{background:#fff;}
+
+/* SECTIONS */
+.section{padding:50px 20px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-title{text-align:center;font-size:1.6rem;font-weight:900;color:var(--green);margin-bottom:8px;}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:32px;font-size:.95rem;}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.benefit-card{background:#fff;border-radius:16px;padding:22px 16px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:3px solid var(--green);}
+.benefit-icon{font-size:2rem;margin-bottom:10px;}
+.benefit-title{font-weight:800;font-size:.95rem;margin-bottom:6px;color:var(--green);}
+.benefit-desc{font-size:.82rem;color:var(--muted);}
+
+/* HOW IT WORKS */
+.steps{background:var(--green);}
+.steps-grid{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+.step-card{background:rgba(255,255,255,.1);border-radius:16px;padding:28px 20px;text-align:center;color:#fff;flex:1;min-width:200px;max-width:280px;}
+.step-num{background:var(--gold);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.2rem;margin:0 auto 12px;}
+.step-title{font-weight:800;font-size:1rem;margin-bottom:8px;}
+.step-desc{font-size:.85rem;color:#a7f3d0;}
+
+/* INGREDIENTS */
+.ingredients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
+.ing-card{background:#fff;border-radius:12px;padding:18px 14px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.ing-name{font-weight:800;color:var(--green);margin-bottom:4px;font-size:.9rem;}
+.ing-benefit{font-size:.8rem;color:var(--muted);}
+
+/* VARIANTS */
+.variants-section{background:#f0fdf4;padding:40px 20px;}
+.variants-grid{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+.variant-card{border:2px solid #d1fae5;background:#fff;border-radius:16px;padding:20px 24px;text-align:center;cursor:pointer;transition:.2s;min-width:200px;}
+.variant-card.active,.variant-card:hover{border-color:var(--green);background:#f0fdf4;}
+.variant-label{font-weight:800;color:var(--dark);margin-bottom:6px;}
+.variant-price{font-size:1.4rem;font-weight:900;color:var(--green);}
+.variant-save{font-size:.8rem;color:#dc2626;font-weight:700;}
+.btn-order-variant{background:var(--green);color:#fff;border:none;padding:14px 40px;border-radius:30px;font-size:1rem;font-weight:800;cursor:pointer;display:block;margin:0 auto;}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.review-card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.07);}
+.review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.reviewer-name{font-weight:800;font-size:.95rem;}
+.reviewer-city{font-size:.8rem;color:var(--muted);}
+.review-stars{color:var(--gold);}
+.review-text{font-size:.88rem;color:var(--dark);line-height:1.6;}
+.review-meta{margin-top:10px;font-size:.78rem;color:#16a34a;font-weight:700;}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:0 auto;}
+.faq-item{background:#fff;border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.faq-q{padding:18px 20px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--green);}
+.faq-q span{flex:1;}
+.faq-icon{font-size:18px;transition:.3s;color:var(--green);}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;color:var(--muted);font-size:.9rem;line-height:1.7;}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 18px;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+
+/* FOOTER */
+footer{background:var(--green);color:#fff;text-align:center;padding:32px 20px;}
+footer .brand{font-size:1.4rem;font-weight:900;margin-bottom:6px;}
+footer .tagline{color:#a7f3d0;font-size:.9rem;font-style:italic;margin-bottom:12px;}
+footer .copy{font-size:.8rem;color:#6ee7b7;}
+
+/* STICKY BOTTOM BAR */
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--green);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;z-index:90;box-shadow:0 -4px 20px rgba(0,0,0,.12);transform:translateY(100%);transition:.3s;}
+.sticky-bar.visible{transform:translateY(0);}
+.sticky-info{font-weight:800;font-size:.9rem;color:var(--green);}
+.sticky-info small{display:block;font-size:.75rem;color:var(--muted);font-weight:400;}
+.btn-sticky{background:var(--green);color:#fff;border:none;padding:12px 24px;border-radius:25px;font-weight:800;font-size:.9rem;cursor:pointer;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.modal-overlay.open{display:flex;}
+@media(min-width:600px){.modal-overlay{align-items:center;}}
+.modal-box{background:#fff;width:100%;max-width:520px;border-radius:24px 24px 0 0;max-height:92vh;overflow-y:auto;padding:24px 20px 32px;}
+@media(min-width:600px){.modal-box{border-radius:24px;max-height:88vh;}}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.modal-title{font-weight:900;font-size:1.1rem;color:var(--green);}
+.btn-close-modal{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);}
+.modal-section{margin-bottom:18px;}
+.modal-label{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+.variant-options{display:flex;flex-direction:column;gap:8px;}
+.variant-opt{display:flex;align-items:center;gap:10px;padding:12px 14px;border:2px solid #e5e7eb;border-radius:12px;cursor:pointer;transition:.2s;}
+.variant-opt.sel{border-color:var(--green);background:#f0fdf4;}
+.variant-opt input[type=radio]{accent-color:var(--green);}
+.variant-opt-label{font-weight:700;font-size:.9rem;flex:1;}
+.variant-opt-price{font-weight:900;color:var(--green);}
+.qty-stepper{display:flex;align-items:center;gap:0;border:2px solid #e5e7eb;border-radius:12px;overflow:hidden;width:fit-content;}
+.qty-btn{width:38px;height:38px;border:none;background:#f9fafb;font-size:1.2rem;cursor:pointer;font-weight:900;}
+.qty-val{width:50px;text-align:center;font-weight:800;font-size:1rem;}
+.order-summary{background:#f0fdf4;border-radius:12px;padding:16px;}
+.summary-row{display:flex;justify-content:space-between;font-size:.9rem;padding:4px 0;color:var(--muted);}
+.summary-row.total{font-weight:900;color:var(--green);font-size:1rem;border-top:1px solid #d1fae5;margin-top:6px;padding-top:10px;}
+.form-group{margin-bottom:14px;}
+.form-label{display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:5px;}
+.form-input{width:100%;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.95rem;font-family:inherit;outline:none;transition:.2s;}
+.form-input:focus{border-color:var(--green);}
+.form-input.ok{border-color:#16a34a;background:#f0fdf4;}
+.form-input.err{border-color:var(--red);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-submit{width:100%;padding:16px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:900;cursor:pointer;animation:pulse-btn 2s infinite;margin-top:8px;}
+.btn-submit:disabled{animation:none;background:#9ca3af;cursor:not-allowed;}
+.pincode-hint{font-size:.75rem;margin-top:4px;}
+.pincode-hint.ok{color:#16a34a;}.pincode-hint.err{color:var(--red);}
+
+/* SUCCESS VIEW */
+.success-view{text-align:center;padding:20px 10px;}
+.success-icon{font-size:60px;margin-bottom:16px;}
+.success-title{font-size:1.6rem;font-weight:900;color:var(--green);margin-bottom:8px;}
+.success-subtitle{color:var(--muted);margin-bottom:20px;}
+.order-id-box{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:14px 20px;margin-bottom:20px;}
+.order-id-label{font-size:.8rem;color:var(--muted);margin-bottom:4px;}
+.order-id-val{font-weight:900;font-size:1rem;color:var(--green);word-break:break-all;}
+.success-steps{text-align:left;margin-bottom:24px;}
+.success-step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #e5e7eb;}
+.success-step:last-child{border-bottom:none;}
+.step-circle{width:28px;height:28px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;flex-shrink:0;}
+.step-text{font-size:.88rem;color:var(--dark);}
+.btn-done{background:var(--green);color:#fff;border:none;padding:14px 40px;border-radius:30px;font-weight:800;font-size:1rem;cursor:pointer;}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:1000;pointer-events:none;}
+.toast{background:#1f2937;color:#fff;padding:12px 20px;border-radius:10px;font-size:.88rem;font-weight:600;opacity:0;transform:translateY(10px);transition:.3s;max-width:320px;text-align:center;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.success{background:#16a34a;}
+.toast.error{background:#dc2626;}
+
+/* GENERAL */
+.container{max-width:1100px;margin:0 auto;}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar"><div class="ann-inner">🌿 100% Ayurvedic &nbsp;·&nbsp; FREE Shipping &nbsp;·&nbsp; 💵 COD Available &nbsp;·&nbsp; ⚡ Limited Stock! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🌿 100% Ayurvedic &nbsp;·&nbsp; FREE Shipping &nbsp;·&nbsp; 💵 COD Available &nbsp;·&nbsp; ⚡ Limited Stock!</div></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">🌿 VaidyaKart</div>
+    <button class="btn-order-nav" onclick="openModal()">🛒 Order Now — COD</button>
+  </div>
+</nav>
+<div class="trust-strip">✅ AYUSH Certified &nbsp;|&nbsp; 🌱 100% Natural &nbsp;|&nbsp; 🔬 Clinically Tested &nbsp;|&nbsp; ⭐ 4.8/5 Rating</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="viewers">
+        <div class="dot-live"></div>
+        👁️ <span id="viewer-count">24</span> लोग अभी देख रहे हैं
+      </div>
+      <div class="badge-ayush">AYUSH CERTIFIED</div>
+      <h1 class="hero-title" id="hero-title">AyurSlim Gold</h1>
+      <p class="hero-subtitle" id="hero-subtitle">Ayurvedic Weight Management Capsules</p>
+      <div class="price-row">
+        <span class="mrp" id="hero-mrp">MRP ₹1,499</span>
+        <span class="sale-price" id="hero-price">₹799</span>
+        <span class="save-badge" id="hero-save">SAVE ₹700 (47% OFF)</span>
+      </div>
+      <div class="rating-row">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span>4.8 · 2,847+ Orders</span>
+      </div>
+      <button class="btn-cta" onclick="openModal()">🛒 अभी Order करें — COD</button>
+      <div class="trust-badges">
+        <span>📦 Free Delivery</span>
+        <span>💵 Pay on Delivery</span>
+        <span>🔄 Easy Return</span>
+        <span>🌿 100% Natural</span>
+      </div>
+    </div>
+    <div>
+      <div class="swiper-wrap" id="swiper-wrap">
+        <div class="swiper-track" id="swiper-track">
+          <img src="https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=600" alt="AyurSlim Gold"/>
+        </div>
+        <button class="swiper-btn prev" id="swiper-prev" onclick="swiperPrev()">‹</button>
+        <button class="swiper-btn next" id="swiper-next" onclick="swiperNext()">›</button>
+        <div class="swiper-dots" id="swiper-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">क्यों है AyurSlim Gold खास?</h2>
+    <p class="section-sub">6 powerful Ayurvedic benefits in one capsule</p>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="benefit-icon">🔥</div><div class="benefit-title">Fat Metabolism Boost</div><div class="benefit-desc">शरीर की fat burning capacity को naturally बढ़ाता है</div></div>
+      <div class="benefit-card"><div class="benefit-icon">🌿</div><div class="benefit-title">Detox & Cleanse</div><div class="benefit-desc">Liver और blood को detoxify करता है, toxins हटाता है</div></div>
+      <div class="benefit-card"><div class="benefit-icon">⚡</div><div class="benefit-title">Energy & Stamina</div><div class="benefit-desc">पूरे दिन energy बनाए रखता है, थकान दूर करता है</div></div>
+      <div class="benefit-card"><div class="benefit-icon">🧘</div><div class="benefit-title">Stress Balance</div><div class="benefit-desc">Cortisol levels को balance करता है, stress कम करता है</div></div>
+      <div class="benefit-card"><div class="benefit-icon">💧</div><div class="benefit-title">Digestive Health</div><div class="benefit-desc">Gut health improve करता है, bloating और constipation दूर</div></div>
+      <div class="benefit-card"><div class="benefit-icon">🛡️</div><div class="benefit-title">Immunity Support</div><div class="benefit-desc">Immune system को मजबूत बनाता है, बीमारियों से बचाता है</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section steps">
+  <div class="section-inner">
+    <h2 class="section-title" style="color:#fff;">कैसे काम करता है?</h2>
+    <p class="section-sub" style="color:#a7f3d0;">3 आसान steps में results</p>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><div class="step-title">Take 2 Capsules Daily</div><div class="step-desc">सुबह और रात के खाने से 30 मिनट पहले गुनगुने पानी के साथ लें</div></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-title">Follow Diet Tips</div><div class="step-desc">Pack के साथ मिले simple diet tips follow करें — कोई strict diet नहीं</div></div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-title">See Results</div><div class="step-desc">30–45 दिनों में visible results, 90 दिनों में best transformation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="section" style="background:#fff;">
+  <div class="section-inner">
+    <h2 class="section-title">शक्तिशाली Ayurvedic सामग्री</h2>
+    <p class="section-sub">Centuries-old herbs, scientifically validated</p>
+    <div class="ingredients-grid">
+      <div class="ing-card"><div class="ing-name">🍋 Garcinia Cambogia</div><div class="ing-benefit">Natural fat burner, appetite suppressant</div></div>
+      <div class="ing-card"><div class="ing-name">🌿 Triphala</div><div class="ing-benefit">Digestive tonic, detox, anti-oxidant</div></div>
+      <div class="ing-card"><div class="ing-name">💎 Guggul</div><div class="ing-benefit">Cholesterol balance, anti-inflammatory</div></div>
+      <div class="ing-card"><div class="ing-name">🌱 Ashwagandha</div><div class="ing-benefit">Stress reduction, cortisol balance</div></div>
+      <div class="ing-card"><div class="ing-name">🌾 Methi (Fenugreek)</div><div class="ing-benefit">Blood sugar control, metabolism boost</div></div>
+      <div class="ing-card"><div class="ing-name">🪵 Vijaysar</div><div class="ing-benefit">Anti-diabetic, liver protection</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VARIANTS -->
+<section class="variants-section" id="variants-section">
+  <div class="section-inner">
+    <h2 class="section-title">अपना Pack चुनें</h2>
+    <p class="section-sub">ज़्यादा pack = ज़्यादा savings + better results</p>
+    <div class="variants-grid" id="page-variants"></div>
+    <div style="text-align:center;"><button class="btn-order-variant" onclick="openModal()">🛒 अभी Order करें — COD</button></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Customers का अनुभव</h2>
+    <p class="section-sub">Real people, real results</p>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-header"><div><div class="reviewer-name">Priya Sharma</div><div class="reviewer-city">Mumbai, Maharashtra</div></div><div class="review-stars">⭐⭐⭐⭐⭐</div></div><div class="review-text">"3 महीने में 8 kg कम हुआ! कोई side effect नहीं। बहुत अच्छा product है।"</div><div class="review-meta">✅ Verified Purchase · 2 weeks ago</div></div>
+      <div class="review-card"><div class="review-header"><div><div class="reviewer-name">Ramesh Gupta</div><div class="reviewer-city">Lucknow, UP</div></div><div class="review-stars">⭐⭐⭐⭐⭐</div></div><div class="review-text">"Ayurvedic होने की वजह से safe feel हुआ। 2 months में belly fat visible कम हुई।"</div><div class="review-meta">✅ Verified Purchase · 1 month ago</div></div>
+      <div class="review-card"><div class="review-header"><div><div class="reviewer-name">Sunita Devi</div><div class="reviewer-city">Jaipur, Rajasthan</div></div><div class="review-stars">⭐⭐⭐⭐☆</div></div><div class="review-text">"Energy बहुत बढ़ी है। थकान कम लगती है। COD से order किया, smooth delivery।"</div><div class="review-meta">✅ Verified Purchase · 3 weeks ago</div></div>
+      <div class="review-card"><div class="review-header"><div><div class="reviewer-name">Vikram Patel</div><div class="reviewer-city">Surat, Gujarat</div></div><div class="review-stars">⭐⭐⭐⭐⭐</div></div><div class="review-text">"Doctor ने suggest किया था Ayurvedic try करने को। Results से बहुत खुश हूं।"</div><div class="review-meta">✅ Verified Purchase · 5 weeks ago</div></div>
+      <div class="review-card"><div class="review-header"><div><div class="reviewer-name">Kavita Mishra</div><div class="reviewer-city">Bhopal, MP</div></div><div class="review-stars">⭐⭐⭐⭐⭐</div></div><div class="review-text">"Digestion बहुत improve हुई। 45 days में 4 kg कम हुआ। Highly recommend!"</div><div class="review-meta">✅ Verified Purchase · 6 weeks ago</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:#fff;">
+  <div class="section-inner">
+    <h2 class="section-title">अक्सर पूछे जाने वाले सवाल</h2>
+    <p class="section-sub">आपके सभी सवालों के जवाब</p>
+    <div class="faq-list" id="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>क्या यह 100% natural है?</span><span class="faq-icon">+</span></div><div class="faq-a">हां, AyurSlim Gold में केवल AYUSH-approved Ayurvedic herbs हैं। कोई chemicals या steroids नहीं।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>कितने दिनों में result दिखेगा?</span><span class="faq-icon">+</span></div><div class="faq-a">अधिकांश customers को 30-45 दिनों में difference दिखता है। Best results के लिए 90 days recommended है।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>क्या COD available है?</span><span class="faq-icon">+</span></div><div class="faq-a">हां, पूरे India में Cash on Delivery उपलब्ध है। Order deliver होने पर payment करें।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Delivery कितने दिन में होगी?</span><span class="faq-icon">+</span></div><div class="faq-a">4-7 business days में delivery हो जाती है।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>क्या कोई side effects हैं?</span><span class="faq-icon">+</span></div><div class="faq-a">नहीं, यह पूरी तरह natural formula है। Pregnant women और serious medical conditions वालों को doctor से consult करना चाहिए।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Return/Refund policy क्या है?</span><span class="faq-icon">+</span></div><div class="faq-a">अगर product damaged या wrong आए तो 7 दिनों में return request करें। Unused products के लिए replacement दिया जाएगा।</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>क्या इसे exercise के साथ लेना जरूरी है?</span><span class="faq-icon">+</span></div><div class="faq-a">Exercise और balanced diet से results faster आते हैं, लेकिन product बिना exercise के भी काम करता है।</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand">🌿 VaidyaKart</div>
+  <div class="tagline">प्राचीन ज्ञान, आधुनिक विज्ञान</div>
+  <div class="copy">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="added8ddddc2dfd9eddbccc4c9d4ccc6ccdfd983cec2c0">[email&#160;protected]</a> &nbsp;|&nbsp; © 2025 VaidyaKart. All rights reserved.</div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="sticky-bar">
+  <div class="sticky-info">
+    AyurSlim Gold — <span id="sticky-price">₹799</span>
+    <small>FREE Shipping · Pay on Delivery</small>
+  </div>
+  <button class="btn-sticky" onclick="openModal()">Order Now 🛒</button>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="overlayClick(event)">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">📦 Order करें — Pay on Delivery</div>
+      <button class="btn-close-modal" onclick="closeModal()">×</button>
+    </div>
+
+    <!-- FORM VIEW -->
+    <div id="form-view">
+      <!-- Product & Variants -->
+      <div class="modal-section">
+        <div class="modal-label">Product</div>
+        <div id="modal-product-name" style="font-weight:800;color:var(--green);font-size:1rem;margin-bottom:12px;">AyurSlim Gold</div>
+        <div class="modal-label">Pack Size चुनें</div>
+        <div class="variant-options" id="modal-variants"></div>
+      </div>
+
+      <!-- Qty -->
+      <div class="modal-section">
+        <div class="modal-label">Quantity</div>
+        <div class="qty-stepper">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-val" id="qty-val">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="modal-section">
+        <div class="order-summary">
+          <div class="summary-row"><span id="sum-product">AyurSlim Gold (1 Month × 1)</span><span id="sum-price">₹799</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:#16a34a;font-weight:700;">FREE 🎉</span></div>
+          <div class="summary-row total"><span>Total (COD)</span><span id="sum-total">₹799</span></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="modal-section">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input class="form-input" id="f-name" type="text" placeholder="जैसे: Ramesh Kumar"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number *</label>
+          <input class="form-input" id="f-phone" type="tel" maxlength="10" placeholder="10 digit mobile number"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pincode *</label>
+          <input class="form-input" id="f-pincode" type="text" maxlength="6" placeholder="6 digit pincode" oninput="onPincodeInput()"/>
+          <div class="pincode-hint" id="pincode-hint"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input class="form-input" id="f-city" type="text" placeholder="Auto-filled" readonly/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">State</label>
+            <input class="form-input" id="f-state" type="text" placeholder="Auto-filled" readonly/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Full Address *</label>
+          <input class="form-input" id="f-address" type="text" placeholder="House no, Street, Locality"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Landmark (optional)</label>
+          <input class="form-input" id="f-landmark" type="text" placeholder="Near school, temple, etc."/>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="btn-submit" onclick="submitOrder()">🚀 Confirm Order — Pay on Delivery</button>
+    </div>
+
+    <!-- SUCCESS VIEW -->
+    <div id="success-view" style="display:none;">
+      <div class="success-view">
+        <div class="success-icon">🎉</div>
+        <div class="success-title">Order Placed!</div>
+        <div class="success-subtitle">आपका order successfully place हो गया है।</div>
+        <div class="order-id-box">
+          <div class="order-id-label">Order ID</div>
+          <div class="order-id-val" id="success-order-id">—</div>
+        </div>
+        <div class="success-steps">
+          <div class="success-step"><div class="step-circle">1</div><div class="step-text">हमारी team जल्द ही आपको <strong>call करेगी</strong> order confirm करने के लिए</div></div>
+          <div class="success-step"><div class="step-circle">2</div><div class="step-text">Order <strong>4–7 business days</strong> में आपके address पर deliver होगा</div></div>
+          <div class="success-step"><div class="step-circle">3</div><div class="step-text">Delivery के समय <strong>COD payment</strong> करें — बिल्कुल safe</div></div>
+        </div>
+        <button class="btn-done" onclick="closeModal()">✓ Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-wrap"><div class="toast" id="toast"></div></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const API_BASE = 'https://vaidkart-backend.onrender.com';
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let product = null;
+let variants = [
+  { label: '1 Month Pack (60 Capsules)', price: 799 },
+  { label: '2 Month Pack (120 Capsules)', price: 1399 },
+  { label: '3 Month Pack (180 Capsules) — Best Value', price: 1899 }
+];
+let selVariant = 0;
+let qty = 1;
+let isSubmitting = false;
+
+// ── SWIPER ─────────────────────────────────────────────────────────────────
+let swiperImages = [];
+let swiperIdx = 0;
+let touchStart = 0;
+
+function buildSwiper(images) {
+  swiperImages = images && images.length ? images : ['https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=600'];
+  const track = document.getElementById('swiper-track');
+  const dots = document.getElementById('swiper-dots');
+  track.innerHTML = swiperImages.map(src => `<img src="${src}" alt="Product" loading="lazy"/>`).join('');
+  dots.innerHTML = swiperImages.length > 1 ? swiperImages.map((_, i) => `<div class="swiper-dot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('') : '';
+  const show = swiperImages.length > 1;
+  document.getElementById('swiper-prev').style.display = show ? '' : 'none';
+  document.getElementById('swiper-next').style.display = show ? '' : 'none';
+  goSlide(0);
+
+  // Touch swipe
+  const wrap = document.getElementById('swiper-wrap');
+  wrap.addEventListener('touchstart', e => { touchStart = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', e => {
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? swiperNext() : swiperPrev();
+  }, { passive: true });
+}
+
+function goSlide(i) {
+  swiperIdx = Math.max(0, Math.min(i, swiperImages.length - 1));
+  document.getElementById('swiper-track').style.transform = `translateX(-${swiperIdx * 100}%)`;
+  document.querySelectorAll('.swiper-dot').forEach((d, j) => d.classList.toggle('active', j === swiperIdx));
+}
+function swiperNext() { goSlide((swiperIdx + 1) % swiperImages.length); }
+function swiperPrev() { goSlide((swiperIdx - 1 + swiperImages.length) % swiperImages.length); }
+
+// ── LOAD PRODUCT ──────────────────────────────────────────────────────────
+async function loadProduct() {
+  try {
+    const r = await fetch(API_BASE + '/api/products');
+    const d = await r.json();
+    if (d.success && d.products && d.products.length) {
+      product = d.products[0];
+      document.getElementById('hero-title').textContent = product.name.split('—')[0].trim() || 'AyurSlim Gold';
+      document.getElementById('hero-subtitle').textContent = product.description ? product.description.slice(0, 80) + '...' : 'Ayurvedic Weight Management Capsules';
+      if (product.mrp) {
+        document.getElementById('hero-mrp').textContent = 'MRP ₹' + product.mrp.toLocaleString('en-IN');
+        document.getElementById('hero-price').textContent = '₹' + product.price;
+        const save = product.mrp - product.price;
+        const pct = Math.round((save / product.mrp) * 100);
+        document.getElementById('hero-save').textContent = `SAVE ₹${save} (${pct}% OFF)`;
+      }
+      if (product.variants && product.variants.length) variants = product.variants;
+      buildSwiper(product.images);
+      renderVariants();
+      document.getElementById('modal-product-name').textContent = product.name;
+    }
+  } catch (e) {
+    buildSwiper([]);
+    renderVariants();
+  }
+}
+
+// ── RENDER VARIANTS ───────────────────────────────────────────────────────
+function renderVariants() {
+  // Page variants
+  const pv = document.getElementById('page-variants');
+  const saves = [null, 199, 498];
+  pv.innerHTML = variants.map((v, i) => `
+    <div class="variant-card${i===selVariant?' active':''}" onclick="selectPageVariant(${i})">
+      <div class="variant-label">${v.label}</div>
+      <div class="variant-price">₹${v.price}</div>
+      ${saves[i] ? `<div class="variant-save">Save ₹${saves[i]}</div>` : '<div style="height:18px"></div>'}
+    </div>`).join('');
+  // Modal variants
+  const mv = document.getElementById('modal-variants');
+  mv.innerHTML = variants.map((v, i) => `
+    <label class="variant-opt${i===selVariant?' sel':''}">
+      <input type="radio" name="variant" value="${i}" ${i===selVariant?'checked':''} onchange="selectVariant(${i})"/>
+      <span class="variant-opt-label">${v.label}</span>
+      <span class="variant-opt-price">₹${v.price}</span>
+    </label>`).join('');
+  updateSummary();
+  document.getElementById('sticky-price').textContent = '₹' + variants[selVariant].price;
+}
+
+function selectVariant(i) {
+  selVariant = i;
+  document.querySelectorAll('.variant-opt').forEach((el, j) => el.classList.toggle('sel', j === i));
+  updateSummary();
+}
+
+function selectPageVariant(i) {
+  selVariant = i;
+  renderVariants();
+}
+
+function changeQty(d) {
+  qty = Math.max(1, Math.min(10, qty + d));
+  document.getElementById('qty-val').textContent = qty;
+  updateSummary();
+}
+
+function updateSummary() {
+  const v = variants[selVariant];
+  const total = v.price * qty;
+  document.getElementById('sum-product').textContent = `${v.label} × ${qty}`;
+  document.getElementById('sum-price').textContent = '₹' + (v.price * qty).toLocaleString('en-IN');
+  document.getElementById('sum-total').textContent = '₹' + total.toLocaleString('en-IN');
+}
+
+// ── MODAL ──────────────────────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.getElementById('sticky-bar').classList.remove('visible');
+  document.body.style.overflow = 'hidden';
+  renderVariants();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => {
+    document.getElementById('form-view').style.display = '';
+    document.getElementById('success-view').style.display = 'none';
+    document.getElementById('btn-submit').disabled = false;
+    isSubmitting = false;
+  }, 300);
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+// ── PINCODE ────────────────────────────────────────────────────────────────
+let pincodeTimeout = null;
+function onPincodeInput() {
+  const pin = document.getElementById('f-pincode').value;
+  clearTimeout(pincodeTimeout);
+  if (pin.length === 6 && /^\d{6}$/.test(pin)) {
+    pincodeTimeout = setTimeout(() => fetchPincode(pin), 400);
+  } else {
+    document.getElementById('f-city').value = '';
+    document.getElementById('f-state').value = '';
+    document.getElementById('f-pincode').className = 'form-input';
+    document.getElementById('pincode-hint').textContent = '';
+  }
+}
+
+async function fetchPincode(pin) {
+  document.getElementById('pincode-hint').className = 'pincode-hint';
+  document.getElementById('pincode-hint').textContent = 'Fetching...';
+  try {
+    const r = await fetch(API_BASE + '/api/pincode/' + pin);
+    const d = await r.json();
+    if (d.success && d.data && d.data[0] && d.data[0].Status === 'Success') {
+      const po = d.data[0].PostOffice[0];
+      document.getElementById('f-city').value = po.District || po.Name || '';
+      document.getElementById('f-state').value = po.State || '';
+      document.getElementById('f-pincode').className = 'form-input ok';
+      document.getElementById('pincode-hint').className = 'pincode-hint ok';
+      document.getElementById('pincode-hint').textContent = '✅ ' + po.District + ', ' + po.State;
+    } else { throw new Error('Invalid'); }
+  } catch {
+    document.getElementById('f-pincode').className = 'form-input err';
+    document.getElementById('pincode-hint').className = 'pincode-hint err';
+    document.getElementById('pincode-hint').textContent = '❌ Invalid pincode';
+  }
+}
+
+// ── VALIDATE ───────────────────────────────────────────────────────────────
+function validate() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const pincode = document.getElementById('f-pincode').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+  if (!name) { showToast('⚠️ Please enter your name', 'error'); return false; }
+  if (!/^\d{10}$/.test(phone)) { showToast('⚠️ Enter valid 10-digit phone', 'error'); return false; }
+  if (!/^\d{6}$/.test(pincode)) { showToast('⚠️ Enter valid 6-digit pincode', 'error'); return false; }
+  if (!address) { showToast('⚠️ Please enter your address', 'error'); return false; }
+  return true;
+}
+
+// ── SUBMIT ORDER ───────────────────────────────────────────────────────────
+async function submitOrder() {
+  if (isSubmitting) return;
+  if (!validate()) return;
+  isSubmitting = true;
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.textContent = '⏳ Placing Order...';
+  const v = variants[selVariant];
+  const payload = {
+    name: document.getElementById('f-name').value.trim(),
+    phone: document.getElementById('f-phone').value.trim(),
+    pincode: document.getElementById('f-pincode').value.trim(),
+    city: document.getElementById('f-city').value.trim(),
+    state: document.getElementById('f-state').value.trim(),
+    address: document.getElementById('f-address').value.trim(),
+    productId: product ? product._id : null,
+    productName: product ? product.name : 'AyurSlim Gold — Ayurvedic Weight Management',
+    product: 'AyurSlim Gold',
+    variant: v.label,
+    quantity: qty,
+    price: v.price,
+    totalAmount: v.price * qty
+  };
+  try {
+    const r = await fetch(API_BASE + '/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (d.duplicate) {
+      showToast('⚠️ इस नंबर से पहले से order है!', 'error');
+      btn.disabled = false;
+      btn.textContent = '🚀 Confirm Order — Pay on Delivery';
+      isSubmitting = false;
+      return;
+    }
+    if (d.success) {
+      if (typeof fbq !== 'undefined') fbq('track', 'Purchase', { value: payload.totalAmount, currency: 'INR' });
+      document.getElementById('success-order-id').textContent = d.orderId;
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-view').style.display = '';
+    } else {
+      showToast('❌ Order failed: ' + (d.error || 'Try again'), 'error');
+    }
+  } catch (e) {
+    showToast('❌ Network error. Please try again.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '🚀 Confirm Order — Pay on Delivery';
+    isSubmitting = false;
+  }
+}
+
+// ── VIEWERS ────────────────────────────────────────────────────────────────
+let viewerBase = Math.floor(Math.random() * 18) + 18;
+function animateViewers() {
+  const delta = Math.floor(Math.random() * 7) - 3;
+  viewerBase = Math.max(10, Math.min(99, viewerBase + delta));
+  document.getElementById('viewer-count').textContent = viewerBase;
+}
+setInterval(animateViewers, 8000);
+setInterval(async () => {
+  try {
+    const r = await fetch(API_BASE + '/api/visitors/count');
+    const d = await r.json();
+    if (d.success && d.count > 0) {
+      viewerBase = Math.max(viewerBase, d.count);
+      document.getElementById('viewer-count').textContent = viewerBase;
+    }
+  } catch {}
+}, 30000);
+
+// ── VISITOR TRACKING ───────────────────────────────────────────────────────
+let visitorId = sessionStorage.getItem('vk_vid');
+if (!visitorId) { visitorId = 'v_' + Date.now() + '_' + Math.random().toString(36).slice(2); sessionStorage.setItem('vk_vid', visitorId); }
+function pingVisitor(action) {
+  navigator.sendBeacon ? navigator.sendBeacon(API_BASE + '/api/visitors/ping', JSON.stringify({ visitorId, action })) :
+    fetch(API_BASE + '/api/visitors/ping', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId, action }), keepalive: true }).catch(() => {});
+}
+pingVisitor('arrive');
+setInterval(() => pingVisitor('heartbeat'), 25000);
+window.addEventListener('beforeunload', () => pingVisitor('leave'));
+
+// ── META PIXEL ─────────────────────────────────────────────────────────────
+async function loadMeta() {
+  try {
+    const r = await fetch(API_BASE + '/api/meta');
+    const d = await r.json();
+    if (d.success && d.metaPixel) {
+      const s = document.createElement('script');
+      s.innerHTML = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${d.metaPixel}');fbq('track','PageView');`;
+      document.head.appendChild(s);
+    }
+  } catch {}
+}
+
+// ── FAQ ────────────────────────────────────────────────────────────────────
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+
+// ── STICKY BAR ─────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('sticky-bar');
+  if (!document.getElementById('modal-overlay').classList.contains('open')) {
+    bar.classList.toggle('visible', window.scrollY > 400);
+  }
+});
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.classList.remove('show'); }, 3000);
+}
+
+// ── INIT ─────────────�
