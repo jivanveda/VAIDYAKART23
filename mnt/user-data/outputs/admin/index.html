@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VaidyaKart Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --green:#16a34a;--green-dark:#15803d;--orange:#e85d04;
+  --black:#0f1117;--muted:#6b7280;--border:#e5e7eb;
+  --bg:#f9fafb;--white:#fff;--red:#dc2626;--blue:#2563eb;
+  --yellow:#d97706;--teal:#0891b2;--purple:#7c3aed;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#1f2937;}
+
+/* LOGIN */
+#login-screen{display:none;position:fixed;inset:0;background:var(--black);z-index:1000;align-items:center;justify-content:center;}
+#login-screen.show{display:flex;}
+.login-card{background:var(--white);border-radius:20px;padding:40px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.login-logo{font-size:1.6rem;font-weight:900;color:var(--green);margin-bottom:8px;}
+.login-sub{color:var(--muted);font-size:.9rem;margin-bottom:28px;}
+.login-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:.95rem;font-family:inherit;margin-bottom:14px;outline:none;}
+.login-input:focus{border-color:var(--green);}
+.btn-login{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;}
+.login-err{color:var(--red);font-size:.85rem;margin-top:10px;}
+
+/* LAYOUT */
+#app{display:none;}
+#app.show{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:240px;background:var(--black);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:50;transition:.3s;}
+.sidebar-logo{padding:20px 20px 16px;font-size:1.2rem;font-weight:900;color:var(--green);border-bottom:1px solid #1f2937;}
+.sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-size:.9rem;color:#9ca3af;transition:.2s;margin-bottom:4px;}
+.nav-item:hover{background:#1f2937;color:#fff;}
+.nav-item.active{background:var(--green);color:#fff;}
+.nav-icon{font-size:1.1rem;width:22px;text-align:center;}
+.sidebar-footer{padding:16px;border-top:1px solid #1f2937;}
+.btn-logout{width:100%;padding:10px;background:#1f2937;color:#9ca3af;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:.85rem;}
+.btn-logout:hover{color:#fff;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:240px;right:0;height:60px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:40;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.topbar-title{font-weight:900;font-size:1.1rem;}
+.live-badge{background:#fee2e2;color:var(--red);padding:6px 14px;border-radius:20px;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:6px;}
+.live-dot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.ham-btn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;}
+
+/* MAIN */
+.main-content{margin-left:240px;margin-top:60px;flex:1;padding:24px;min-height:calc(100vh - 60px);}
+
+/* TABS */
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
+.stat-card{background:#fff;border-radius:14px;padding:18px;border-left:4px solid var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.stat-card.blue{border-color:var(--blue);}
+.stat-card.yellow{border-color:var(--yellow);}
+.stat-card.teal{border-color:var(--teal);}
+.stat-card.purple{border-color:var(--purple);}
+.stat-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:6px;text-transform:uppercase;}
+.stat-val{font-size:1.6rem;font-weight:900;color:#111;}
+
+/* INSIGHT CARDS */
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px;}
+.insight-card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.insight-icon{font-size:1.5rem;margin-bottom:8px;}
+.insight-label{font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:4px;}
+.insight-val{font-size:1.2rem;font-weight:900;color:#111;}
+.insight-sub{font-size:.75rem;color:var(--muted);margin-top:3px;}
+
+/* DATE FILTER */
+.date-filter-card{background:#fff;border-left:4px solid var(--green);border-radius:12px;padding:16px 20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.df-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.df-label{font-weight:700;font-size:.85rem;}
+.df-input{padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.85rem;}
+.df-btn{padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;font-size:.82rem;transition:.2s;}
+.df-btn:hover,.df-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+.df-status{font-size:.8rem;color:var(--muted);margin-top:8px;}
+
+/* TABLE */
+.table-wrap{background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;margin-bottom:24px;}
+.table-head{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.table-title{font-weight:900;font-size:1rem;}
+table{width:100%;border-collapse:collapse;}
+th{background:#f9fafb;padding:10px 12px;text-align:left;font-size:.78rem;color:var(--muted);font-weight:700;text-transform:uppercase;white-space:nowrap;}
+td{padding:10px 12px;border-top:1px solid var(--border);font-size:.85rem;vertical-align:middle;}
+tr:hover td{background:#f9fafb;}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700;}
+.badge.new{background:#dbeafe;color:#1d4ed8;}
+.badge.confirmed{background:#fef9c3;color:#92400e;}
+.badge.shipped{background:#ccfbf1;color:#0f766e;}
+.badge.delivered{background:#dcfce7;color:#166534;}
+.badge.cancelled{background:#fee2e2;color:#991b1b;}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:22px;border-radius:6px;font-size:.75rem;font-weight:800;}
+.score-badge.green{background:#dcfce7;color:#166534;}
+.score-badge.yellow{background:#fef9c3;color:#92400e;}
+.score-badge.red{background:#fee2e2;color:#991b1b;}
+.status-select{border:1.5px solid var(--border);border-radius:6px;padding:4px 6px;font-family:inherit;font-size:.82rem;cursor:pointer;}
+.btn-action{padding:5px 10px;border-radius:6px;border:none;cursor:pointer;font-size:.75rem;font-weight:700;margin-right:4px;}
+.btn-view{background:#dbeafe;color:#1d4ed8;}
+.btn-ai{background:#ede9fe;color:#5b21b6;}
+.btn-del{background:#fee2e2;color:#991b1b;}
+
+/* CONTROLS ROW */
+.controls-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.ctrl-input{padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.88rem;flex:1;min-width:180px;}
+.ctrl-select{padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.88rem;}
+.btn-ctrl{padding:9px 16px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;font-size:.82rem;white-space:nowrap;}
+.btn-ctrl:hover{background:#f3f4f6;}
+.btn-ctrl.active{background:var(--green);color:#fff;border-color:var(--green);}
+
+/* DUPLICATE BANNER */
+.dup-banner{background:#fee2e2;border:1.5px solid #fca5a5;border-radius:10px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:.88rem;font-weight:700;color:#991b1b;display:none;}
+
+/* PRODUCTS */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
+.product-card{background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.07);overflow:hidden;}
+.product-img{width:100%;height:160px;object-fit:cover;background:#f3f4f6;}
+.product-body{padding:16px;}
+.product-name{font-weight:800;font-size:.95rem;margin-bottom:6px;}
+.product-price{color:var(--green);font-weight:900;font-size:1.1rem;}
+.product-mrp{text-decoration:line-through;color:var(--muted);font-size:.85rem;}
+.product-meta{font-size:.8rem;color:var(--muted);margin-top:4px;margin-bottom:10px;}
+.product-actions{display:flex;gap:8px;}
+.btn-edit{flex:1;padding:8px;background:#ede9fe;color:#5b21b6;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer;}
+.btn-delete{flex:1;padding:8px;background:#fee2e2;color:#991b1b;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer;}
+.toggle-active{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin-bottom:10px;}
+.toggle-active input{accent-color:var(--green);}
+
+/* MODALS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;}
+.overlay.open{display:flex;}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;padding:24px;}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.modal-title{font-weight:900;font-size:1.1rem;}
+.btn-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);}
+.field-group{margin-bottom:14px;}
+.field-label{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;}
+.field-input,.field-textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.9rem;outline:none;}
+.field-input:focus,.field-textarea:focus{border-color:var(--green);}
+.field-textarea{resize:vertical;min-height:80px;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-save{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:800;cursor:pointer;margin-top:8px;}
+.btn-save:hover{background:var(--green-dark);}
+
+/* SETTINGS */
+.settings-section{background:#fff;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.settings-title{font-weight:900;font-size:1rem;margin-bottom:16px;color:#111;}
+
+/* JUNK CARD */
+.junk-card{background:var(--black);color:#fff;border-radius:14px;padding:24px;margin-bottom:24px;}
+.junk-title{font-weight:900;font-size:1rem;margin-bottom:6px;}
+.junk-desc{color:#9ca3af;font-size:.85rem;margin-bottom:16px;}
+.btn-junk{background:var(--orange);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-weight:800;cursor:pointer;}
+.junk-result{margin-top:12px;font-size:.88rem;color:#4ade80;}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:24px;right:24px;z-index:9999;pointer-events:none;}
+.toast{background:#1f2937;color:#fff;padding:12px 20px;border-radius:10px;font-size:.88rem;font-weight:600;opacity:0;transform:translateY(8px);transition:.3s;margin-top:8px;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.success{background:var(--green);}
+.toast.error{background:var(--red);}
+
+/* SELLOSHIP */
+.selloship-section{background:#fff;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main-content{margin-left:0;}
+  .topbar{left:0;}
+  .ham-btn{display:block;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen" class="show">
+  <div class="login-card">
+    <div class="login-logo">🌿 VaidyaKart</div>
+    <div class="login-sub">Admin Dashboard</div>
+    <input class="login-input" id="l-user" type="text" placeholder="Username" value="admin"/>
+    <input class="login-input" id="l-pass" type="password" placeholder="Password"/>
+    <button class="btn-login" onclick="doLogin()">Login →</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-logo">🌿 VaidyaKart Admin</div>
+    <div class="sidebar-nav">
+      <div class="nav-item active" onclick="showTab('dashboard',this)"><span class="nav-icon">📊</span>Dashboard</div>
+      <div class="nav-item" onclick="showTab('orders',this)"><span class="nav-icon">📦</span>Orders</div>
+      <div class="nav-item" onclick="showTab('products',this)"><span class="nav-icon">🛍️</span>Products</div>
+      <div class="nav-item" onclick="showTab('settings',this)"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" onclick="showTab('selloship',this)"><span class="nav-icon">🚚</span>Selloship</div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="doLogout()">🚪 Logout</button>
+    </div>
+  </div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="ham-btn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+    </div>
+    <div class="live-badge"><div class="live-dot"></div>👁️ <span id="live-count">0</span> live</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="tab-panel active" id="tab-dashboard">
+      <!-- Date Filter -->
+      <div class="date-filter-card">
+        <div class="df-row">
+          <span class="df-label">📅</span>
+          From <input type="date" class="df-input" id="ddf-from" onchange="updateDashboardStats()"/>
+          To <input type="date" class="df-input" id="ddf-to" onchange="updateDashboardStats()"/>
+          <button class="df-btn active" id="ddf-all" onclick="setDdFilter('all',this)">All Time</button>
+          <button class="df-btn" id="ddf-today" onclick="setDdFilter('today',this)">Today</button>
+          <button class="df-btn" id="ddf-week" onclick="setDdFilter('week',this)">This Week</button>
+          <button class="df-btn" id="ddf-month" onclick="setDdFilter('month',this)">This Month</button>
+          <button class="df-btn" onclick="clearDdFilter()">✕ Clear</button>
+        </div>
+        <div class="df-status" id="ddf-status">Showing all-time stats</div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-label">📦 Total Orders</div><div class="stat-val" id="s-total">—</div></div>
+        <div class="stat-card blue"><div class="stat-label">🆕 New</div><div class="stat-val" id="s-new">—</div></div>
+        <div class="stat-card yellow"><div class="stat-label">✅ Confirmed</div><div class="stat-val" id="s-confirmed">—</div></div>
+        <div class="stat-card teal"><div class="stat-label">🚚 Shipped</div><div class="stat-val" id="s-shipped">—</div></div>
+        <div class="stat-card purple"><div class="stat-label">💰 Revenue</div><div class="stat-val" id="s-revenue">—</div></div>
+      </div>
+
+      <!-- Insight Cards -->
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-icon">⏱️</div><div class="insight-label">Peak Order Hour</div><div class="insight-val" id="i-peak">—</div><div class="insight-sub">Most orders placed at this hour</div></div>
+        <div class="insight-card"><div class="insight-icon">🌙</div><div class="insight-label">After 12PM Orders</div><div class="insight-val" id="i-pm">—</div><div class="insight-sub" id="i-pm-pct">of filtered orders</div></div>
+        <div class="insight-card"><div class="insight-icon">📈</div><div class="insight-label">Conversion Rate</div><div class="insight-val" id="i-conv">—</div><div class="insight-sub">Orders ÷ Live Visitors</div></div>
+        <div class="insight-card"><div class="insight-icon">⭐</div><div class="insight-label">Avg Address Score</div><div class="insight-val" id="i-score">—</div><div class="insight-sub">Out of 100</div></div>
+      </div>
+
+      <!-- Latest Orders -->
+      <div class="table-wrap">
+        <div class="table-head">
+          <div class="table-title">Latest Orders</div>
+          <button class="btn-ctrl" onclick="showTab('orders',document.querySelector('.nav-item:nth-child(2)'))">View All →</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>Name</th><th>Phone</th><th>City</th><th>Variant</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="latest-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Junk Cleaner -->
+      <div class="junk-card">
+        <div class="junk-title">🧹 Junk Cleaner</div>
+        <div class="junk-desc">Trim whitespace in all order fields, remove empty orders, expire stale visitor sessions.</div>
+        <button class="btn-junk" onclick="runJunkCleaner()">Clean Now</button>
+        <div class="junk-result" id="junk-result"></div>
+      </div>
+    </div>
+
+    <!-- ── ORDERS ── -->
+    <div class="tab-panel" id="tab-orders">
+      <div class="controls-row">
+        <button class="btn-ctrl" id="btn-pm-filter" onclick="togglePmFilter()">🌙 After 12PM</button>
+        <button class="btn-ctrl" onclick="exportCSV()">⬇️ Export CSV</button>
+      </div>
+      <div class="controls-row">
+        <input class="ctrl-input" id="search-input" placeholder="Search name, phone, ID..." oninput="renderOrders()"/>
+        <select class="ctrl-select" id="status-filter" onchange="renderOrders()">
+          <option value="">All Status</option>
+          <option value="new">New</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="controls-row">
+        <span style="font-size:.85rem;font-weight:700;">📅 From</span>
+        <input type="date" class="df-input" id="odf-from" onchange="renderOrders()"/>
+        <span style="font-size:.85rem;font-weight:700;">To</span>
+        <input type="date" class="df-input" id="odf-to" onchange="renderOrders()"/>
+        <button class="btn-ctrl" onclick="setOdFilter('today')">Today</button>
+        <button class="btn-ctrl" onclick="clearOdFilter()">✕ Clear</button>
+      </div>
+      <div class="dup-banner" id="dup-banner">
+        <span id="dup-text">⚠️ Duplicate orders found</span>
+        <button class="btn-ctrl" style="background:#fff;" onclick="clearDuplicates()">🧹 Clear Duplicates</button>
+      </div>
+      <div class="table-wrap">
+        <div class="table-head">
+          <div class="table-title">Orders</div>
+          <span id="orders-count" style="font-size:.85rem;color:var(--muted);font-weight:700;"></span>
+        </div>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>City</th><th>Variant</th><th>Qty</th><th>Amount</th><th>Score</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PRODUCTS ── -->
+    <div class="tab-panel" id="tab-products">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+        <button class="btn-ctrl" style="background:var(--green);color:#fff;border-color:var(--green);font-size:.9rem;padding:10px 20px;" onclick="openProdModal()">➕ Add Product</button>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+
+    <!-- ── SETTINGS ── -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="settings-section">
+        <div class="settings-title">📊 Meta Pixel ID</div>
+        <input class="field-input" id="meta-pixel-input" placeholder="Enter Facebook Pixel ID" style="margin-bottom:12px;"/>
+        <button class="btn-ctrl" onclick="saveMeta()">💾 Save Pixel ID</button>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">🔐 Admin Password</div>
+        <p style="color:var(--muted);font-size:.88rem;">Change credentials via environment variables on your server (ADMIN_USER, ADMIN_PASS).</p>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">🔄 Auto Refresh Orders</div>
+        <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.9rem;">
+          <input type="checkbox" id="auto-refresh-toggle" onchange="toggleAutoRefresh()" style="accent-color:var(--green);width:18px;height:18px;"/>
+          Refresh orders every 60 seconds
+        </label>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">🌱 Seed Database</div>
+        <p style="color:var(--muted);font-size:.88rem;margin-bottom:14px;">Creates a default AyurSlim Gold product if none exist.</p>
+        <button class="btn-ctrl" onclick="seedDB()">🌱 Seed Default Product</button>
+      </div>
+    </div>
+
+    <!-- ── SELLOSHIP ── -->
+    <div class="tab-panel" id="tab-selloship">
+      <div class="selloship-section">
+        <div class="settings-title">🔑 Selloship API Key</div>
+        <input class="field-input" id="ss-apikey" type="password" placeholder="Enter Selloship API Key" style="margin-bottom:12px;"/>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-ctrl" onclick="saveSelloshipKey()">💾 Save Key</button>
+          <button class="btn-ctrl" onclick="testSelloship()">🔌 Test Connection</button>
+        </div>
+        <div id="ss-result" style="margin-top:12px;font-size:.88rem;color:var(--green);"></div>
+      </div>
+      <div class="selloship-section">
+        <div class="settings-title">📦 Create Shipment</div>
+        <div class="field-group">
+          <label class="field-label">Select Order (New/Confirmed)</label>
+          <select class="field-input" id="ss-order-select"></select>
+        </div>
+        <div class="form-row-2">
+          <div class="field-group">
+            <label class="field-label">Weight (grams)</label>
+            <input class="field-input" id="ss-weight" type="number" value="250" placeholder="250"/>
+          </div>
+          <div class="field-group">
+            <label class="field-label">COD Amount (₹)</label>
+            <input class="field-input" id="ss-cod" type="number" placeholder="799"/>
+          </div>
+        </div>
+        <button class="btn-ctrl" onclick="createShipment()" style="background:var(--green);color:#fff;border-color:var(--green);">🚚 Create Shipment</button>
+        <div id="ss-ship-result" style="margin-top:12px;font-size:.88rem;"></div>
+      </div>
+    </div>
+
+  </div><!-- main-content -->
+</div><!-- app -->
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="pm-modal-title">➕ Add Product</div>
+      <button class="btn-close" onclick="closeProductModal()">×</button>
+    </div>
+    <div class="field-group"><label class="field-label">Product Name *</label><input class="field-input" id="pm-name" placeholder="e.g. AyurSlim Gold"/></div>
+    <div class="field-group"><label class="field-label">Description</label><textarea class="field-textarea" id="pm-desc" placeholder="Product description..."></textarea></div>
+    <div class="form-row-2">
+      <div class="field-group"><label class="field-label">Price ₹ *</label><input class="field-input" id="pm-price" type="number" placeholder="799"/></div>
+      <div class="field-group"><label class="field-label">MRP ₹</label><input class="field-input" id="pm-mrp" type="number" placeholder="1499"/></div>
+    </div>
+    <div class="form-row-2">
+      <div class="field-group"><label class="field-label">Stock</label><input class="field-input" id="pm-stock" type="number" placeholder="100"/></div>
+      <div class="field-group" style="display:flex;align-items:center;padding-top:20px;gap:8px;"><input type="checkbox" id="pm-active" checked style="accent-color:var(--green);width:18px;height:18px;"/><label for="pm-active" style="font-weight:700;font-size:.9rem;cursor:pointer;">Active</label></div>
+    </div>
+    <div class="field-group"><label class="field-label">Image URLs — one per line</label><textarea class="field-textarea" id="pm-images" placeholder="https://...&#10;https://..."></textarea></div>
+    <div class="field-group"><label class="field-label">Benefits — one per line</label><textarea class="field-textarea" id="pm-benefits" placeholder="Boosts metabolism&#10;Reduces belly fat"></textarea></div>
+    <div class="field-group"><label class="field-label">Ingredients</label><textarea class="field-textarea" id="pm-ingredients" placeholder="Garcinia Cambogia (500mg), ..."></textarea></div>
+    <div class="field-group"><label class="field-label">How To Use</label><textarea class="field-textarea" id="pm-howtouse" placeholder="Take 2 capsules..."></textarea></div>
+    <div class="field-group"><label class="field-label">Variants — format: Label:Price (one per line)</label><textarea class="field-textarea" id="pm-variants" placeholder="1 Month Pack:799&#10;2 Month Pack:1399&#10;3 Month Pack:1899"></textarea></div>
+    <button class="btn-save" onclick="saveProduct()">💾 Save Product</button>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="overlay" id="orderDetailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📦 Order Details</div>
+      <button class="btn-close" onclick="document.getElementById('orderDetailModal').classList.remove('open')">×</button>
+    </div>
+    <div id="order-detail-content"></div>
+  </div>
+</div>
+
+<!-- AI FIX MODAL -->
+<div class="overlay" id="aiFix Modal">
+<div class="overlay" id="aiFixModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🤖 AI Address Fix</div>
+      <button class="btn-close" onclick="document.getElementById('aiFixModal').classList.remove('open')">×</button>
+    </div>
+    <div id="ai-fix-content">
+      <div style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">Current address fields:</div>
+      <div class="field-group"><label class="field-label">Name</label><input class="field-input" id="aif-name"/></div>
+      <div class="field-group"><label class="field-label">Address</label><input class="field-input" id="aif-address"/></div>
+      <div class="form-row-2">
+        <div class="field-group"><label class="field-label">City</label><input class="field-input" id="aif-city"/></div>
+        <div class="field-group"><label class="field-label">State</label><input class="field-input" id="aif-state"/></div>
+      </div>
+      <div class="field-group"><label class="field-label">Pincode</label><input class="field-input" id="aif-pincode"/></div>
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="btn-ctrl" style="flex:1;background:#ede9fe;color:#5b21b6;border-color:#ede9fe;" onclick="runAIFix()">🤖 Fix with AI</button>
+        <button class="btn-ctrl" style="flex:1;background:var(--green);color:#fff;border-color:var(--green);" onclick="saveAIFix()">✅ Save Fixed Address</button>
+      </div>
+      <div id="ai-fix-status" style="margin-top:10px;font-size:.85rem;color:var(--green);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-wrap"><div class="toast" id="toast"></div></div>
+
+<script>
+const API = 'https://vaidyakart23.onrender.com';
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+let allOrders = [];
+let allProducts = [];
+let pmFilter = false;
+let autoRefreshEnabled = false;
+let autoRefreshTimer = null;
+let prevOrderIds = new Set();
+let liveVisitorCount = 0;
+let aiFixOrderId = null;
+
+// ── AUTH ──────────────────────────────────────────────────────────────────
+function checkAuth() { return !!localStorage.getItem('vk_admin_token'); }
+
+async function doLogin() {
+  const u = document.getElementById('l-user').value.trim();
+  const p = document.getElementById('l-pass').value;
+  try {
+    const r = await fetch(API + '/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
+    const d = await r.json();
+    if (d.success) {
+      localStorage.setItem('vk_admin_token', d.token);
+      document.getElementById('login-screen').classList.remove('show');
+      document.getElementById('app').classList.add('show');
+      initApp();
+    } else {
+      document.getElementById('login-err').textContent = '❌ Invalid credentials';
+    }
+  } catch { document.getElementById('login-err').textContent = '❌ Server error'; }
+}
+
+function doLogout() {
+  localStorage.removeItem('vk_admin_token');
+  document.getElementById('app').classList.remove('show');
+  document.getElementById('login-screen').classList.add('show');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+function initApp() {
+  loadOrders();
+  loadProducts();
+  loadSettings();
+  loadSelloshipConfig();
+  startLiveVisitors();
+  startAutoRefresh();
+  document.getElementById('ddf-all').classList.add('active');
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────
+function showTab(name, navEl) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (navEl) navEl.classList.add('active');
+  document.getElementById('topbar-title').textContent = {
+    dashboard: 'Dashboard', orders: 'Orders', products: 'Products',
+    settings: 'Settings', selloship: 'Selloship'
+  }[name] || name;
+  if (name === 'selloship') populateSelloshipOrders();
+  closeSidebar();
+}
+
+// ── ORDERS ────────────────────────────────────────────────────────────────
+async function loadOrders() {
+  if (!checkAuth()) return;
+  try {
+    const r = await fetch(API + '/api/orders');
+    const d = await r.json();
+    if (d.success) {
+      checkNewOrders(d.orders);
+      allOrders = d.orders;
+      renderOrders();
+      renderLatest();
+      checkDuplicates();
+      updateDashboardStats();
+    }
+  } catch {}
+}
+
+function checkNewOrders(fresh) {
+  if (prevOrderIds.size === 0) { prevOrderIds = new Set(fresh.map(o => o._id)); return; }
+  const newOnes = fresh.filter(o => !prevOrderIds.has(o._id));
+  if (newOnes.length > 0) {
+    playBeep();
+    showToast('🔔 ' + newOnes.length + ' new order(s)!', 'success');
+    newOnes.forEach(o => prevOrderIds.add(o._id));
+  }
+  prevOrderIds = new Set(fresh.map(o => o._id));
+}
+
+function playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator(); const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = 880; gain.gain.setValueAtTime(.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + .4);
+    osc.start(); osc.stop(ctx.currentTime + .4);
+  } catch {}
+}
+
+function scoreAddress(o) {
+  let s = 0;
+  if (o.address && o.address.length > 10) s += 30;
+  if (o.pincode && /^\d{6}$/.test(o.pincode)) s += 20;
+  if (o.city && o.city.trim()) s += 20;
+  if (o.state && o.state.trim()) s += 15;
+  if (o.address && /\d/.test(o.address)) s += 15;
+  return s;
+}
+
+function scoreBadge(score) {
+  const cls = score >= 70 ? 'green' : score >= 40 ? 'yellow' : 'red';
+  return `<span class="score-badge ${cls}">${score}</span>`;
+}
+
+function fmtDate(d) {
+  const dt = new Date(d);
+  return dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' }) + ' ' + dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+}
+
+function getOdFilteredOrders() {
+  let orders = [...allOrders];
+  const from = document.getElementById('odf-from')?.value;
+  const to = document.getElementById('odf-to')?.value;
+  if (from) orders = orders.filter(o => new Date(o.createdAt) >= new Date(from));
+  if (to) orders = orders.filter(o => new Date(o.createdAt) <= new Date(to + 'T23:59:59'));
+  return orders;
+}
+
+function renderOrders() {
+  const search = (document.getElementById('search-input')?.value || '').toLowerCase();
+  const status = document.getElementById('status-filter')?.value || '';
+  let orders = getOdFilteredOrders();
+  if (pmFilter) orders = orders.filter(o => new Date(o.createdAt).getHours() >= 12);
+  if (status) orders = orders.filter(o => o.status === status);
+  if (search) orders = orders.filter(o =>
+    (o.name || '').toLowerCase().includes(search) ||
+    (o.phone || '').includes(search) ||
+    (o._id || '').includes(search)
+  );
+  document.getElementById('orders-count').textContent = orders.length + ' orders';
+  const tbody = document.getElementById('orders-tbody');
+  if (!orders.length) { tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:32px;color:var(--muted);">No orders found</td></tr>'; return; }
+  tbody.innerHTML = orders.map((o, i) => {
+    const sc = scoreAddress(o);
+    const isLow = sc < 40;
+    return `<tr>
+      <td>${i + 1}</td>
+      <td style="font-weight:700;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.name || '—'}</td>
+      <td>${o.phone || '—'}</td>
+      <td>${o.city || '—'}</td>
+      <td style="font-size:.78rem;max-width:120px;overflow:hidden;text-overflow:ellipsis;">${o.variant || '—'}</td>
+      <td>${o.quantity || 1}</td>
+      <td style="font-weight:700;">₹${(o.totalAmount || 0).toLocaleString('en-IN')}</td>
+      <td>${scoreBadge(sc)}</td>
+      <td><select class="status-select" onchange="updateStatus(this,'${o._id}')">
+        ${['new','confirmed','shipped','delivered','cancelled'].map(s => `<option value="${s}"${o.status===s?' selected':''}>${s.charAt(0).toUpperCase()+s.slice(1)}</option>`).join('')}
+      </select></td>
+      <td style="font-size:.78rem;white-space:nowrap;">${fmtDate(o.createdAt)}</td>
+      <td>
+        <button class="btn-action btn-view" onclick="viewOrder('${o._id}')">👁️</button>
+        ${isLow ? `<button class="btn-action btn-ai" onclick="openAIFix('${o._id}')">🤖</button>` : ''}
+        <button class="btn-action btn-del" onclick="deleteOrder('${o._id}')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderLatest() {
+  const orders = allOrders.slice(0, 10);
+  const tbody = document.getElementById('latest-tbody');
+  if (!orders.length) { tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">No orders yet</td></tr>'; return; }
+  tbody.innerHTML = orders.map(o => `
+    <tr>
+      <td style="font-weight:700;">${o.name || '—'}</td>
+      <td>${o.phone || '—'}</td>
+      <td>${o.city || '—'}</td>
+      <td style="font-size:.78rem;">${(o.variant || '').slice(0, 20) || '—'}</td>
+      <td style="font-weight:700;">₹${(o.totalAmount || 0).toLocaleString('en-IN')}</td>
+      <td><span class="badge ${o.status}">${o.status}</span></td>
+      <td style="font-size:.78rem;">${fmtDate(o.createdAt)}</td>
+    </tr>`).join('');
+}
+
+async function updateStatus(sel, id) {
+  const status = sel.value;
+  try {
+    const r = await fetch(API + '/api/orders/' + id + '/status', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) });
+    const d = await r.json();
+    if (d.success) {
+      const idx = allOrders.findIndex(o => o._id === id);
+      if (idx >= 0) allOrders[idx].status = status;
+      renderOrders(); renderLatest(); updateDashboardStats();
+      showToast('✅ Status updated', 'success');
+    }
+  } catch { showToast('❌ Update failed', 'error'); }
+}
+
+async function deleteOrder(id) {
+  if (!confirm('Delete this order?')) return;
+  try {
+    const r = await fetch(API + '/api/orders/' + id, { method: 'DELETE' });
+    const d = await r.json();
+    if (d.success) {
+      allOrders = allOrders.filter(o => o._id !== id);
+      renderOrders(); renderLatest(); updateDashboardStats();
+      showToast('🗑️ Order deleted', 'success');
+    }
+  } catch { showToast('❌ Delete failed', 'error'); }
+}
+
+function viewOrder(id) {
+  const o = allOrders.find(x => x._id === id);
+  if (!o) return;
+  const sc = scoreAddress(o);
+  document.getElementById('order-detail-content').innerHTML = `
+    <div style="display:grid;gap:10px;font-size:.9rem;">
+      <div><b>Order ID:</b> <code style="background:#f3f4f6;padding:2px 8px;border-radius:4px;">${o._id}</code></div>
+      <div><b>Name:</b> ${o.name}</div><div><b>Phone:</b> ${o.phone}</div>
+      <div><b>Address:</b> ${o.address}</div>
+      <div><b>City:</b> ${o.city} &nbsp; <b>State:</b> ${o.state} &nbsp; <b>Pin:</b> ${o.pincode}</div>
+      <div><b>Product:</b> ${o.productName || o.product}</div>
+      <div><b>Variant:</b> ${o.variant} &nbsp; <b>Qty:</b> ${o.quantity}</div>
+      <div><b>Total:</b> ₹${o.totalAmount}</div>
+      <div><b>Status:</b> <span class="badge ${o.status}">${o.status}</span></div>
+      <div><b>Address Score:</b> ${scoreBadge(sc)} / 100</div>
+      <div><b>Date:</b> ${new Date(o.createdAt).toLocaleString('en-IN')}</div>
+    </div>`;
+  document.getElementById('orderDetailModal').classList.add('open');
+}
+
+function checkDuplicates() {
+  const phones = allOrders.map(o => o.phone).filter(Boolean);
+  const dupes = phones.filter((p, i) => phones.indexOf(p) !== i);
+  const unique = [...new Set(dupes)];
+  const banner = document.getElementById('dup-banner');
+  if (unique.length > 0) {
+    banner.style.display = 'flex';
+    document.getElementById('dup-text').textContent = `⚠️ ${unique.length} duplicate phone(s) found`;
+  } else { banner.style.display = 'none'; }
+}
+
+async function clearDuplicates() {
+  const phoneMap = {};
+  for (const o of allOrders) {
+    if (!o.phone) continue;
+    if (!phoneMap[o.phone] || new Date(o.createdAt) > new Date(phoneMap[o.phone].createdAt)) {
+      phoneMap[o.phone] = o;
+    }
+  }
+  const toDelete = allOrders.filter(o => o.phone && phoneMap[o.phone]._id !== o._id);
+  let deleted = 0;
+  for (const o of toDelete) {
+    try {
+      await fetch(API + '/api/orders/' + o._id, { method: 'DELETE' });
+      allOrders = allOrders.filter(x => x._id !== o._id);
+      deleted++;
+    } catch {}
+  }
+  renderOrders(); renderLatest(); checkDuplicates(); updateDashboardStats();
+  showToast(`🗑️ Removed ${deleted} duplicate(s)`, 'success');
+}
+
+function togglePmFilter() {
+  pmFilter = !pmFilter;
+  document.getElementById('btn-pm-filter').classList.toggle('active', pmFilter);
+  renderOrders();
+}
+
+function exportCSV() { window.location.href = API + '/api/orders/export/csv'; }
+
+function setOdFilter(type) {
+  const today = new Date().toISOString().split('T')[0];
+  if (type === 'today') {
+    document.getElementById('odf-from').value = today;
+    document.getElementById('odf-to').value = today;
+  }
+  renderOrders();
+}
+function clearOdFilter() {
+  document.getElementById('odf-from').value = '';
+  document.getElementById('odf-to').value = '';
+  renderOrders();
+}
+
+// ── DASHBOARD STATS ───────────────────────────────────────────────────────
+function getDdFilteredOrders() {
+  const from = document.getElementById('ddf-from')?.value;
+  const to = document.getElementById('ddf-to')?.value;
+  if (!from && !to) return allOrders;
+  return allOrders.filter(o => {
+    const d = new Date(o.createdAt);
+    if (from && d < new Date(from)) return false;
+    if (to && d > new Date(to + 'T23:59:59')) return false;
+    return true;
+  });
+}
+
+function updateDashboardStats() {
+  const orders = getDdFilteredOrders();
+  document.getElementById('s-total').textContent = orders.length;
+  document.getElementById('s-new').textContent = orders.filter(o => o.status === 'new').length;
+  document.getElementById('s-confirmed').textContent = orders.filter(o => o.status === 'confirmed').length;
+  document.getElementById('s-shipped').textContent = orders.filter(o => o.status === 'shipped').length;
+  const rev = orders.filter(o => ['confirmed','shipped','delivered'].includes(o.status)).reduce((a, o) => a + (o.totalAmount || 0), 0);
+  document.getElementById('s-revenue').textContent = '₹' + rev.toLocaleString('en-IN');
+  computeInsights(orders);
+
+  // Update status label
+  const from = document.getElementById('ddf-from')?.value;
+  const to = document.getElementById('ddf-to')?.value;
+  document.getElementById('ddf-status').textContent = (from || to)
+    ? `📊 Filtered — ${from ? 'From: ' + from : ''} ${to ? '· To: ' + to : ''} (${orders.length} orders)`
+    : 'Showing all-time stats';
+}
+
+function computeInsights(orders) {
+  // Peak hour
+  const hours = {};
+  orders.forEach(o => { const h = new Date(o.createdAt).getHours(); hours[h] = (hours[h] || 0) + 1; });
+  const peak = Object.entries(hours).sort((a, b) => b[1] - a[1])[0];
+  document.getElementById('i-peak').textContent = peak ? `${peak[0]}:00 – ${+peak[0]+1}:00` : '—';
+
+  // After 12PM
+  const pm = orders.filter(o => new Date(o.createdAt).getHours() >= 12).length;
+  const pmPct = orders.length ? Math.round((pm / orders.length) * 100) : 0;
+  document.getElementById('i-pm').textContent = pm;
+  document.getElementById('i-pm-pct').textContent = pmPct + '% of filtered orders';
+
+  // Conversion rate
+  const conv = liveVisitorCount > 0 ? Math.min(100, Math.round((orders.length / liveVisitorCount) * 100)) : 0;
+  document.getElementById('i-conv').textContent = conv + '%';
+
+  // Avg address score
+  const avg = orders.length ? Math.round(orders.reduce((a, o) => a + scoreAddress(o), 0) / orders.length) : 0;
+  document.getElementById('i-score').textContent = avg + ' / 100';
+}
+
+function setDdFilter(type, btn) {
+  document.querySelectorAll('[id^="ddf-"]').forEach(b => { if (b.tagName === 'BUTTON') b.classList.remove('active'); });
+  btn.classList.add('active');
+  const today = new Date().toISOString().split('T')[0];
+  if (type === 'all') {
+    document.getElementById('ddf-from').value = '';
+    document.getElementById('ddf-to').value = '';
+  } else if (type === 'today') {
+    document.getElementById('ddf-from').value = today;
+    document.getElementById('ddf-to').value = today;
+  } else if (type === 'week') {
+    const d = new Date(); d.setDate(d.getDate() - 6);
+    document.getElementById('ddf-from').value = d.toISOString().split('T')[0];
+    document.getElementById('ddf-to').value = today;
+  } else if (type === 'month') {
+    const d = new Date(); d.setDate(1);
+    document.getElementById('ddf-from').value = d.toISOString().split('T')[0];
+    document.getElementById('ddf-to').value = today;
+  }
+  updateDashboardStats();
+}
+
+function clearDdFilter() {
+  document.querySelectorAll('[id^="ddf-"]').forEach(b => { if (b.tagName === 'BUTTON') b.classList.remove('active'); });
+  document.getElementById('ddf-all').classList.add('active');
+  document.getElementById('ddf-from').value = '';
+  document.getElementById('ddf-to').value = '';
+  updateDashboardStats();
+}
+
+// ── JUNK CLEANER ──────────────────────────────────────────────────────────
+async function runJunkCleaner() {
+  try {
+    const r = await fetch(API + '/api/admin/junk-clean', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    const d = await r.json();
+    if (d.success) {
+      document.getElementById('junk-result').textContent = `✅ Fixed ${d.ordersFixed} orders · Removed ${d.emptyOrders} empty · Cleared ${d.visitorsCleared} sessions`;
+      loadOrders();
+    }
+  } catch { showToast('❌ Junk cleaner failed', 'error'); }
+}
+
+// ── PRODUCTS ──────────────────────────────────────────────────────────────
+async function loadProducts() {
+  if (!checkAuth()) return;
+  try {
+    const r = await fetch(API + '/api/products/all');
+    const d = await r.json();
+    if (d.success) { allProducts = d.products; renderProducts(); }
+  } catch { showToast('❌ Failed to load products', 'error'); }
+}
+
+function renderProducts() {
+  const grid = document.getElementById('product-grid');
+  if (!allProducts.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);">No products yet. Click Add Product to create one.</div>'; return; }
+  grid.innerHTML = allProducts.map(p => `
+    <div class="product-card">
+      <img class="product-img" src="${p.images && p.images[0] ? p.images[0] : 'https://via.placeholder.com/400x200?text=No+Image'}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/400x200?text=No+Image'"/>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div><span class="product-price">₹${p.price}</span> <span class="product-mrp">₹${p.mrp || ''}</span></div>
+        <div class="product-meta">Stock: ${p.stock || 0} · ${p.active ? '✅ Active' : '❌ Inactive'}</div>
+        <div class="toggle-active"><input type="checkbox" ${p.active ? 'checked' : ''} onchange="toggleProductActive('${p._id}',this.checked)"/> Active</div>
+        <div class="product-actions">
+          <button class="btn-edit" onclick="openEditProduct('${p._id}')">✏️ Edit</button>
+          <button class="btn-delete" onclick="deleteProduct('${p._id}')">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openProdModal() {
+  ['pm-name','pm-desc','pm-price','pm-mrp','pm-stock','pm-images','pm-benefits','pm-ingredients','pm-howtouse','pm-variants'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('pm-active').checked = true;
+  document.getElementById('productModal').dataset.editId = '';
+  document.getElementById('pm-modal-title').textContent = '➕ Add Product';
+  document.getElementById('productModal').classList.add('open');
+}
+
+function openEditProduct(id) {
+  const p = allProducts.find(x => x._id === id);
+  if (!p) { showToast('Product not found', 'error'); return; }
+  document.getElementById('pm-name').value = p.name || '';
+  document.getElementById('pm-desc').value = p.description || '';
+  document.getElementById('pm-price').value = p.price || '';
+  document.getElementById('pm-mrp').value = p.mrp || '';
+  document.getElementById('pm-stock').value = p.stock || '';
+  document.getElementById('pm-active').checked = p.active !== false;
+  document.getElementById('pm-images').value = (p.images || []).join('\n');
+  document.getElementById('pm-benefits').value = (p.benefits || []).join('\n');
+  document.getElementById('pm-ingredients').value = p.ingredients || '';
+  document.getElementById('pm-howtouse').value = p.howToUse || '';
+  document.getElementById('pm-variants').value = (p.variants || []).map(v => `${v.label}:${v.price}`).join('\n');
+  document.getElementById('productModal').dataset.editId = id;
+  document.getElementById('pm-modal-title').textContent = '✏️ Edit Product';
+  document.getElementById('productModal').classList.add('open');
+}
+
+function closeProductModal() {
+  document.getElementById('productModal').classList.remove('open');
+}
+
+async function saveProduct() {
+  const name = document.getElementById('pm-name').value.trim();
+  if (!name) { showToast('Product name required', 'error'); return; }
+  const images = document.getElementById('pm-images').value.split('\n').map(s => s.trim()).filter(Boolean);
+  const benefits = document.getElementById('pm-benefits').value.split('\n').map(s => s.trim()).filter(Boolean);
+  const variants = document.getElementById('pm-variants').value.split('\n').map(s => s.trim()).filter(Boolean)
+    .map(line => { const [label, price] = line.split(':'); return { label: (label || '').trim(), price: parseFloat(price) || 0 }; })
+    .filter(v => v.label);
+  const payload = {
+    name,
+    description: document.getElementById('pm-desc').value.trim(),
+    price: parseFloat(document.getElementById('pm-price').value) || 0,
+    mrp: parseFloat(document.getElementById('pm-mrp').value) || 0,
+    stock: parseInt(document.getElementById('pm-stock').value) || 0,
+    active: document.getElementById('pm-active').checked,
+    images, benefits, variants,
+    ingredients: document.getElementById('pm-ingredients').value.trim(),
+    howToUse: document.getElementById('pm-howtouse').value.trim()
+  };
+  const editId = document.getElementById('productModal').dataset.editId;
+  const isEdit = !!editId;
+  try {
+    const url = isEdit ? `${API}/api/products/${editId}` : `${API}/api/products`;
+    const method = isEdit ? 'PUT' : 'POST';
+    const r = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const d = await r.json();
+    if (d.success) {
+      showToast(isEdit ? '✅ Product updated!' : '✅ Product created!', 'success');
+      closeProductModal();
+      loadProducts();
+    } else { showToast('Error: ' + (d.error || 'Unknown'), 'error'); }
+  } catch (e) { showToast('Network error: ' + e.message, 'error'); }
+}
+
+async function deleteProduct(id) {
+  if (!confirm('Delete this product? Cannot be undone.')) return;
+  try {
+    const r = await fetch(API + '/api/products/' + id, { method: 'DELETE' });
+    const d = await r.json();
+    if (d.success) {
+      allProducts = allProducts.filter(p => p._id !== id);
+      renderProducts();
+      showToast('🗑️ Product deleted', 'success');
+    } else { showToast('Delete failed: ' + (d.error || ''), 'error'); }
+  } catch { showToast('Network error', 'error'); }
+}
+
+async function toggleProductActive(id, active) {
+  const p = allProducts.find(x => x._id === id);
+  if (!p) return;
+  try {
+    await fetch(API + '/api/products/' + id, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...p, active }) });
+    p.active = active;
+    renderProducts();
+    showToast(active ? '✅ Product activated' : '⛔ Product deactivated', 'success');
+  } catch {}
+}
+
+// ── SETTINGS ──────────────────────────────────────────────────────────────
+async function loadSettings() {
+  try {
+    const r = await fetch(API + '/api/meta');
+    const d = await r.json();
+    if (d.success) document.getElementById('meta-pixel-input').value = d.metaPixel || '';
+  } catch {}
+}
+
+async function saveMeta() {
+  const metaPixel = document.getElementById('meta-pixel-input').value.trim();
+  try {
+    const r = await fetch(API + '/api/meta', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ metaPixel }) });
+    const d = await r.json();
+    if (d.success) showToast('✅ Meta Pixel saved', 'success');
+    else showToast('❌ Save failed', 'error');
+  } catch { showToast('Network error', 'error'); }
+}
+
+async function seedDB() {
+  try {
+    const r = await fetch(API + '/api/seed', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+    const d = await r.json();
+    showToast(d.message ? '✅ ' + d.message : '✅ Seeded successfully!', 'success');
+    loadProducts();
+  } catch { showToast('❌ Seed failed', 'error'); }
+}
+
+function toggleAutoRefresh() {
+  autoRefreshEnabled = document.getElementById('auto-refresh-toggle').checked;
+  if (autoRefreshEnabled) startAutoRefresh();
+  else { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+}
+
+function startAutoRefresh() {
+  if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+  if (autoRefreshEnabled) autoRefreshTimer = setInterval(() => { loadOrders(); }, 60000);
+}
+
+// ── LIVE VISITORS ─────────────────────────────────────────────────────────
+function startLiveVisitors() {
+  const poll = async () => {
+    try {
+      const r = await fetch(API + '/api/visitors/count');
+      const d = await r.json();
+      if (d.success) { liveVisitorCount = d.count; document.getElementById('live-count').textContent = d.count; }
+    } catch {}
+  };
+  poll();
+  setInterval(poll, 15000);
+}
+
+// ── AI FIX ────────────────────────────────────────────────────────────────
+function openAIFix(id) {
+  const o = allOrders.find(x => x._id === id);
+  if (!o) return;
+  aiFixOrderId = id;
+  document.getElementById('aif-name').value = o.name || '';
+  document.getElementById('aif-address').value = o.address || '';
+  document.getElementById('aif-city').value = o.city || '';
+  document.getElementById('aif-state').value = o.state || '';
+  document.getElementById('aif-pincode').value = o.pincode || '';
+  document.getElementById('ai-fix-status').textContent = '';
+  document.getElementById('aiFixModal').classList.add('open');
+}
+
+async function runAIFix() {
+  const status = document.getElementById('ai-fix-status');
+  status.textContent = '🤖 Analyzing with AI...';
+  status.style.color = 'var(--muted)';
+  const addr = {
+    name: document.getElementById('aif-name').value,
+    address: document.getElementById('aif-address').value,
+    city: document.getElementById('aif-city').value,
+    state: document.getElementById('aif-state').value,
+    pincode: document.getElementById('aif-pincode').value
+  };
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 500,
+        messages: [{ role: 'user', content: 'Fix this Indian address for courier delivery. Correct spelling, capitalize properly, fill missing city/state from pincode if possible. Return ONLY valid JSON with no markdown: {"name":"...","address":"...","city":"...","state":"...","pincode":"..."} Address: ' + JSON.stringify(addr) }]
+      })
+    });
+    const d = await r.json();
+    const text = d.content?.map(c => c.text || '').join('') || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const fixed = JSON.parse(clean);
+    document.getElementById('aif-name').value = fixed.name || addr.name;
+    document.getElementById('aif-address').value = fixed.address || addr.address;
+    document.getElementById('aif-city').value = fixed.city || addr.city;
+    document.getElementById('aif-state').value = fixed.state || addr.state;
+    document.getElementById('aif-pincode').value = fixed.pincode || addr.pincode;
+    status.textContent = '✅ AI has suggested fixes. Review and save.';
+    status.style.color = 'var(--green)';
+  } catch (e) {
+    status.textContent = '❌ AI fix failed: ' + e.message;
+    status.style.color = 'var(--red)';
+  }
+}
+
+async function saveAIFix() {
+  if (!aiFixOrderId) return;
+  const payload = {
+    name: document.getElementById('aif-name').value,
+    address: document.getElementById('aif-address').value,
+    city: document.getElementById('aif-city').value,
+    state: document.getElementById('aif-state').value,
+    pincode: document.getElementById('aif-pincode').value
+  };
+  try {
+    const r = await fetch(API + '/api/orders/' + aiFixOrderId + '/address', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const d = await r.json();
+    if (d.success) {
+      const idx = allOrders.findIndex(o => o._id === aiFixOrderId);
+      if (idx >= 0) Object.assign(allOrders[idx], payload);
+      renderOrders(); renderLatest();
+      document.getElementById('aiFixModal').classList.remove('open');
+      showToast('✅ Address updated!', 'success');
+    } else { showToast('❌ Save failed', 'error'); }
+  } catch { showToast('Network error', 'error'); }
+}
+
+// ── SELLOSHIP ─────────────────────────────────────────────────────────────
+function loadSelloshipConfig() {
+  const key = localStorage.getItem('vk_selloship_key') || '';
+  document.getElementById('ss-apikey').value = key;
+}
+
+function saveSelloshipKey() {
+  const key = document.getElementById('ss-apikey').value.trim();
+  localStorage.setItem('vk_selloship_key', key);
+  showToast('✅ API key saved', 'success');
+}
+
+async function testSelloship() {
+  const key = document.getElementById('ss-apikey').value.trim();
+  const result = document.getElementById('ss-result');
+  result.textContent = 'Testing...';
+  try {
+    const r = await fetch(API + '/api/selloship/account', { headers: { 'x-selloship-key': key } });
+    const d = await r.json();
+    result.textContent = d.success ? '✅ Connected: ' + JSON.stringify(d.data).slice(0, 120) : '❌ Failed: ' + JSON.stringify(d);
+    result.style.color = d.success ? 'var(--green)' : 'var(--red)';
+  } catch (e) { result.textContent = '❌ Error: ' + e.message; result.style.color = 'var(--red)'; }
+}
+
+function populateSelloshipOrders() {
+  const sel = document.getElementById('ss-order-select');
+  const orders = allOrders.filter(o => ['new','confirmed'].includes(o.status));
+  sel.innerHTML = orders.map(o => `<option value="${o._id}">${o.name} — ${o.phone} — ₹${o.totalAmount} (${o.status})</option>`).join('') || '<option>No new/confirmed orders</option>';
+}
+
+async function createShipment() {
+  const key = localStorage.getItem('vk_selloship_key');
+  const orderId = document.getElementById('ss-order-select').value;
+  const o = allOrders.find(x => x._id === orderId);
+  const result = document.getElementById('ss-ship-result');
+  if (!o) { result.textContent = '❌ Select an order first'; result.style.color = 'var(--red)'; return; }
+  result.textContent = '🚚 Creating shipment...'; result.style.color = 'var(--muted)';
+  const order = {
+    name: o.name, phone: o.phone, address: o.address,
+    city: o.city, state: o.state, pincode: o.pincode,
+    amount: o.totalAmount, weight: parseInt(document.getElementById('ss-weight').value) || 250,
+    cod: parseFloat(document.getElementById('ss-cod').value) || o.totalAmount
+  };
+  try {
+    const r = await fetch(API + '/api/selloship/create-shipment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ apiKey: key, order }) });
+    const d = await r.json();
+    if (d.awb) { result.textContent = '✅ Shipment created! AWB: ' + d.awb; result.style.color = 'var(--green)'; }
+    else { result.textContent = '⚠️ Response: ' + JSON.stringify(d.raw).slice(0, 200); result.style.color = 'var(--yellow)'; }
+  } catch (e) { result.textContent = '❌ ' + e.message; result.style.color = 'var(--red)'; }
+}
+
+// ── SIDEBAR MOBILE ────────────────────────────────────────────────────────
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); }
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── KEYBOARD ──────────────────────────────────────────────────────────────
+document.getElementById('l-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// ── BOOT ──────────────────────────────────────────────────────────────────
+if (checkAuth()) {
+  document.getElementById('login-screen').classList.remove('show');
+  document.getElementById('app').classList.add('show');
+  initApp();
+}
+</script>
+</body>
+</html>
