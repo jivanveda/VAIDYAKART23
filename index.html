@@ -377,7 +377,7 @@ footer .copy{font-size:.78rem;color:#6ee7b7;}
 <footer>
   <div class="brand">🌿 VaidyaKart</div>
   <div class="tag">प्राचीन ज्ञान, आधुनिक विज्ञान</div>
-  <div class="copy">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="46353336362934320630272f223f272d2734326825292b">[email&#160;protected]</a> &nbsp;|&nbsp; © 2025 VaidyaKart. All rights reserved.</div>
+  <div class="copy">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="285b5d5858475a5c685e49414c514943495a5c064b4745">[email&#160;protected]</a> &nbsp;|&nbsp; © 2025 VaidyaKart. All rights reserved.</div>
 </footer>
 
 <!-- STICKY BAR -->
@@ -521,17 +521,31 @@ async function loadProduct() {
     const d = await r.json();
     if (d.success && d.products && d.products.length) {
       product = d.products[0];
-      document.getElementById('htitle').textContent = (product.name||'AyurSlim Gold').split('—')[0].trim();
-      if (product.description) document.getElementById('hsub').textContent = product.description.slice(0,90)+(product.description.length>90?'…':'');
-      if (product.mrp) {
-        document.getElementById('hmrp').textContent='MRP ₹'+product.mrp.toLocaleString('en-IN');
-        document.getElementById('hprice').textContent='₹'+product.price;
-        const sv=product.mrp-product.price;
-        document.getElementById('hsave').textContent=`SAVE ₹${sv} (${Math.round(sv/product.mrp*100)}% OFF)`;
+      const cleanName = (product.name||'AyurSlim Gold').split('—')[0].split('–')[0].trim();
+      document.getElementById('htitle').textContent = cleanName;
+      if (product.description) {
+        const desc = product.description.trim();
+        document.getElementById('hsub').textContent = desc.length>90 ? desc.slice(0,90)+'…' : desc;
       }
-      if (product.variants&&product.variants.length) variants=product.variants;
+      if (product.mrp && product.price) {
+        document.getElementById('hmrp').textContent='MRP ₹'+Number(product.mrp).toLocaleString('en-IN');
+        document.getElementById('hprice').textContent='₹'+Number(product.price).toLocaleString('en-IN');
+        const sv=Number(product.mrp)-Number(product.price);
+        document.getElementById('hsave').textContent=`SAVE ₹${sv.toLocaleString('en-IN')} (${Math.round(sv/product.mrp*100)}% OFF)`;
+        // Keep sticky bar in sync
+        const stickyP = document.getElementById('sticky-price');
+        if(stickyP) stickyP.textContent='₹'+Number(product.price).toLocaleString('en-IN');
+      }
+      if (product.variants&&product.variants.length) {
+        variants=product.variants.map(v=>({label:v.label||v.name||'Pack',price:Number(v.price)||0}));
+      }
+      // Update stock display
+      if (typeof product.stock !== 'undefined') {
+        const stockEl = document.querySelector('.stock-label');
+        if (stockEl) stockEl.textContent = `⚠️ Only ${product.stock} units left — selling fast!`;
+      }
       document.getElementById('modal-pname').textContent=product.name;
-      buildSwiper(product.images);
+      buildSwiper(product.images&&product.images.length?product.images:[]);
       // Fire ViewContent pixel event
       firePixel('ViewContent',{content_name:product.name,content_ids:[product._id||'ayurslim-gold'],content_type:'product',value:product.price,currency:'INR'});
     } else { buildSwiper([]); }
@@ -557,15 +571,23 @@ function firePixel(event, data) {
 
 // ── RENDER VARIANTS ──
 function renderVariants() {
-  const saves=[null,199,498];
-  const bestLabels=[false,false,true];
-  document.getElementById('page-variants').innerHTML = variants.map((v,i)=>`
+  // Compute savings dynamically: compare to base price × quantity implied by label
+  // Best value = last variant; savings relative to 1-month price × months
+  const basePrice = variants[0]?variants[0].price:799;
+  document.getElementById('page-variants').innerHTML = variants.map((v,i)=>{
+    // Try to detect month count from label (e.g. "2 Month" → 2)
+    const mMatch = v.label.match(/(\d+)\s*[Mm]onth/);
+    const months = mMatch ? parseInt(mMatch[1]) : (i+1);
+    const fullPrice = basePrice * months;
+    const saving = fullPrice - v.price;
+    const isBest = i === variants.length - 1 && variants.length > 1;
+    return `
     <div class="var-card${i===selV?' on':''}" onclick="selectPageV(${i})">
-      ${bestLabels[i]?'<div class="var-best">🔥 BEST VALUE</div>':''}
+      ${isBest?'<div class="var-best">🔥 BEST VALUE</div>':''}
       <div class="var-label">${v.label}</div>
       <div class="var-price">₹${v.price}</div>
-      ${saves[i]?`<div class="var-save">Save ₹${saves[i]}</div>`:'<div style="height:16px"></div>'}
-    </div>`).join('');
+      ${saving>0?`<div class="var-save">Save ₹${saving}</div>`:'<div style="height:16px"></div>'}
+    </div>`;}).join('');
   document.getElementById('modal-variants').innerHTML = variants.map((v,i)=>`
     <label class="var-opt${i===selV?' sel':''}">
       <input type="radio" name="var" value="${i}" ${i===selV?'checked':''} onchange="selectV(${i})"/>
@@ -665,7 +687,7 @@ async function submitOrder(){
     address:document.getElementById('f-address').value.trim(),
     productId:product?product._id:null,
     productName:product?product.name:'AyurSlim Gold — Ayurvedic Weight Management',
-    product:'AyurSlim Gold',variant:v.label,quantity:qty,price:v.price,totalAmount:v.price*qty
+    product:product?product.name:'AyurSlim Gold',variant:v.label,quantity:qty,price:v.price,totalAmount:v.price*qty
   };
   try{
     const r=await fetch(API_BASE+'/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -778,4 +800,22 @@ window.addEventListener('scroll',()=>{
 let toastT;
 function toast(msg,type=''){
   const el=document.getElementById('toast-el');
-  el.textContent=msg;el.className='
+  el.textContent=msg;el.className='toast'+(type?' '+type:'');
+  el.classList.add('show');
+  clearTimeout(toastT);
+  toastT=setTimeout(()=>el.classList.remove('show'),3000);
+}
+
+// ── INIT ──
+(async()=>{
+  startCountdown();
+  startOrdersToday();
+  updateLastOrder();
+  pingVisitor('arrive');
+  await loadMeta();
+  await loadProduct();
+})();
+
+</script>
+</body>
+</html>
