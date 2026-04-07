@@ -1,793 +1,981 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AyurSlim Gold — 100% Ayurvedic Weight Loss Capsules | VaidyaKart</title>
-<meta name="description" content="AyurSlim Gold — 100% Ayurvedic herbal capsules for natural weight loss. Free COD shipping across India. AYUSH certified. 2847+ happy customers. Order now!"/>
-<meta name="keywords" content="ayurvedic weight loss, ayurslim, vaidyakart, herbal weight loss capsules, cod weight loss, natural fat burner india"/>
-
-<!-- Open Graph (Facebook / Meta Ads) -->
-<meta property="og:type" content="product"/>
-<meta property="og:site_name" content="VaidyaKart"/>
-<meta property="og:title" content="AyurSlim Gold — 100% Ayurvedic Weight Loss | ₹799 COD"/>
-<meta property="og:description" content="Lose weight naturally with certified Ayurvedic herbs. No side effects. Free shipping. Pay on delivery. 2847+ satisfied customers across India."/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=1200"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:url" content="https://vaidyakart.com/"/>
-<meta property="og:locale" content="en_IN"/>
-<meta property="product:price:amount" content="799"/>
-<meta property="product:price:currency" content="INR"/>
-<meta property="product:availability" content="in stock"/>
-<meta property="product:condition" content="new"/>
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="AyurSlim Gold — ₹799 COD | 100% Ayurvedic"/>
-<meta name="twitter:description" content="Natural Ayurvedic weight loss. Free shipping. Pay on delivery."/>
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=1200"/>
-
-<!-- Structured Data for Google Shopping -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org/",
-  "@type":"Product",
-  "name":"AyurSlim Gold — Ayurvedic Weight Management Capsules",
-  "description":"100% natural Ayurvedic formula. Boosts metabolism, reduces fat, improves digestion — without side effects.",
-  "brand":{"@type":"Brand","name":"VaidyaKart"},
-  "image":["https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=600"],
-  "sku":"AYSLIM-001",
-  "offers":{
-    "@type":"Offer",
-    "url":"https://vaidyakart.com/",
-    "priceCurrency":"INR",
-    "price":"799",
-    "availability":"https://schema.org/InStock",
-    "seller":{"@type":"Organization","name":"VaidyaKart"}
-  },
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"2847"}
-}
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<title>VaidyaKart Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-:root{--g:#1a5c38;--g2:#2d7a50;--gold:#d4a017;--cream:#fdf6ec;--dark:#1a1a1a;--muted:#6b7280;--red:#dc2626;}
+:root{--green:#16a34a;--gd:#15803d;--orange:#e85d04;--black:#0f1117;--muted:#6b7280;--border:#e5e7eb;--bg:#f9fafb;--red:#dc2626;--blue:#2563eb;--yellow:#d97706;--teal:#0891b2;--purple:#7c3aed;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);}
-
-.ann{background:var(--g);color:#fff;padding:8px;text-align:center;font-size:13px;font-weight:700;overflow:hidden;}
-.ann-inner{display:inline-block;animation:marquee 24s linear infinite;white-space:nowrap;}
-@keyframes marquee{0%{transform:translateX(100vw);}100%{transform:translateX(-150%)}}
-
-.nav{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.1);}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;}
-.logo{font-size:22px;font-weight:900;color:var(--g);}
-.btn-nav{background:var(--g);color:#fff;border:none;padding:10px 20px;border-radius:25px;font-weight:800;font-size:14px;cursor:pointer;transition:.2s;}
-.btn-nav:hover{background:var(--g2);}
-.trust{background:var(--gold);color:#fff;text-align:center;padding:6px;font-size:12px;font-weight:700;}
-
-/* URGENCY BAR */
-.urgency-bar{background:#7f1d1d;color:#fef2f2;text-align:center;padding:9px;font-size:13px;font-weight:700;}
-.urgency-bar b{color:#fca5a5;}
-
-.hero{background:linear-gradient(135deg,#0d3a22,#1a5c38 50%,#0d3a22);color:#fff;padding:30px 20px 40px;}
-.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
-@media(max-width:700px){.hero-inner{grid-template-columns:1fr;}}
-.viewers{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);padding:7px 14px;border-radius:20px;font-size:13px;margin-bottom:14px;}
-.viewers b{color:#4ade80;}
-.vdot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:vblink 1.5s infinite;}
-@keyframes vblink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.badge-ayush{background:var(--gold);display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:10px;}
-.hero-h1{font-size:2rem;font-weight:900;line-height:1.2;margin-bottom:6px;}
-.hero-sub{font-size:.95rem;color:#a7f3d0;margin-bottom:14px;}
-.price-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
-.mrp{text-decoration:line-through;color:#9ca3af;}
-.sale{font-size:2rem;font-weight:900;color:#4ade80;}
-.save-tag{background:var(--red);color:#fff;padding:3px 10px;border-radius:10px;font-size:13px;font-weight:700;}
-.rating{display:flex;align-items:center;gap:8px;font-size:13px;color:#d1fae5;margin-bottom:18px;}
-.stars{color:var(--gold);}
-.stock-bar{margin-bottom:16px;}
-.stock-label{font-size:12px;color:#fca5a5;font-weight:700;margin-bottom:4px;}
-.stock-track{background:rgba(255,255,255,.15);height:6px;border-radius:3px;overflow:hidden;}
-.stock-fill{height:100%;background:#4ade80;border-radius:3px;width:23%;}
-.btn-cta{background:var(--gold);color:#fff;border:none;padding:16px 36px;border-radius:30px;font-size:1.05rem;font-weight:900;cursor:pointer;width:100%;max-width:340px;display:block;margin-bottom:14px;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,.5);}50%{box-shadow:0 0 0 14px rgba(212,160,23,0);}}
-.trust-row{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:#a7f3d0;}
-.timer-wrap{background:rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;font-size:13px;}
-.timer-label{color:#fca5a5;font-weight:700;}
-.timer-val{background:#dc2626;color:#fff;padding:3px 8px;border-radius:6px;font-weight:900;font-size:15px;min-width:36px;text-align:center;}
-
-.swiper-wrap{position:relative;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.08);max-width:440px;margin:0 auto;aspect-ratio:1;}
-.swiper-track{display:flex;transition:transform .4s;}
-.swiper-track img{width:100%;flex-shrink:0;aspect-ratio:1;object-fit:cover;}
-.sw-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;}
-.sw-btn.prev{left:8px;}.sw-btn.next{right:8px;}
-.sw-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
-.sw-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;}
-.sw-dot.on{background:#fff;}
-
-.sec{padding:48px 20px;}
-.sec-inner{max-width:1100px;margin:0 auto;}
-.sec-title{text-align:center;font-size:1.5rem;font-weight:900;color:var(--g);margin-bottom:6px;}
-.sec-sub{text-align:center;color:var(--muted);margin-bottom:28px;font-size:.9rem;}
-
-.ben-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:18px;}
-.ben-card{background:#fff;border-radius:14px;padding:20px 14px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:3px solid var(--g);}
-.ben-icon{font-size:1.8rem;margin-bottom:8px;}
-.ben-title{font-weight:800;font-size:.9rem;color:var(--g);margin-bottom:4px;}
-.ben-desc{font-size:.8rem;color:var(--muted);}
-
-.steps-sec{background:var(--g);}
-.steps-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
-.step-card{background:rgba(255,255,255,.1);border-radius:14px;padding:26px 18px;text-align:center;color:#fff;flex:1;min-width:180px;max-width:260px;}
-.step-num{background:var(--gold);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;margin:0 auto 10px;}
-.step-title{font-weight:800;font-size:.95rem;margin-bottom:6px;}
-.step-desc{font-size:.82rem;color:#a7f3d0;}
-
-.ing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;}
-.ing-card{background:#fff;border-radius:10px;padding:16px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-.ing-name{font-weight:800;color:var(--g);font-size:.88rem;margin-bottom:3px;}
-.ing-ben{font-size:.78rem;color:var(--muted);}
-
-.var-sec{background:#f0fdf4;padding:40px 20px;}
-.var-grid{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
-.var-card{border:2px solid #d1fae5;background:#fff;border-radius:14px;padding:18px 22px;text-align:center;cursor:pointer;transition:.2s;min-width:190px;position:relative;}
-.var-card.on,.var-card:hover{border-color:var(--g);background:#f0fdf4;}
-.var-label{font-weight:800;margin-bottom:4px;}
-.var-price{font-size:1.3rem;font-weight:900;color:var(--g);}
-.var-save{font-size:.78rem;color:var(--red);font-weight:700;}
-.var-best{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#dc2626;color:#fff;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:10px;white-space:nowrap;}
-.btn-order-var{background:var(--g);color:#fff;border:none;padding:13px 38px;border-radius:28px;font-size:.95rem;font-weight:800;cursor:pointer;display:block;margin:0 auto;}
-
-.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
-.rev-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.07);}
-.rev-top{display:flex;justify-content:space-between;margin-bottom:8px;}
-.rev-name{font-weight:800;font-size:.9rem;}
-.rev-city{font-size:.78rem;color:var(--muted);}
-.rev-stars{color:var(--gold);}
-.rev-text{font-size:.86rem;line-height:1.6;}
-.rev-meta{margin-top:8px;font-size:.76rem;color:#16a34a;font-weight:700;}
-
-.faq-list{max-width:680px;margin:0 auto;}
-.faq-item{background:#fff;border-radius:10px;margin-bottom:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05);}
-.faq-q{padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--g);}
-.faq-ico{font-size:18px;transition:.3s;}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s,padding .3s;font-size:.87rem;color:var(--muted);line-height:1.7;padding:0 18px;}
-.faq-item.open .faq-a{max-height:200px;padding:0 18px 16px;}
-.faq-item.open .faq-ico{transform:rotate(45deg);}
-
-footer{background:var(--g);color:#fff;text-align:center;padding:28px 20px;}
-footer .brand{font-size:1.3rem;font-weight:900;margin-bottom:4px;}
-footer .tag{color:#a7f3d0;font-size:.88rem;font-style:italic;margin-bottom:10px;}
-footer .copy{font-size:.78rem;color:#6ee7b7;}
-
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--g);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;z-index:90;box-shadow:0 -4px 16px rgba(0,0,0,.1);transform:translateY(100%);transition:.3s;}
-.sticky-bar.show{transform:translateY(0);}
-.sticky-info{font-weight:800;font-size:.88rem;color:var(--g);}
-.sticky-info small{display:block;font-size:.73rem;color:var(--muted);font-weight:400;}
-.btn-sticky{background:var(--g);color:#fff;border:none;padding:11px 22px;border-radius:22px;font-weight:800;font-size:.88rem;cursor:pointer;}
-
-/* MODAL */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:flex-end;justify-content:center;}
-.overlay.open{display:flex;}
-@media(min-width:580px){.overlay{align-items:center;}}
-.modal-box{background:#fff;width:100%;max-width:510px;border-radius:22px 22px 0 0;max-height:94vh;overflow-y:auto;padding:22px 18px 30px;}
-@media(min-width:580px){.modal-box{border-radius:22px;}}
-.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-.mt{font-weight:900;font-size:1.05rem;color:var(--g);}
-.btn-cls{background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1;}
-.msec{margin-bottom:16px;}
-.mlabel{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
-.var-opts{display:flex;flex-direction:column;gap:8px;}
-.var-opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border:2px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:.2s;}
-.var-opt.sel{border-color:var(--g);background:#f0fdf4;}
-.var-opt input[type=radio]{accent-color:var(--g);}
-.var-opt-lbl{font-weight:700;font-size:.88rem;flex:1;}
-.var-opt-pr{font-weight:900;color:var(--g);}
-.qty-row{display:flex;align-items:center;gap:0;border:2px solid #e5e7eb;border-radius:10px;overflow:hidden;width:fit-content;}
-.qty-btn{width:36px;height:36px;border:none;background:#f9fafb;font-size:1.2rem;cursor:pointer;font-weight:900;}
-.qty-val{width:48px;text-align:center;font-weight:800;}
-.summary{background:#f0fdf4;border-radius:10px;padding:14px;}
-.sum-row{display:flex;justify-content:space-between;font-size:.88rem;padding:3px 0;color:var(--muted);}
-.sum-row.tot{font-weight:900;color:var(--g);font-size:.95rem;border-top:1px solid #d1fae5;margin-top:6px;padding-top:8px;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:#1f2937;}
+#login-screen{display:none;position:fixed;inset:0;background:var(--black);z-index:1000;align-items:center;justify-content:center;}
+#login-screen.show{display:flex;}
+.lcard{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.llogo{font-size:1.5rem;font-weight:900;color:var(--green);margin-bottom:6px;}
+.lsub{color:var(--muted);font-size:.88rem;margin-bottom:24px;}
+.linput{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:.92rem;font-family:inherit;margin-bottom:12px;outline:none;}
+.linput:focus{border-color:var(--green);}
+.lbtn{width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:10px;font-size:.95rem;font-weight:800;cursor:pointer;}
+.lerr{color:var(--red);font-size:.83rem;margin-top:8px;}
+#app{display:none;}
+#app.show{display:flex;min-height:100vh;}
+.sidebar{width:240px;background:var(--black);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;bottom:0;left:0;z-index:50;transition:.3s;}
+.slogo{padding:20px 20px 14px;font-size:1.1rem;font-weight:900;color:var(--green);border-bottom:1px solid #1f2937;}
+.snav{flex:1;padding:14px 10px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;cursor:pointer;font-weight:700;font-size:.88rem;color:#9ca3af;transition:.2s;margin-bottom:3px;}
+.nav-item:hover{background:#1f2937;color:#fff;}
+.nav-item.active{background:var(--green);color:#fff;}
+.nav-icon{font-size:1rem;width:20px;text-align:center;}
+.sfooter{padding:14px;border-top:1px solid #1f2937;}
+.btn-logout{width:100%;padding:9px;background:#1f2937;color:#9ca3af;border:none;border-radius:8px;cursor:pointer;font-weight:700;font-size:.83rem;}
+.btn-logout:hover{color:#fff;}
+.topbar{position:fixed;top:0;left:240px;right:0;height:58px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 22px;z-index:40;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.topbar-title{font-weight:900;font-size:1rem;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.live-badge{background:#fee2e2;color:var(--red);padding:5px 12px;border-radius:18px;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:5px;}
+.ldot{width:7px;height:7px;background:var(--red);border-radius:50%;animation:ldot 1.5s infinite;}
+@keyframes ldot{0%,100%{opacity:1;}50%{opacity:.3;}}
+.sound-btn{background:#f3f4f6;border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:.8rem;font-weight:700;color:var(--muted);}
+.sound-btn.on{background:#dcfce7;border-color:var(--green);color:var(--green);}
+.hambtn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#1f2937;}
+.main{margin-left:240px;margin-top:58px;flex:1;padding:22px;}
+.tab{display:none;}.tab.active{display:block;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:20px;}
+.stat-card{background:#fff;border-radius:12px;padding:16px;border-left:4px solid var(--green);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.stat-card.b{border-color:var(--blue);}
+.stat-card.y{border-color:var(--yellow);}
+.stat-card.t{border-color:var(--teal);}
+.stat-card.p{border-color:var(--purple);}
+.slabel{font-size:.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:5px;}
+.sval{font-size:1.5rem;font-weight:900;}
+.ins-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin-bottom:20px;}
+.ins-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.ins-icon{font-size:1.4rem;margin-bottom:6px;}
+.ins-label{font-size:.74rem;color:var(--muted);font-weight:700;margin-bottom:3px;}
+.ins-val{font-size:1.15rem;font-weight:900;}
+.ins-sub{font-size:.72rem;color:var(--muted);margin-top:2px;}
+.dfc{background:#fff;border-left:4px solid var(--green);border-radius:11px;padding:14px 18px;margin-bottom:18px;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+.df-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.df-input{padding:7px 9px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:.83rem;}
+.df-btn{padding:6px 12px;border-radius:7px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;font-size:.8rem;transition:.2s;}
+.df-btn:hover,.df-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+.df-status{font-size:.78rem;color:var(--muted);margin-top:7px;}
+.tbl-wrap{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden;margin-bottom:20px;}
+.tbl-head{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:8px;}
+.tbl-title{font-weight:900;font-size:.95rem;}
+table{width:100%;border-collapse:collapse;}
+th{background:var(--bg);padding:9px 11px;text-align:left;font-size:.74rem;color:var(--muted);font-weight:700;text-transform:uppercase;white-space:nowrap;}
+td{padding:9px 11px;border-top:1px solid var(--border);font-size:.83rem;vertical-align:middle;}
+tr:hover td{background:#f9fafb;}
+.badge{display:inline-block;padding:2px 9px;border-radius:18px;font-size:.72rem;font-weight:700;}
+.badge.new{background:#dbeafe;color:#1d4ed8;}
+.badge.confirmed{background:#fef9c3;color:#92400e;}
+.badge.shipped{background:#ccfbf1;color:#0f766e;}
+.badge.delivered{background:#dcfce7;color:#166534;}
+.badge.cancelled{background:#fee2e2;color:#991b1b;}
+.sc-badge{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:20px;padding:0 6px;border-radius:5px;font-size:.72rem;font-weight:800;}
+.sc-badge.g{background:#dcfce7;color:#166534;}
+.sc-badge.y{background:#fef9c3;color:#92400e;}
+.sc-badge.r{background:#fee2e2;color:#991b1b;}
+.ssel{border:1.5px solid var(--border);border-radius:6px;padding:3px 5px;font-family:inherit;font-size:.8rem;cursor:pointer;}
+.btn-a{padding:4px 9px;border-radius:5px;border:none;cursor:pointer;font-size:.72rem;font-weight:700;margin-right:3px;}
+.btn-view{background:#dbeafe;color:#1d4ed8;}
+.btn-ai{background:#ede9fe;color:#5b21b6;}
+.btn-del{background:#fee2e2;color:#991b1b;}
+.ctrl-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
+.ctrl-in{padding:8px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.86rem;flex:1;min-width:160px;}
+.ctrl-sel{padding:8px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.86rem;}
+.btn-ctrl{padding:8px 14px;border-radius:8px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;font-size:.8rem;white-space:nowrap;}
+.btn-ctrl:hover{background:#f3f4f6;}
+.btn-ctrl.active{background:var(--green);color:#fff;border-color:var(--green);}
+/* BULK ACTION BAR */
+.bulk-bar{background:#1e40af;color:#fff;border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.bulk-bar.hidden{display:none;}
+.bulk-count{font-weight:800;font-size:.88rem;}
+.bulk-sel{padding:7px 10px;border:none;border-radius:7px;font-family:inherit;font-size:.85rem;font-weight:700;background:#fff;color:#1e40af;cursor:pointer;}
+.btn-bulk-apply{padding:7px 16px;border-radius:7px;background:#4ade80;color:#166534;border:none;font-weight:800;cursor:pointer;font-size:.85rem;}
+.btn-bulk-cancel{padding:7px 14px;border-radius:7px;background:rgba(255,255,255,.2);color:#fff;border:none;font-weight:700;cursor:pointer;font-size:.82rem;}
+.dup-banner{background:#fee2e2;border:1.5px solid #fca5a5;border-radius:9px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:.86rem;font-weight:700;color:#991b1b;}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px;}
+.prod-card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;}
+.prod-img{width:100%;height:155px;object-fit:cover;background:#f3f4f6;}
+.prod-body{padding:14px;}
+.prod-name{font-weight:800;font-size:.92rem;margin-bottom:5px;}
+.prod-price{color:var(--green);font-weight:900;font-size:1.05rem;}
+.prod-mrp{text-decoration:line-through;color:var(--muted);font-size:.83rem;}
+.prod-meta{font-size:.78rem;color:var(--muted);margin:3px 0 8px;}
+.prod-toggle{display:flex;align-items:center;gap:7px;font-size:.8rem;color:var(--muted);margin-bottom:8px;cursor:pointer;}
+.prod-toggle input{accent-color:var(--green);}
+.prod-actions{display:flex;gap:7px;}
+.btn-edit{flex:1;padding:7px;background:#ede9fe;color:#5b21b6;border:none;border-radius:7px;font-weight:700;font-size:.8rem;cursor:pointer;}
+.btn-del2{flex:1;padding:7px;background:#fee2e2;color:#991b1b;border:none;border-radius:7px;font-weight:700;font-size:.8rem;cursor:pointer;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{display:flex;}
+.modal{background:#fff;border-radius:14px;width:100%;max-width:540px;max-height:92vh;overflow-y:auto;padding:22px;}
+.modal-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.modal-ttl{font-weight:900;font-size:1rem;}
+.btn-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);}
 .fg{margin-bottom:12px;}
-.fl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:4px;}
-.fi{width:100%;padding:11px 12px;border:2px solid #e5e7eb;border-radius:9px;font-size:.92rem;font-family:inherit;outline:none;transition:.2s;}
-.fi:focus{border-color:var(--g);}
-.fi.ok{border-color:#16a34a;background:#f0fdf4;}
-.fi.err{border-color:var(--red);}
+.fl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;}
+.fi{width:100%;padding:10px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.88rem;outline:none;}
+.fi:focus{border-color:var(--green);}
+.ftx{width:100%;padding:10px 11px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.88rem;outline:none;resize:vertical;min-height:75px;}
+.ftx:focus{border-color:var(--green);}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.pin-hint{font-size:.74rem;margin-top:3px;}
-.pin-hint.ok{color:#16a34a;}.pin-hint.err{color:var(--red);}
-.btn-submit{width:100%;padding:15px;background:var(--g);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:900;cursor:pointer;animation:pulse 2s infinite;margin-top:6px;}
-.btn-submit:disabled{animation:none;background:#9ca3af;cursor:not-allowed;}
-.modal-urgency{background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:8px 12px;font-size:.8rem;color:#991b1b;font-weight:700;margin-bottom:14px;text-align:center;}
-
-/* SUCCESS */
-.success-wrap{text-align:center;padding:16px 8px;}
-.sicon{font-size:56px;margin-bottom:14px;}
-.stitle{font-size:1.5rem;font-weight:900;color:var(--g);margin-bottom:6px;}
-.ssub{color:var(--muted);margin-bottom:18px;}
-.oid-box{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:10px;padding:12px 18px;margin-bottom:18px;}
-.oid-lbl{font-size:.78rem;color:var(--muted);margin-bottom:3px;}
-.oid-val{font-weight:900;color:var(--g);word-break:break-all;}
-.sstep{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #e5e7eb;text-align:left;}
-.sstep:last-child{border-bottom:none;}
-.snum{width:26px;height:26px;background:var(--g);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;}
-.stxt{font-size:.85rem;}
-.btn-done{background:var(--g);color:#fff;border:none;padding:12px 38px;border-radius:28px;font-weight:800;font-size:.95rem;cursor:pointer;margin-top:16px;}
-
-/* EXIT-INTENT POPUP */
-.exit-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:none;align-items:center;justify-content:center;}
-.exit-overlay.show{display:flex;}
-.exit-box{background:#fff;border-radius:20px;padding:32px 28px;max-width:400px;width:90%;text-align:center;position:relative;}
-.exit-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);}
-.exit-icon{font-size:50px;margin-bottom:12px;}
-.exit-title{font-size:1.3rem;font-weight:900;color:var(--red);margin-bottom:6px;}
-.exit-sub{color:var(--muted);font-size:.88rem;margin-bottom:18px;}
-.exit-offer{background:#f0fdf4;border:2px solid #16a34a;border-radius:10px;padding:12px;margin-bottom:18px;}
-.exit-offer-title{font-weight:900;color:var(--g);font-size:1rem;}
-.exit-offer-sub{font-size:.82rem;color:var(--muted);}
-.btn-exit-cta{background:var(--g);color:#fff;border:none;padding:13px 30px;border-radius:25px;font-weight:900;font-size:.95rem;cursor:pointer;width:100%;animation:pulse 2s infinite;}
-
-.toast-wrap{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:2000;pointer-events:none;}
-.toast{background:#1f2937;color:#fff;padding:11px 18px;border-radius:9px;font-size:.86rem;font-weight:600;opacity:0;transform:translateY(8px);transition:.3s;max-width:300px;text-align:center;}
+.btn-save{width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:9px;font-size:.95rem;font-weight:800;cursor:pointer;margin-top:6px;}
+.settings-box{background:#fff;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.settings-title{font-weight:900;font-size:.95rem;margin-bottom:14px;}
+.junk-card{background:var(--black);color:#fff;border-radius:12px;padding:22px;margin-bottom:20px;}
+.junk-title{font-weight:900;font-size:.95rem;margin-bottom:5px;}
+.junk-desc{color:#9ca3af;font-size:.83rem;margin-bottom:14px;}
+.btn-junk{background:var(--orange);color:#fff;border:none;padding:10px 22px;border-radius:9px;font-weight:800;cursor:pointer;}
+.junk-result{margin-top:10px;font-size:.85rem;color:#4ade80;}
+.ssbox{background:#fff;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+/* PAGINATION */
+.pagination{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.pg-btn{padding:6px 12px;border:1.5px solid var(--border);border-radius:7px;background:#fff;cursor:pointer;font-weight:700;font-size:.82rem;}
+.pg-btn:hover{background:var(--bg);}
+.pg-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+.pg-btn:disabled{opacity:.4;cursor:not-allowed;}
+.pg-info{font-size:.82rem;color:var(--muted);font-weight:600;}
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:9999;pointer-events:none;}
+.toast{background:#1f2937;color:#fff;padding:11px 18px;border-radius:9px;font-size:.86rem;font-weight:600;opacity:0;transform:translateY(6px);transition:.3s;margin-top:7px;}
 .toast.show{opacity:1;transform:translateY(0);}
-.toast.success{background:#16a34a;}
+.toast.success{background:var(--green);}
 .toast.error{background:var(--red);}
+.row-checkbox{width:16px;height:16px;accent-color:var(--green);cursor:pointer;}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;}
+  .topbar{left:0;}
+  .hambtn{display:block;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- FB Pixel fires: PageView on load, ViewContent after product loads, AddToCart on modal open, InitiateCheckout on submit -->
-
-<div class="ann"><div class="ann-inner">🌿 100% Ayurvedic &nbsp;·&nbsp; FREE Shipping All India &nbsp;·&nbsp; 💵 Cash on Delivery &nbsp;·&nbsp; ⚡ Only 57 units left! &nbsp;&nbsp;&nbsp; 🌿 100% Ayurvedic &nbsp;·&nbsp; FREE Shipping &nbsp;·&nbsp; 💵 COD &nbsp;·&nbsp; ⚡ Limited Stock!</div></div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="logo">🌿 VaidyaKart</div>
-    <button class="btn-nav" onclick="openModal('nav')">🛒 Order Now — COD</button>
+<div id="login-screen" class="show">
+  <div class="lcard">
+    <div class="llogo">🌿 VaidyaKart</div>
+    <div class="lsub">Admin Dashboard</div>
+    <input class="linput" id="l-user" type="text" placeholder="Username" value="admin"/>
+    <input class="linput" id="l-pass" type="password" placeholder="Password"/>
+    <button class="lbtn" onclick="doLogin()">Login →</button>
+    <div class="lerr" id="lerr"></div>
   </div>
-</nav>
-<div class="trust">✅ AYUSH Certified &nbsp;|&nbsp; 🌱 100% Natural &nbsp;|&nbsp; 🔬 Clinically Tested &nbsp;|&nbsp; ⭐ 4.8/5 Rating</div>
-
-<!-- URGENCY BAR -->
-<div class="urgency-bar">⚡ Sale ends in: <b id="countdown-display">23:47:12</b> &nbsp;|&nbsp; 🔥 <b id="orders-today">34</b> orders placed today</div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="viewers"><div class="vdot"></div>👁️ <b id="vcount">24</b> लोग अभी देख रहे हैं</div>
-      <div class="badge-ayush">AYUSH CERTIFIED</div>
-      <h1 class="hero-h1" id="htitle">AyurSlim Gold</h1>
-      <p class="hero-sub" id="hsub">Ayurvedic Weight Management Capsules</p>
-      <div class="price-row">
-        <span class="mrp" id="hmrp">MRP ₹1,499</span>
-        <span class="sale" id="hprice">₹799</span>
-        <span class="save-tag" id="hsave">SAVE ₹700 (47% OFF)</span>
-      </div>
-      <div class="rating"><span class="stars">⭐⭐⭐⭐⭐</span><span>4.8 · 2,847+ Orders</span></div>
-      <!-- Countdown timer -->
-      <div class="timer-wrap">
-        <span class="timer-label">⏰ Offer ends:</span>
-        <span class="timer-val" id="t-h">02</span>:<span class="timer-val" id="t-m">47</span>:<span class="timer-val" id="t-s">12</span>
-      </div>
-      <!-- Stock bar -->
-      <div class="stock-bar">
-        <div class="stock-label">⚠️ Only 57 units left — selling fast!</div>
-        <div class="stock-track"><div class="stock-fill"></div></div>
-      </div>
-      <button class="btn-cta" id="hero-cta" onclick="openModal('hero_cta')">🛒 अभी Order करें — COD</button>
-      <div class="trust-row">
-        <span>📦 Free Delivery</span><span>💵 Pay on Delivery</span>
-        <span>🔄 Easy Return</span><span>🌿 100% Natural</span>
-      </div>
-    </div>
-    <div>
-      <div class="swiper-wrap" id="swiper-wrap">
-        <div class="swiper-track" id="swiper-track">
-          <img src="https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=600" alt="AyurSlim Gold Capsules"/>
-        </div>
-        <button class="sw-btn prev" id="sw-prev" onclick="swPrev()">‹</button>
-        <button class="sw-btn next" id="sw-next" onclick="swNext()">›</button>
-        <div class="sw-dots" id="sw-dots"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section class="sec"><div class="sec-inner">
-  <h2 class="sec-title">क्यों है AyurSlim Gold खास?</h2>
-  <p class="sec-sub">6 powerful Ayurvedic benefits in one capsule</p>
-  <div class="ben-grid">
-    <div class="ben-card"><div class="ben-icon">🔥</div><div class="ben-title">Fat Metabolism Boost</div><div class="ben-desc">शरीर की fat burning naturally बढ़ाता है</div></div>
-    <div class="ben-card"><div class="ben-icon">🌿</div><div class="ben-title">Detox & Cleanse</div><div class="ben-desc">Liver और blood detoxify करता है</div></div>
-    <div class="ben-card"><div class="ben-icon">⚡</div><div class="ben-title">Energy & Stamina</div><div class="ben-desc">पूरे दिन energy बनाए रखता है</div></div>
-    <div class="ben-card"><div class="ben-icon">🧘</div><div class="ben-title">Stress Balance</div><div class="ben-desc">Cortisol levels balance करता है</div></div>
-    <div class="ben-card"><div class="ben-icon">💧</div><div class="ben-title">Digestive Health</div><div class="ben-desc">Gut health improve करता है</div></div>
-    <div class="ben-card"><div class="ben-icon">🛡️</div><div class="ben-title">Immunity Support</div><div class="ben-desc">Immune system मजबूत बनाता है</div></div>
-  </div>
-</div></section>
-
-<!-- HOW IT WORKS -->
-<section class="sec steps-sec"><div class="sec-inner">
-  <h2 class="sec-title" style="color:#fff;">कैसे काम करता है?</h2>
-  <p class="sec-sub" style="color:#a7f3d0;">3 आसान steps में results</p>
-  <div class="steps-grid">
-    <div class="step-card"><div class="step-num">1</div><div class="step-title">Take 2 Capsules Daily</div><div class="step-desc">खाने से 30 मिनट पहले गुनगुने पानी से</div></div>
-    <div class="step-card"><div class="step-num">2</div><div class="step-title">Follow Diet Tips</div><div class="step-desc">Pack के साथ simple diet tips follow करें</div></div>
-    <div class="step-card"><div class="step-num">3</div><div class="step-title">See Results</div><div class="step-desc">30–45 दिनों में visible results</div></div>
-  </div>
-</div></section>
-
-<!-- INGREDIENTS -->
-<section class="sec" style="background:#fff;"><div class="sec-inner">
-  <h2 class="sec-title">शक्तिशाली Ayurvedic सामग्री</h2>
-  <p class="sec-sub">Centuries-old herbs, scientifically validated</p>
-  <div class="ing-grid">
-    <div class="ing-card"><div class="ing-name">🍋 Garcinia Cambogia</div><div class="ing-ben">Natural fat burner</div></div>
-    <div class="ing-card"><div class="ing-name">🌿 Triphala</div><div class="ing-ben">Digestive tonic, detox</div></div>
-    <div class="ing-card"><div class="ing-name">💎 Guggul</div><div class="ing-ben">Cholesterol balance</div></div>
-    <div class="ing-card"><div class="ing-name">🌱 Ashwagandha</div><div class="ing-ben">Stress reduction</div></div>
-    <div class="ing-card"><div class="ing-name">🌾 Methi</div><div class="ing-ben">Blood sugar control</div></div>
-    <div class="ing-card"><div class="ing-name">🪵 Vijaysar</div><div class="ing-ben">Liver protection</div></div>
-  </div>
-</div></section>
-
-<!-- VARIANTS -->
-<section class="var-sec"><div class="sec-inner">
-  <h2 class="sec-title">अपना Pack चुनें</h2>
-  <p class="sec-sub">ज़्यादा pack = ज़्यादा savings + better results</p>
-  <div class="var-grid" id="page-variants"></div>
-  <button class="btn-order-var" onclick="openModal('variants_section')">🛒 अभी Order करें — COD</button>
-</div></section>
-
-<!-- REVIEWS -->
-<section class="sec"><div class="sec-inner">
-  <h2 class="sec-title">Customers का अनुभव</h2>
-  <p class="sec-sub">Real people, real results — verified purchases</p>
-  <div class="rev-grid">
-    <div class="rev-card"><div class="rev-top"><div><div class="rev-name">Priya Sharma</div><div class="rev-city">Mumbai</div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div></div><div class="rev-text">"3 महीने में 8 kg कम हुआ! बिल्कुल कोई side effect नहीं। बहुत अच्छा product है।"</div><div class="rev-meta">✅ Verified Purchase · 2 weeks ago</div></div>
-    <div class="rev-card"><div class="rev-top"><div><div class="rev-name">Ramesh Gupta</div><div class="rev-city">Lucknow</div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div></div><div class="rev-text">"Ayurvedic होने से safe feel हुआ। 2 months में belly fat clearly कम हुई।"</div><div class="rev-meta">✅ Verified Purchase · 1 month ago</div></div>
-    <div class="rev-card"><div class="rev-top"><div><div class="rev-name">Sunita Devi</div><div class="rev-city">Jaipur</div></div><div class="rev-stars">⭐⭐⭐⭐☆</div></div><div class="rev-text">"Energy बहुत बढ़ी। COD से order किया, 5 days में delivery आई।"</div><div class="rev-meta">✅ Verified Purchase · 3 weeks ago</div></div>
-    <div class="rev-card"><div class="rev-top"><div><div class="rev-name">Vikram Patel</div><div class="rev-city">Surat</div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div></div><div class="rev-text">"Doctor ने Ayurvedic suggest किया था। Results से बहुत खुश हूं।"</div><div class="rev-meta">✅ Verified Purchase · 5 weeks ago</div></div>
-    <div class="rev-card"><div class="rev-top"><div><div class="rev-name">Kavita Mishra</div><div class="rev-city">Bhopal</div></div><div class="rev-stars">⭐⭐⭐⭐⭐</div></div><div class="rev-text">"Digestion बहुत improve हुई। 45 days में 4 kg weight loss। Highly recommend!"</div><div class="rev-meta">✅ Verified Purchase · 6 weeks ago</div></div>
-  </div>
-</div></section>
-
-<!-- FAQ -->
-<section class="sec" style="background:#fff;"><div class="sec-inner">
-  <h2 class="sec-title">अक्सर पूछे जाने वाले सवाल</h2>
-  <p class="sec-sub">आपके सभी सवालों के जवाब</p>
-  <div class="faq-list">
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>क्या यह 100% natural है?</span><span class="faq-ico">+</span></div><div class="faq-a">हां, केवल AYUSH-approved Ayurvedic herbs। कोई chemicals या steroids नहीं।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>कितने दिनों में result दिखेगा?</span><span class="faq-ico">+</span></div><div class="faq-a">30-45 दिनों में difference दिखता है। Best results के लिए 90 days recommended।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>क्या COD available है?</span><span class="faq-ico">+</span></div><div class="faq-a">हां, पूरे India में Cash on Delivery। Delivery पर payment करें।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>Delivery कितने दिन में होगी?</span><span class="faq-ico">+</span></div><div class="faq-a">4-7 business days में delivery।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>क्या कोई side effects हैं?</span><span class="faq-ico">+</span></div><div class="faq-a">नहीं, पूरी तरह natural। Pregnant women doctor से consult करें।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>Return policy क्या है?</span><span class="faq-ico">+</span></div><div class="faq-a">Damaged/wrong product पर 7 दिनों में return। Replacement दिया जाएगा।</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="this.closest('.faq-item').classList.toggle('open')"><span>Exercise जरूरी है?</span><span class="faq-ico">+</span></div><div class="faq-a">Exercise से results faster आते हैं लेकिन बिना exercise भी काम करता है।</div></div>
-  </div>
-</div></section>
-
-<footer>
-  <div class="brand">🌿 VaidyaKart</div>
-  <div class="tag">प्राचीन ज्ञान, आधुनिक विज्ञान</div>
-  <div class="copy">📧 support@vaidyakart.com &nbsp;|&nbsp; © 2025 VaidyaKart. All rights reserved.</div>
-</footer>
-
-<!-- STICKY BAR -->
-<div class="sticky-bar" id="sticky-bar">
-  <div class="sticky-info">AyurSlim Gold — <span id="sticky-price">₹799</span><small>FREE Shipping · Pay on Delivery</small></div>
-  <button class="btn-sticky" onclick="openModal('sticky_bar')">Order Now 🛒</button>
 </div>
 
-<!-- ORDER MODAL -->
-<div class="overlay" id="modal-overlay" onclick="overlayBg(event)">
-  <div class="modal-box" id="modal-box">
-    <div class="mh">
-      <div class="mt">📦 Order करें — Pay on Delivery</div>
-      <button class="btn-cls" onclick="closeModal()">×</button>
+<div id="app">
+  <div class="sidebar" id="sidebar">
+    <div class="slogo">🌿 VaidyaKart Admin</div>
+    <div class="snav">
+      <div class="nav-item active" onclick="showTab('dashboard',this)"><span class="nav-icon">📊</span>Dashboard</div>
+      <div class="nav-item" onclick="showTab('orders',this)"><span class="nav-icon">📦</span>Orders</div>
+      <div class="nav-item" onclick="showTab('products',this)"><span class="nav-icon">🛍️</span>Products</div>
+      <div class="nav-item" onclick="showTab('settings',this)"><span class="nav-icon">⚙️</span>Settings</div>
+      <div class="nav-item" onclick="showTab('selloship',this)"><span class="nav-icon">🚚</span>Selloship</div>
     </div>
-    <div id="form-view">
-      <div class="modal-urgency">⚡ <span id="modal-viewers">24</span> लोग अभी यही देख रहे हैं · Last order: <span id="last-order-time">3 min ago</span></div>
-      <div class="msec">
-        <div class="mlabel">Product</div>
-        <div id="modal-pname" style="font-weight:800;color:var(--g);font-size:.97rem;margin-bottom:12px;">AyurSlim Gold</div>
-        <div class="mlabel">Pack Size चुनें</div>
-        <div class="var-opts" id="modal-variants"></div>
-      </div>
-      <div class="msec">
-        <div class="mlabel">Quantity</div>
-        <div class="qty-row">
-          <button class="qty-btn" onclick="changeQty(-1)">−</button>
-          <div class="qty-val" id="qty-disp">1</div>
-          <button class="qty-btn" onclick="changeQty(1)">+</button>
+    <div class="sfooter"><button class="btn-logout" onclick="doLogout()">🚪 Logout</button></div>
+  </div>
+
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="hambtn" onclick="toggleSidebar()">☰</button>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+    </div>
+    <div class="topbar-right">
+      <button class="sound-btn" id="sound-toggle-btn" onclick="toggleSound()" title="New order sound">🔔 Sound: ON</button>
+      <div class="live-badge"><div class="ldot"></div>👁️ <span id="live-count">—</span> live</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <!-- DASHBOARD -->
+    <div class="tab active" id="tab-dashboard">
+      <div class="dfc">
+        <div class="df-row">
+          <span style="font-weight:700;font-size:.85rem;">📅</span>
+          From <input type="date" class="df-input" id="ddf-from" onchange="updateDashStats()"/>
+          To   <input type="date" class="df-input" id="ddf-to"   onchange="updateDashStats()"/>
+          <button class="df-btn active" id="ddf-all"   onclick="setDdPreset('all',this)">All Time</button>
+          <button class="df-btn"        id="ddf-today" onclick="setDdPreset('today',this)">Today</button>
+          <button class="df-btn"        id="ddf-week"  onclick="setDdPreset('week',this)">This Week</button>
+          <button class="df-btn"        id="ddf-month" onclick="setDdPreset('month',this)">This Month</button>
+          <button class="df-btn"        onclick="clearDdFilter()">✕ Clear</button>
         </div>
+        <div class="df-status" id="ddf-status">Showing all-time stats</div>
       </div>
-      <div class="msec">
-        <div class="summary">
-          <div class="sum-row"><span id="sum-lbl">AyurSlim Gold × 1</span><span id="sum-price">₹799</span></div>
-          <div class="sum-row"><span>Shipping</span><span style="color:#16a34a;font-weight:700;">FREE 🎉</span></div>
-          <div class="sum-row tot"><span>Total (COD)</span><span id="sum-total">₹799</span></div>
-        </div>
+      <div class="stat-grid">
+        <div class="stat-card">  <div class="slabel">📦 Total</div><div class="sval" id="s-total">—</div></div>
+        <div class="stat-card b"><div class="slabel">🆕 New</div>  <div class="sval" id="s-new">—</div></div>
+        <div class="stat-card y"><div class="slabel">✅ Confirmed</div><div class="sval" id="s-confirmed">—</div></div>
+        <div class="stat-card t"><div class="slabel">🚚 Shipped</div><div class="sval" id="s-shipped">—</div></div>
+        <div class="stat-card p"><div class="slabel">💰 Revenue</div><div class="sval" id="s-revenue">—</div></div>
       </div>
-      <div class="msec">
-        <div class="fg"><label class="fl">Full Name *</label><input class="fi" id="f-name" type="text" placeholder="जैसे: Ramesh Kumar" autocomplete="name"/></div>
-        <div class="fg"><label class="fl">Phone Number *</label><input class="fi" id="f-phone" type="tel" maxlength="10" placeholder="10 digit mobile number" autocomplete="tel"/></div>
-        <div class="fg">
-          <label class="fl">Pincode *</label>
-          <input class="fi" id="f-pincode" type="text" maxlength="6" placeholder="6 digit pincode" oninput="onPin()" inputmode="numeric"/>
-          <div class="pin-hint" id="pin-hint"></div>
+      <div class="ins-grid">
+        <div class="ins-card"><div class="ins-icon">⏱️</div><div class="ins-label">Peak Hour</div><div class="ins-val" id="i-peak">—</div><div class="ins-sub">Most orders</div></div>
+        <div class="ins-card"><div class="ins-icon">🌙</div><div class="ins-label">After 12PM</div><div class="ins-val" id="i-pm">—</div><div class="ins-sub" id="i-pm-sub">of orders</div></div>
+        <div class="ins-card"><div class="ins-icon">📈</div><div class="ins-label">Conversion</div><div class="ins-val" id="i-conv">—</div><div class="ins-sub">Orders ÷ Visitors</div></div>
+        <div class="ins-card"><div class="ins-icon">⭐</div><div class="ins-label">Avg Score</div><div class="ins-val" id="i-score">—</div><div class="ins-sub">Address quality</div></div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-head">
+          <div class="tbl-title">Latest 10 Orders</div>
+          <button class="btn-ctrl" onclick="showTab('orders',document.querySelector('.nav-item:nth-child(2)'))">View All →</button>
         </div>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Name</th><th>Phone</th><th>City</th><th>Variant</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="latest-tbody"></tbody></table></div>
+      </div>
+      <div class="junk-card">
+        <div class="junk-title">🧹 Junk Cleaner</div>
+        <div class="junk-desc">Trim whitespace, remove empty orders, expire stale sessions.</div>
+        <button class="btn-junk" onclick="runJunk()">Clean Now</button>
+        <div class="junk-result" id="junk-result"></div>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div class="tab" id="tab-orders">
+      <div class="ctrl-row">
+        <button class="btn-ctrl" id="btn-pm" onclick="togglePm()">🌙 After 12PM</button>
+        <button class="btn-ctrl" onclick="exportCSV()">⬇️ Export CSV</button>
+        <label style="display:flex;align-items:center;gap:6px;font-size:.83rem;font-weight:700;cursor:pointer;">
+          <input type="checkbox" id="select-all-cb" onchange="toggleSelectAll()" style="accent-color:var(--green);width:15px;height:15px;"/>
+          Select All
+        </label>
+        <!-- Rows per page -->
+        <label style="display:flex;align-items:center;gap:6px;font-size:.83rem;font-weight:700;">
+          Show:
+          <select class="ctrl-sel" id="rows-per-page" onchange="currentPage=1;renderOrders()">
+            <option value="25">25 rows</option>
+            <option value="50" selected>50 rows</option>
+            <option value="100">100 rows</option>
+            <option value="500">500 rows</option>
+            <option value="9999">All</option>
+          </select>
+        </label>
+      </div>
+      <!-- Bulk action bar -->
+      <div class="bulk-bar hidden" id="bulk-bar">
+        <span class="bulk-count" id="bulk-count">0 selected</span>
+        <select class="bulk-sel" id="bulk-status-sel">
+          <option value="">— Change status to —</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+          <option value="new">New</option>
+        </select>
+        <button class="btn-bulk-apply" onclick="applyBulkStatus()">✅ Apply</button>
+        <button class="btn-bulk-cancel" onclick="clearSelection()">✕ Clear</button>
+      </div>
+      <div class="ctrl-row">
+        <input class="ctrl-in" id="search-in" placeholder="Search name, phone, ID..." oninput="currentPage=1;renderOrders()"/>
+        <select class="ctrl-sel" id="status-sel" onchange="currentPage=1;renderOrders()">
+          <option value="">All Status</option>
+          <option value="new">New</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="ctrl-row">
+        <span style="font-size:.83rem;font-weight:700;">📅</span>
+        <input type="date" class="df-input" id="odf-from" onchange="currentPage=1;renderOrders()"/>
+        <span style="font-size:.83rem;font-weight:700;">–</span>
+        <input type="date" class="df-input" id="odf-to" onchange="currentPage=1;renderOrders()"/>
+        <button class="btn-ctrl" onclick="setOdToday()">Today</button>
+        <button class="btn-ctrl" onclick="clearOdFilter()">✕</button>
+      </div>
+      <div class="dup-banner" id="dup-banner" style="display:none;">
+        <span id="dup-text">⚠️ Duplicates found</span>
+        <button class="btn-ctrl" onclick="clearDupes()">🧹 Remove Duplicates</button>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-head">
+          <div class="tbl-title">Orders</div>
+          <span id="ord-count" style="font-size:.83rem;color:var(--muted);font-weight:700;"></span>
+        </div>
+        <div style="overflow-x:auto;"><table><thead><tr><th><input type="checkbox" id="th-cb" onchange="toggleSelectAll()" style="accent-color:var(--green);width:15px;height:15px;"/></th><th>#</th><th>Name</th><th>Phone</th><th>City</th><th>Variant</th><th>Qty</th><th>Amount</th><th>Score</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="orders-tbody"></tbody></table></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="tab" id="tab-products">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+        <button class="btn-ctrl" style="background:var(--green);color:#fff;border-color:var(--green);padding:10px 20px;" onclick="openProdModal()">➕ Add Product</button>
+      </div>
+      <div class="prod-grid" id="prod-grid"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="tab" id="tab-settings">
+      <div class="settings-box">
+        <div class="settings-title">📊 Meta Pixel ID</div>
+        <input class="fi" id="meta-pixel-in" placeholder="Enter Facebook Pixel ID (numbers only)" style="margin-bottom:12px;"/>
+        <button class="btn-ctrl" style="background:var(--green);color:#fff;border-color:var(--green);" onclick="saveMeta()">💾 Save Pixel ID</button>
+        <div id="meta-save-status" style="margin-top:8px;font-size:.83rem;"></div>
+      </div>
+      <div class="settings-box">
+        <div class="settings-title">🔐 Admin Password</div>
+        <p style="color:var(--muted);font-size:.86rem;">Change via server env: ADMIN_USER, ADMIN_PASS in .env or Render dashboard.</p>
+      </div>
+      <div class="settings-box">
+        <div class="settings-title">🔄 Auto Refresh Orders</div>
+        <label style="display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.88rem;">
+          <input type="checkbox" id="auto-refresh-cb" onchange="toggleAutoRefresh()" style="accent-color:var(--green);width:16px;height:16px;"/>
+          Refresh orders every 60 seconds
+        </label>
+      </div>
+      <div class="settings-box">
+        <div class="settings-title">🌱 Seed Database</div>
+        <p style="color:var(--muted);font-size:.86rem;margin-bottom:12px;">Creates default AyurSlim Gold product if none exist.</p>
+        <button class="btn-ctrl" onclick="seedDB()">🌱 Seed Default Product</button>
+      </div>
+    </div>
+
+    <!-- SELLOSHIP -->
+    <div class="tab" id="tab-selloship">
+      <div class="ssbox">
+        <div class="settings-title">🔑 Selloship API Key</div>
+        <input class="fi" id="ss-key" type="password" placeholder="API Key" style="margin-bottom:12px;"/>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="btn-ctrl" onclick="saveSsKey()">💾 Save</button>
+          <button class="btn-ctrl" onclick="testSs()">🔌 Test</button>
+        </div>
+        <div id="ss-result" style="margin-top:10px;font-size:.85rem;"></div>
+      </div>
+      <div class="ssbox">
+        <div class="settings-title">📦 Create Shipment</div>
+        <div class="fg"><label class="fl">Select Order</label><select class="fi" id="ss-ord-sel"></select></div>
         <div class="row2">
-          <div class="fg"><label class="fl">City</label><input class="fi" id="f-city" type="text" placeholder="Auto-filled" readonly autocomplete="address-level2"/></div>
-          <div class="fg"><label class="fl">State</label><input class="fi" id="f-state" type="text" placeholder="Auto-filled" readonly autocomplete="address-level1"/></div>
+          <div class="fg"><label class="fl">Weight (g)</label><input class="fi" id="ss-weight" type="number" value="250"/></div>
+          <div class="fg"><label class="fl">COD Amount ₹</label><input class="fi" id="ss-cod" type="number" placeholder="799"/></div>
         </div>
-        <div class="fg"><label class="fl">Full Address *</label><input class="fi" id="f-address" type="text" placeholder="House no, Street, Locality" autocomplete="street-address"/></div>
-        <div class="fg"><label class="fl">Landmark (optional)</label><input class="fi" id="f-landmark" type="text" placeholder="Near school, temple..."/></div>
-      </div>
-      <button class="btn-submit" id="btn-submit" onclick="submitOrder()">🚀 Confirm Order — Pay on Delivery</button>
-    </div>
-    <div id="success-view" style="display:none;">
-      <div class="success-wrap">
-        <div class="sicon">🎉</div>
-        <div class="stitle">Order Placed!</div>
-        <div class="ssub">आपका order successfully place हो गया है।</div>
-        <div class="oid-box">
-          <div class="oid-lbl">Order ID</div>
-          <div class="oid-val" id="oid-val">—</div>
-        </div>
-        <div>
-          <div class="sstep"><div class="snum">1</div><div class="stxt">हमारी team <strong>call</strong> करेगी confirm करने के लिए</div></div>
-          <div class="sstep"><div class="snum">2</div><div class="stxt"><strong>4–7 days</strong> में delivery</div></div>
-          <div class="sstep"><div class="snum">3</div><div class="stxt">Delivery पर <strong>COD payment</strong></div></div>
-        </div>
-        <button class="btn-done" onclick="closeModal()">✓ Done</button>
+        <button class="btn-ctrl" style="background:var(--green);color:#fff;border-color:var(--green);" onclick="createShipment()">🚚 Create Shipment</button>
+        <div id="ss-ship-res" style="margin-top:10px;font-size:.85rem;"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EXIT-INTENT POPUP -->
-<div class="exit-overlay" id="exit-overlay">
-  <div class="exit-box">
-    <button class="exit-close" onclick="closeExit()">×</button>
-    <div class="exit-icon">😢</div>
-    <div class="exit-title">रुकिए! जाने से पहले...</div>
-    <div class="exit-sub">आप एक special offer miss कर रहे हैं!</div>
-    <div class="exit-offer">
-      <div class="exit-offer-title">🎁 Extra 5% Discount</div>
-      <div class="exit-offer-sub">अभी order करें और पाएं — Free gift with 3 Month Pack</div>
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="prodModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-ttl" id="pm-title">➕ Add Product</div><button class="btn-close" onclick="closeProdModal()">×</button></div>
+    <div class="fg"><label class="fl">Product Name *</label><input class="fi" id="pm-name" placeholder="AyurSlim Gold..."/></div>
+    <div class="fg"><label class="fl">Description</label><textarea class="ftx" id="pm-desc"></textarea></div>
+    <div class="row2">
+      <div class="fg"><label class="fl">Price ₹ *</label><input class="fi" id="pm-price" type="number" placeholder="799"/></div>
+      <div class="fg"><label class="fl">MRP ₹</label><input class="fi" id="pm-mrp" type="number" placeholder="1499"/></div>
     </div>
-    <button class="btn-exit-cta" onclick="exitCTA()">हां! मुझे यह offer चाहिए 🛒</button>
-    <div style="margin-top:10px;font-size:.78rem;color:var(--muted);cursor:pointer;" onclick="closeExit()">नहीं धन्यवाद, मुझे यह offer नहीं चाहिए</div>
+    <div class="row2">
+      <div class="fg"><label class="fl">Stock</label><input class="fi" id="pm-stock" type="number" placeholder="100"/></div>
+      <div class="fg" style="display:flex;align-items:center;gap:8px;padding-top:20px;"><input type="checkbox" id="pm-active" checked style="accent-color:var(--green);width:16px;height:16px;"/><label for="pm-active" style="font-weight:700;font-size:.88rem;cursor:pointer;">Active</label></div>
+    </div>
+    <div class="fg"><label class="fl">Image URLs (one per line)</label><textarea class="ftx" id="pm-images" placeholder="https://...&#10;https://..."></textarea></div>
+    <div class="fg"><label class="fl">Benefits (one per line)</label><textarea class="ftx" id="pm-benefits" placeholder="Boosts metabolism&#10;Reduces belly fat"></textarea></div>
+    <div class="fg"><label class="fl">Ingredients</label><textarea class="ftx" id="pm-ingredients"></textarea></div>
+    <div class="fg"><label class="fl">How To Use</label><textarea class="ftx" id="pm-howtouse"></textarea></div>
+    <div class="fg"><label class="fl">Variants (Label:Price, one per line)</label><textarea class="ftx" id="pm-variants" placeholder="1 Month Pack:799&#10;2 Month Pack:1399"></textarea></div>
+    <button class="btn-save" onclick="saveProduct()">💾 Save Product</button>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="ordDetailModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-ttl">📦 Order Details</div><button class="btn-close" onclick="document.getElementById('ordDetailModal').classList.remove('open')">×</button></div>
+    <div id="ord-detail-body"></div>
+  </div>
+</div>
+
+<!-- AI FIX MODAL -->
+<div class="modal-overlay" id="aiModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-ttl">🤖 AI Address Fix</div><button class="btn-close" onclick="document.getElementById('aiModal').classList.remove('open')">×</button></div>
+    <div style="color:var(--muted);font-size:.85rem;margin-bottom:14px;">Review AI-suggested fixes, then save.</div>
+    <div class="fg"><label class="fl">Name</label><input class="fi" id="aif-name"/></div>
+    <div class="fg"><label class="fl">Address</label><input class="fi" id="aif-address"/></div>
+    <div class="row2">
+      <div class="fg"><label class="fl">City</label><input class="fi" id="aif-city"/></div>
+      <div class="fg"><label class="fl">State</label><input class="fi" id="aif-state"/></div>
+    </div>
+    <div class="fg"><label class="fl">Pincode</label><input class="fi" id="aif-pincode"/></div>
+    <div style="display:flex;gap:8px;margin-top:8px;">
+      <button class="btn-ctrl" style="flex:1;background:#ede9fe;color:#5b21b6;border-color:#ede9fe;" onclick="runAI()">🤖 Fix with AI</button>
+      <button class="btn-ctrl" style="flex:1;background:var(--green);color:#fff;border-color:var(--green);" onclick="saveAIFix()">✅ Save</button>
+    </div>
+    <div id="ai-status" style="margin-top:8px;font-size:.83rem;"></div>
   </div>
 </div>
 
 <div class="toast-wrap"><div class="toast" id="toast-el"></div></div>
 
 <script>
-const API_BASE = 'https://vaidyakart23.onrender.com';
+const API = 'https://vaidyakart23.onrender.com';
 
 // ── STATE ──
-let product = null;
-let variants = [
-  { label:'1 Month Pack (60 Capsules)',              price:799  },
-  { label:'2 Month Pack (120 Capsules)',             price:1399 },
-  { label:'3 Month Pack (180 Capsules) — Best Value',price:1899 }
-];
-let selV = 0, qty = 1, isSubmitting = false, pinTimer = null;
-let audioCtx = null;
-let exitShown = false;
-let viewerCount = Math.floor(Math.random()*18)+18;
+let allOrders=[], allProducts=[], prevOrderIds=new Set();
+let pmFilter=false, autoRefreshOn=false, autoRefreshTimer=null;
+let liveCount=0, aiOrderId=null, soundOn=true;
+let selectedIds=new Set(), currentPage=1;
+let audioCtx=null;
 
-// ── AUDIO CONTEXT (unlock on first interaction) ──
-function getAudioCtx() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
+// ── AUDIO (fixed: unlock on user click, then always works) ──
+function ensureAudio(){
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended') audioCtx.resume();
   return audioCtx;
 }
-document.addEventListener('click', () => { getAudioCtx(); }, { once:true });
+document.addEventListener('click',()=>ensureAudio(),{once:true});
 
-// ── SWIPER ──
-let imgs=[], swIdx=0, touchX=0;
-function buildSwiper(images) {
-  imgs = (images&&images.length)?images:['https://images.unsplash.com/photo-1611072172377-0cabc3adbe42?w=600'];
-  const track = document.getElementById('swiper-track');
-  const dots  = document.getElementById('sw-dots');
-  track.innerHTML = imgs.map(s=>`<img src="${s}" alt="AyurSlim Gold" loading="lazy"/>`).join('');
-  dots.innerHTML  = imgs.length>1?imgs.map((_,i)=>`<div class="sw-dot${i===0?' on':''}" onclick="goSlide(${i})"></div>`).join(''):'';
-  const show = imgs.length>1;
-  document.getElementById('sw-prev').style.display=show?'':'none';
-  document.getElementById('sw-next').style.display=show?'':'none';
-  goSlide(0);
-  const wrap=document.getElementById('swiper-wrap');
-  wrap.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;},{passive:true});
-  wrap.addEventListener('touchend',e=>{const d=touchX-e.changedTouches[0].clientX;if(Math.abs(d)>40)d>0?swNext():swPrev();},{passive:true});
-}
-function goSlide(i){swIdx=Math.max(0,Math.min(i,imgs.length-1));document.getElementById('swiper-track').style.transform=`translateX(-${swIdx*100}%)`;document.querySelectorAll('.sw-dot').forEach((d,j)=>d.classList.toggle('on',j===swIdx));}
-function swNext(){goSlide((swIdx+1)%imgs.length);}
-function swPrev(){goSlide((swIdx-1+imgs.length)%imgs.length);}
-
-// ── LOAD PRODUCT ──
-async function loadProduct() {
-  try {
-    const r = await fetch(API_BASE+'/api/products');
-    const d = await r.json();
-    if (d.success && d.products && d.products.length) {
-      product = d.products[0];
-      document.getElementById('htitle').textContent = (product.name||'AyurSlim Gold').split('—')[0].trim();
-      if (product.description) document.getElementById('hsub').textContent = product.description.slice(0,90)+(product.description.length>90?'…':'');
-      if (product.mrp) {
-        document.getElementById('hmrp').textContent='MRP ₹'+product.mrp.toLocaleString('en-IN');
-        document.getElementById('hprice').textContent='₹'+product.price;
-        const sv=product.mrp-product.price;
-        document.getElementById('hsave').textContent=`SAVE ₹${sv} (${Math.round(sv/product.mrp*100)}% OFF)`;
-      }
-      if (product.variants&&product.variants.length) variants=product.variants;
-      document.getElementById('modal-pname').textContent=product.name;
-      buildSwiper(product.images);
-      // Fire ViewContent pixel event
-      firePixel('ViewContent',{content_name:product.name,content_ids:[product._id||'ayurslim-gold'],content_type:'product',value:product.price,currency:'INR'});
-    } else { buildSwiper([]); }
-  } catch { buildSwiper([]); }
-  renderVariants();
-}
-
-// ── META / PIXEL ──
-async function loadMeta() {
-  try {
-    const r = await fetch(API_BASE+'/api/meta');
-    const d = await r.json();
-    if (d.success && d.metaPixel && d.metaPixel.trim()) {
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      window.fbq('init', d.metaPixel);
-      window.fbq('track', 'PageView');
-    }
-  } catch {}
-}
-function firePixel(event, data) {
-  try { if (typeof fbq!=='undefined') fbq('track', event, data||{}); } catch {}
-}
-
-// ── RENDER VARIANTS ──
-function renderVariants() {
-  const saves=[null,199,498];
-  const bestLabels=[false,false,true];
-  document.getElementById('page-variants').innerHTML = variants.map((v,i)=>`
-    <div class="var-card${i===selV?' on':''}" onclick="selectPageV(${i})">
-      ${bestLabels[i]?'<div class="var-best">🔥 BEST VALUE</div>':''}
-      <div class="var-label">${v.label}</div>
-      <div class="var-price">₹${v.price}</div>
-      ${saves[i]?`<div class="var-save">Save ₹${saves[i]}</div>`:'<div style="height:16px"></div>'}
-    </div>`).join('');
-  document.getElementById('modal-variants').innerHTML = variants.map((v,i)=>`
-    <label class="var-opt${i===selV?' sel':''}">
-      <input type="radio" name="var" value="${i}" ${i===selV?'checked':''} onchange="selectV(${i})"/>
-      <span class="var-opt-lbl">${v.label}</span>
-      <span class="var-opt-pr">₹${v.price}</span>
-    </label>`).join('');
-  updateSummary();
-  document.getElementById('sticky-price').textContent='₹'+variants[selV].price;
-}
-function selectV(i){selV=i;document.querySelectorAll('.var-opt').forEach((el,j)=>el.classList.toggle('sel',j===i));updateSummary();}
-function selectPageV(i){selV=i;renderVariants();}
-function changeQty(d){qty=Math.max(1,Math.min(10,qty+d));document.getElementById('qty-disp').textContent=qty;updateSummary();}
-function updateSummary(){const v=variants[selV];document.getElementById('sum-lbl').textContent=`${v.label} × ${qty}`;document.getElementById('sum-price').textContent='₹'+(v.price*qty).toLocaleString('en-IN');document.getElementById('sum-total').textContent='₹'+(v.price*qty).toLocaleString('en-IN');}
-
-// ── MODAL ──
-function openModal(source) {
-  document.getElementById('modal-overlay').classList.add('open');
-  document.getElementById('sticky-bar').classList.remove('show');
-  document.body.style.overflow='hidden';
-  document.getElementById('exit-overlay').classList.remove('show');
-  renderVariants();
-  document.getElementById('modal-viewers').textContent = viewerCount;
-  // Fire AddToCart pixel
-  firePixel('AddToCart',{content_name:product?product.name:'AyurSlim Gold',content_ids:[product?product._id:'ayurslim-gold'],content_type:'product',value:variants[selV].price,currency:'INR'});
-}
-function closeModal(){
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow='';
-  setTimeout(()=>{
-    document.getElementById('form-view').style.display='';
-    document.getElementById('success-view').style.display='none';
-    const btn=document.getElementById('btn-submit');
-    btn.disabled=false;btn.textContent='🚀 Confirm Order — Pay on Delivery';
-    isSubmitting=false;
-  },300);
-}
-function overlayBg(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
-
-// ── PINCODE ──
-function onPin(){
-  const pin=document.getElementById('f-pincode').value;
-  clearTimeout(pinTimer);
-  if(/^\d{6}$/.test(pin)){pinTimer=setTimeout(()=>fetchPin(pin),500);}
-  else{document.getElementById('f-city').value='';document.getElementById('f-state').value='';document.getElementById('f-pincode').className='fi';document.getElementById('pin-hint').textContent='';}
-}
-async function fetchPin(pin){
-  document.getElementById('pin-hint').textContent='Fetching...';document.getElementById('pin-hint').className='pin-hint';
+function playOrderSound(){
+  if(!soundOn) return;
   try{
-    const r=await fetch(`${API_BASE}/api/pincode/${pin}`);
+    const ctx=ensureAudio();
+    // Play 3-tone chime
+    [880,1100,1320].forEach((freq,i)=>{
+      const osc=ctx.createOscillator(),g=ctx.createGain();
+      osc.connect(g);g.connect(ctx.destination);
+      osc.frequency.value=freq;osc.type='sine';
+      const t=ctx.currentTime+i*0.15;
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.4,t+0.05);
+      g.gain.exponentialRampToValueAtTime(.001,t+0.4);
+      osc.start(t);osc.stop(t+0.4);
+    });
+  } catch{}
+}
+
+function toggleSound(){
+  soundOn=!soundOn;
+  localStorage.setItem('vk_sound',soundOn?'1':'0');
+  document.getElementById('sound-toggle-btn').textContent=`🔔 Sound: ${soundOn?'ON':'OFF'}`;
+  document.getElementById('sound-toggle-btn').className='sound-btn'+(soundOn?' on':'');
+}
+
+// ── AUTH ──
+function checkAuth(){return !!localStorage.getItem('vk_token');}
+async function doLogin(){
+  const u=document.getElementById('l-user').value.trim(),p=document.getElementById('l-pass').value;
+  document.getElementById('lerr').textContent='';
+  try{
+    const r=await fetch(API+'/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
     const d=await r.json();
-    if(d.success&&d.data&&d.data[0]&&d.data[0].Status==='Success'&&d.data[0].PostOffice){
-      const po=d.data[0].PostOffice[0];
-      document.getElementById('f-city').value=po.District||po.Block||po.Name||'';
-      document.getElementById('f-state').value=po.State||'';
-      document.getElementById('f-pincode').className='fi ok';
-      document.getElementById('pin-hint').className='pin-hint ok';
-      document.getElementById('pin-hint').textContent='✅ '+(po.District||po.Name)+', '+po.State;
-    } else {throw new Error('invalid');}
-  } catch {
-    document.getElementById('f-pincode').className='fi err';
-    document.getElementById('pin-hint').className='pin-hint err';
-    document.getElementById('pin-hint').textContent='❌ Invalid pincode — fill city/state manually';
-    document.getElementById('f-city').removeAttribute('readonly');
-    document.getElementById('f-state').removeAttribute('readonly');
+    if(d.success){localStorage.setItem('vk_token',d.token);showApp();}
+    else document.getElementById('lerr').textContent='❌ Invalid credentials';
+  }catch{document.getElementById('lerr').textContent='❌ Server unreachable';}
+}
+function showApp(){
+  document.getElementById('login-screen').classList.remove('show');
+  document.getElementById('app').classList.add('show');
+  initApp();
+}
+function doLogout(){localStorage.removeItem('vk_token');location.reload();}
+
+// ── INIT ──
+function initApp(){
+  // Restore sound preference
+  const sv=localStorage.getItem('vk_sound');
+  soundOn=(sv===null)?true:sv==='1';
+  document.getElementById('sound-toggle-btn').textContent=`🔔 Sound: ${soundOn?'ON':'OFF'}`;
+  document.getElementById('sound-toggle-btn').className='sound-btn'+(soundOn?' on':'');
+  // Restore auto-refresh
+  if(localStorage.getItem('vk_autorefresh')==='1'){
+    document.getElementById('auto-refresh-cb').checked=true;
+    autoRefreshOn=true;
+    autoRefreshTimer=setInterval(()=>loadOrders(),60000);
   }
+  loadOrders();
+  loadProducts();
+  loadSettings();
+  loadSsConfig();
+  startLiveVisitors();
+  document.getElementById('ddf-all').classList.add('active');
 }
 
-// ── VALIDATE ──
-function validate(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const pincode=document.getElementById('f-pincode').value.trim();
-  const address=document.getElementById('f-address').value.trim();
-  if(!name){toast('⚠️ Please enter your full name','error');return false;}
-  if(!/^\d{10}$/.test(phone)){toast('⚠️ Enter valid 10-digit phone','error');return false;}
-  if(!/^\d{6}$/.test(pincode)){toast('⚠️ Enter valid 6-digit pincode','error');return false;}
-  if(!address){toast('⚠️ Please enter your full address','error');return false;}
-  return true;
+// ── TABS ──
+function showTab(name,navEl){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(navEl)navEl.classList.add('active');
+  const titles={dashboard:'Dashboard',orders:'Orders',products:'Products',settings:'Settings',selloship:'Selloship'};
+  document.getElementById('topbar-title').textContent=titles[name]||name;
+  if(name==='selloship')populateSsOrders();
+  closeSidebar();
 }
 
-// ── SUBMIT ──
-async function submitOrder(){
-  if(isSubmitting)return;
-  if(!validate())return;
-  isSubmitting=true;
-  const btn=document.getElementById('btn-submit');
-  btn.disabled=true;btn.textContent='⏳ Placing Order...';
-  // Fire InitiateCheckout pixel
-  firePixel('InitiateCheckout',{content_name:product?product.name:'AyurSlim Gold',value:variants[selV].price*qty,currency:'INR',num_items:qty});
-  const v=variants[selV];
-  const payload={
-    name:document.getElementById('f-name').value.trim(),
-    phone:document.getElementById('f-phone').value.trim(),
-    pincode:document.getElementById('f-pincode').value.trim(),
-    city:document.getElementById('f-city').value.trim(),
-    state:document.getElementById('f-state').value.trim(),
-    address:document.getElementById('f-address').value.trim(),
-    productId:product?product._id:null,
-    productName:product?product.name:'AyurSlim Gold — Ayurvedic Weight Management',
-    product:'AyurSlim Gold',variant:v.label,quantity:qty,price:v.price,totalAmount:v.price*qty
-  };
+// ── ORDERS ──
+async function loadOrders(){
+  if(!checkAuth())return;
   try{
-    const r=await fetch(API_BASE+'/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const r=await fetch(API+'/api/orders');
     const d=await r.json();
-    if(d.duplicate){
-      toast('⚠️ इस नंबर से पहले order है! अलग नंबर use करें।','error');
-      btn.disabled=false;btn.textContent='🚀 Confirm Order — Pay on Delivery';
-      isSubmitting=false;return;
-    }
     if(d.success){
-      // Fire Purchase pixel
-      firePixel('Purchase',{value:payload.totalAmount,currency:'INR',content_name:payload.productName,content_ids:[payload.productId||'ayurslim-gold'],content_type:'product'});
-      document.getElementById('oid-val').textContent=d.orderId;
-      document.getElementById('form-view').style.display='none';
-      document.getElementById('success-view').style.display='';
-    } else {toast('❌ Order failed. Please try again.','error');}
-  } catch {toast('❌ Network error. Check connection.','error');}
-  finally{btn.disabled=false;btn.textContent='🚀 Confirm Order — Pay on Delivery';isSubmitting=false;}
+      checkNewOrders(d.orders);
+      allOrders=d.orders;
+      renderOrders();renderLatest();checkDupes();updateDashStats();
+    }
+  }catch(e){console.warn('loadOrders:',e);}
 }
 
-// ── COUNTDOWN TIMER ──
-function startCountdown(){
-  let stored = localStorage.getItem('vk_timer_end');
-  if(!stored||Date.now()>parseInt(stored)){
-    const end=Date.now()+3*60*60*1000+Math.random()*60*60*1000;
-    localStorage.setItem('vk_timer_end',Math.floor(end));
-    stored=end;
+function checkNewOrders(fresh){
+  if(prevOrderIds.size===0){prevOrderIds=new Set(fresh.map(o=>o._id));return;}
+  const newOnes=fresh.filter(o=>!prevOrderIds.has(o._id));
+  if(newOnes.length){
+    playOrderSound();
+    showToast('🔔 '+newOnes.length+' new order(s)!','success');
+    newOnes.forEach(o=>prevOrderIds.add(o._id));
   }
-  function tick(){
-    const rem=Math.max(0,parseInt(stored)-Date.now());
-    const h=Math.floor(rem/3600000),m=Math.floor((rem%3600000)/60000),s=Math.floor((rem%60000)/1000);
-    const fmt=n=>String(n).padStart(2,'0');
-    document.getElementById('t-h').textContent=fmt(h);
-    document.getElementById('t-m').textContent=fmt(m);
-    document.getElementById('t-s').textContent=fmt(s);
-    document.getElementById('countdown-display').textContent=`${fmt(h)}:${fmt(m)}:${fmt(s)}`;
-  }
-  tick();setInterval(tick,1000);
+  prevOrderIds=new Set(fresh.map(o=>o._id));
 }
 
-// ── ORDERS TODAY (fake urgency, realistic) ──
-function startOrdersToday(){
-  let n=Math.floor(Math.random()*20)+28;
-  document.getElementById('orders-today').textContent=n;
-  setInterval(()=>{
-    if(Math.random()<0.3){n++;document.getElementById('orders-today').textContent=n;}
-  },45000);
+function scoreAddr(o){
+  let s=0;
+  if(o.address&&o.address.length>10)s+=30;
+  if(o.pincode&&/^\d{6}$/.test(o.pincode))s+=20;
+  if(o.city&&o.city.trim())s+=20;
+  if(o.state&&o.state.trim())s+=15;
+  if(o.address&&/\d/.test(o.address))s+=15;
+  return s;
+}
+function scBadge(s){const c=s>=70?'g':s>=40?'y':'r';return `<span class="sc-badge ${c}">${s}</span>`;}
+function fmtDt(d){const dt=new Date(d);return dt.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})+' '+dt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});}
+
+function getFilteredOrders(){
+  let ords=[...allOrders];
+  const f=document.getElementById('odf-from')?.value,t=document.getElementById('odf-to')?.value;
+  if(f)ords=ords.filter(o=>new Date(o.createdAt)>=new Date(f));
+  if(t)ords=ords.filter(o=>new Date(o.createdAt)<=new Date(t+'T23:59:59'));
+  if(pmFilter)ords=ords.filter(o=>new Date(o.createdAt).getHours()>=12);
+  const search=(document.getElementById('search-in')?.value||'').toLowerCase();
+  const status=document.getElementById('status-sel')?.value||'';
+  if(status)ords=ords.filter(o=>o.status===status);
+  if(search)ords=ords.filter(o=>(o.name||'').toLowerCase().includes(search)||(o.phone||'').includes(search)||(o._id||'').includes(search));
+  return ords;
 }
 
-// ── LAST ORDER TIME ──
-function updateLastOrder(){
-  const mins=[2,3,4,5,7,8,10,12,15];
-  const m=mins[Math.floor(Math.random()*mins.length)];
-  document.getElementById('last-order-time').textContent=m+' min ago';
-}
-setInterval(updateLastOrder,30000);
+function renderOrders(){
+  const ords=getFilteredOrders();
+  const perPage=parseInt(document.getElementById('rows-per-page')?.value)||50;
+  const totalPages=Math.max(1,Math.ceil(ords.length/perPage));
+  if(currentPage>totalPages)currentPage=totalPages;
+  const start=(currentPage-1)*perPage,end=start+perPage;
+  const pageOrds=ords.slice(start,end);
 
-// ── LIVE VIEWERS ──
-let vBase=Math.floor(Math.random()*18)+18;
-function animateViewers(){
-  vBase=Math.max(10,Math.min(99,vBase+Math.floor(Math.random()*7)-3));
-  viewerCount=vBase;
-  document.getElementById('vcount').textContent=vBase;
-  document.getElementById('modal-viewers').textContent=vBase;
+  document.getElementById('ord-count').textContent=`${ords.length} orders (page ${currentPage}/${totalPages})`;
+  const tbody=document.getElementById('orders-tbody');
+  if(!pageOrds.length){tbody.innerHTML='<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--muted);">No orders found</td></tr>';renderPagination(0,perPage);return;}
+
+  tbody.innerHTML=pageOrds.map((o,i)=>{
+    const sc=scoreAddr(o),checked=selectedIds.has(o._id)?'checked':'';
+    return `<tr>
+      <td><input type="checkbox" class="row-checkbox" value="${o._id}" ${checked} onchange="onRowCheck(this)"/></td>
+      <td>${start+i+1}</td>
+      <td style="font-weight:700;max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.name||'—'}</td>
+      <td>${o.phone||'—'}</td>
+      <td>${o.city||'—'}</td>
+      <td style="font-size:.76rem;max-width:100px;overflow:hidden;text-overflow:ellipsis;">${(o.variant||'—').slice(0,24)}</td>
+      <td>${o.quantity||1}</td>
+      <td style="font-weight:700;">₹${(o.totalAmount||0).toLocaleString('en-IN')}</td>
+      <td>${scBadge(sc)}</td>
+      <td><select class="ssel" onchange="updateStatus(this,'${o._id}')">
+        ${['new','confirmed','shipped','delivered','cancelled'].map(s=>`<option value="${s}"${o.status===s?' selected':''}>${s[0].toUpperCase()+s.slice(1)}</option>`).join('')}
+      </select></td>
+      <td style="font-size:.76rem;white-space:nowrap;">${fmtDt(o.createdAt)}</td>
+      <td>
+        <button class="btn-a btn-view" onclick="viewOrder('${o._id}')">👁️</button>
+        ${sc<40?`<button class="btn-a btn-ai" onclick="openAI('${o._id}')">🤖</button>`:''}
+        <button class="btn-a btn-del" onclick="deleteOrder('${o._id}')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+  renderPagination(ords.length,perPage);
+  syncBulkBar();
 }
-setInterval(animateViewers,8000);
-setInterval(async()=>{
-  try{const r=await fetch(API_BASE+'/api/visitors/count');const d=await r.json();
-    if(d.success&&d.count>0){vBase=Math.max(vBase,d.count);viewerCount=vBase;document.getElementById('vcount').textContent=vBase;}}
+
+function renderPagination(total,perPage){
+  const totalPages=Math.max(1,Math.ceil(total/perPage));
+  const pg=document.getElementById('pagination');
+  if(totalPages<=1){pg.innerHTML='';return;}
+  let html=`<button class="pg-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹ Prev</button>`;
+  const start=Math.max(1,currentPage-2),end=Math.min(totalPages,start+4);
+  for(let i=start;i<=end;i++) html+=`<button class="pg-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
+  html+=`<button class="pg-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next ›</button>`;
+  html+=`<span class="pg-info">Page ${currentPage} of ${totalPages}</span>`;
+  pg.innerHTML=html;
+}
+function goPage(p){currentPage=p;renderOrders();}
+
+// ── BULK SELECTION ──
+function onRowCheck(cb){
+  if(cb.checked) selectedIds.add(cb.value); else selectedIds.delete(cb.value);
+  syncBulkBar();
+}
+function toggleSelectAll(){
+  const cb=document.getElementById('select-all-cb')||document.getElementById('th-cb');
+  const ords=getFilteredOrders();
+  const perPage=parseInt(document.getElementById('rows-per-page')?.value)||50;
+  const start=(currentPage-1)*perPage,pageOrds=ords.slice(start,start+perPage);
+  if(cb.checked){pageOrds.forEach(o=>selectedIds.add(o._id));}
+  else{pageOrds.forEach(o=>selectedIds.delete(o._id));}
+  renderOrders();
+}
+function clearSelection(){
+  selectedIds.clear();
+  document.querySelectorAll('.row-checkbox').forEach(c=>c.checked=false);
+  syncBulkBar();
+}
+function syncBulkBar(){
+  const bar=document.getElementById('bulk-bar');
+  document.getElementById('bulk-count').textContent=selectedIds.size+' selected';
+  bar.classList.toggle('hidden',selectedIds.size===0);
+}
+async function applyBulkStatus(){
+  const status=document.getElementById('bulk-status-sel').value;
+  if(!status){showToast('Select a status first','error');return;}
+  if(!selectedIds.size){showToast('No orders selected','error');return;}
+  const ids=[...selectedIds];
+  try{
+    const r=await fetch(API+'/api/orders/bulk-status',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ids,status})});
+    const d=await r.json();
+    if(d.success){
+      ids.forEach(id=>{const o=allOrders.find(x=>x._id===id);if(o)o.status=status;});
+      clearSelection();
+      renderOrders();renderLatest();updateDashStats();
+      showToast(`✅ ${ids.length} orders → ${status}`,'success');
+    } else showToast('❌ Bulk update failed','error');
+  }catch{showToast('❌ Network error','error');}
+}
+
+function renderLatest(){
+  const tbody=document.getElementById('latest-tbody');
+  const ords=allOrders.slice(0,10);
+  if(!ords.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:22px;color:var(--muted);">No orders yet</td></tr>';return;}
+  tbody.innerHTML=ords.map(o=>`<tr>
+    <td style="font-weight:700;">${o.name||'—'}</td>
+    <td>${o.phone||'—'}</td><td>${o.city||'—'}</td>
+    <td style="font-size:.76rem;">${(o.variant||'').slice(0,22)||'—'}</td>
+    <td style="font-weight:700;">₹${(o.totalAmount||0).toLocaleString('en-IN')}</td>
+    <td><span class="badge ${o.status}">${o.status}</span></td>
+    <td style="font-size:.76rem;">${fmtDt(o.createdAt)}</td>
+  </tr>`).join('');
+}
+
+async function updateStatus(sel,id){
+  const status=sel.value;
+  try{
+    const r=await fetch(`${API}/api/orders/${id}/status`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
+    const d=await r.json();
+    if(d.success){const idx=allOrders.findIndex(o=>o._id===id);if(idx>=0)allOrders[idx].status=status;renderOrders();renderLatest();updateDashStats();showToast('✅ Status updated','success');}
+  }catch{showToast('❌ Update failed','error');}
+}
+
+async function deleteOrder(id){
+  if(!confirm('Delete this order?'))return;
+  try{
+    const r=await fetch(`${API}/api/orders/${id}`,{method:'DELETE'});
+    const d=await r.json();
+    if(d.success){allOrders=allOrders.filter(o=>o._id!==id);selectedIds.delete(id);renderOrders();renderLatest();updateDashStats();showToast('🗑️ Deleted','success');}
+  }catch{showToast('❌ Delete failed','error');}
+}
+
+function viewOrder(id){
+  const o=allOrders.find(x=>x._id===id);if(!o)return;
+  const sc=scoreAddr(o);
+  document.getElementById('ord-detail-body').innerHTML=`<div style="display:grid;gap:9px;font-size:.88rem;">
+    <div><b>Order ID:</b> <code style="background:#f3f4f6;padding:2px 7px;border-radius:4px;font-size:.8rem;">${o._id}</code></div>
+    <div><b>Name:</b> ${o.name||'—'} &nbsp;<b>Phone:</b> ${o.phone||'—'}</div>
+    <div><b>Address:</b> ${o.address||'—'}</div>
+    <div><b>City:</b> ${o.city||'—'} &nbsp;<b>State:</b> ${o.state||'—'} &nbsp;<b>PIN:</b> ${o.pincode||'—'}</div>
+    <div><b>Product:</b> ${o.productName||o.product||'—'}</div>
+    <div><b>Variant:</b> ${o.variant||'—'} &nbsp;<b>Qty:</b> ${o.quantity||1} &nbsp;<b>Total:</b> ₹${o.totalAmount||0}</div>
+    <div><b>Status:</b> <span class="badge ${o.status}">${o.status}</span></div>
+    <div><b>Score:</b> ${scBadge(sc)} / 100</div>
+    <div><b>Date:</b> ${new Date(o.createdAt).toLocaleString('en-IN')}</div>
+  </div>`;
+  document.getElementById('ordDetailModal').classList.add('open');
+}
+
+function checkDupes(){
+  const phones=allOrders.map(o=>o.phone).filter(Boolean);
+  const dupes=[...new Set(phones.filter((p,i)=>phones.indexOf(p)!==i))];
+  const banner=document.getElementById('dup-banner');
+  if(dupes.length){banner.style.display='flex';document.getElementById('dup-text').textContent=`⚠️ ${dupes.length} duplicate phone(s)`;}
+  else banner.style.display='none';
+}
+
+async function clearDupes(){
+  const latest={};
+  for(const o of allOrders){if(!o.phone)continue;if(!latest[o.phone]||new Date(o.createdAt)>new Date(latest[o.phone].createdAt))latest[o.phone]=o;}
+  const toDelete=allOrders.filter(o=>o.phone&&latest[o.phone]._id!==o._id);
+  for(const o of toDelete){try{await fetch(`${API}/api/orders/${o._id}`,{method:'DELETE'});allOrders=allOrders.filter(x=>x._id!==o._id);}catch{}}
+  renderOrders();renderLatest();checkDupes();updateDashStats();
+  showToast(`🗑️ Removed ${toDelete.length} duplicate(s)`,'success');
+}
+
+function togglePm(){pmFilter=!pmFilter;document.getElementById('btn-pm').classList.toggle('active',pmFilter);currentPage=1;renderOrders();}
+function exportCSV(){window.location.href=API+'/api/orders/export/csv';}
+function setOdToday(){const t=new Date().toISOString().split('T')[0];document.getElementById('odf-from').value=t;document.getElementById('odf-to').value=t;currentPage=1;renderOrders();}
+function clearOdFilter(){document.getElementById('odf-from').value='';document.getElementById('odf-to').value='';currentPage=1;renderOrders();}
+
+// ── DASHBOARD STATS ──
+function getDdOrders(){
+  const f=document.getElementById('ddf-from')?.value,t=document.getElementById('ddf-to')?.value;
+  if(!f&&!t)return allOrders;
+  return allOrders.filter(o=>{const dt=new Date(o.createdAt);if(f&&dt<new Date(f))return false;if(t&&dt>new Date(t+'T23:59:59'))return false;return true;});
+}
+function updateDashStats(){
+  const ords=getDdOrders();
+  document.getElementById('s-total').textContent=ords.length;
+  document.getElementById('s-new').textContent=ords.filter(o=>o.status==='new').length;
+  document.getElementById('s-confirmed').textContent=ords.filter(o=>o.status==='confirmed').length;
+  document.getElementById('s-shipped').textContent=ords.filter(o=>o.status==='shipped').length;
+  const rev=ords.filter(o=>['confirmed','shipped','delivered'].includes(o.status)).reduce((a,o)=>a+(o.totalAmount||0),0);
+  document.getElementById('s-revenue').textContent='₹'+rev.toLocaleString('en-IN');
+  computeInsights(ords);
+  const f=document.getElementById('ddf-from')?.value,t=document.getElementById('ddf-to')?.value;
+  document.getElementById('ddf-status').textContent=(f||t)?`📊 Filtered ${f?'From: '+f:''} ${t?'To: '+t:''} (${ords.length} orders)`:'Showing all-time stats';
+}
+function computeInsights(ords){
+  const hMap={};ords.forEach(o=>{const h=new Date(o.createdAt).getHours();hMap[h]=(hMap[h]||0)+1;});
+  const peak=Object.entries(hMap).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('i-peak').textContent=peak?`${peak[0]}:00–${+peak[0]+1}:00`:'—';
+  const pm=ords.filter(o=>new Date(o.createdAt).getHours()>=12).length;
+  document.getElementById('i-pm').textContent=pm;
+  document.getElementById('i-pm-sub').textContent=ords.length?Math.round(pm/ords.length*100)+'% of orders':'—';
+  document.getElementById('i-conv').textContent=liveCount>0?Math.min(100,Math.round(ords.length/liveCount*100))+'%':'—';
+  document.getElementById('i-score').textContent=ords.length?Math.round(ords.reduce((a,o)=>a+scoreAddr(o),0)/ords.length)+'/100':'—';
+}
+function setDdPreset(type,btn){
+  document.querySelectorAll('#ddf-all,#ddf-today,#ddf-week,#ddf-month').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const today=new Date().toISOString().split('T')[0];
+  if(type==='all'){document.getElementById('ddf-from').value='';document.getElementById('ddf-to').value='';}
+  else if(type==='today'){document.getElementById('ddf-from').value=today;document.getElementById('ddf-to').value=today;}
+  else if(type==='week'){const d=new Date();d.setDate(d.getDate()-6);document.getElementById('ddf-from').value=d.toISOString().split('T')[0];document.getElementById('ddf-to').value=today;}
+  else if(type==='month'){const d=new Date();d.setDate(1);document.getElementById('ddf-from').value=d.toISOString().split('T')[0];document.getElementById('ddf-to').value=today;}
+  updateDashStats();
+}
+function clearDdFilter(){
+  document.querySelectorAll('#ddf-all,#ddf-today,#ddf-week,#ddf-month').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ddf-all').classList.add('active');
+  document.getElementById('ddf-from').value='';document.getElementById('ddf-to').value='';
+  updateDashStats();
+}
+
+// ── JUNK CLEANER ──
+async function runJunk(){
+  try{
+    const r=await fetch(API+'/api/admin/junk-clean',{method:'POST',headers:{'Content-Type':'application/json'}});
+    const d=await r.json();
+    if(d.success){document.getElementById('junk-result').textContent=`✅ Fixed ${d.ordersFixed} · Removed ${d.emptyOrders} empty · Cleared ${d.visitorsCleared} sessions`;loadOrders();}
+  }catch{showToast('❌ Junk cleaner failed','error');}
+}
+
+// ── PRODUCTS ──
+async function loadProducts(){
+  if(!checkAuth())return;
+  try{const r=await fetch(API+'/api/products/all');const d=await r.json();if(d.success){allProducts=d.products;renderProducts();}}
+  catch{showToast('❌ Failed to load products','error');}
+}
+function renderProducts(){
+  const grid=document.getElementById('prod-grid');
+  if(!allProducts.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);">No products. Click Add Product.</div>';return;}
+  grid.innerHTML=allProducts.map(p=>`
+    <div class="prod-card">
+      <img class="prod-img" src="${p.images&&p.images[0]?p.images[0]:'https://placehold.co/400x200?text=No+Image'}" alt="${p.name}" onerror="this.src='https://placehold.co/400x200?text=No+Image'"/>
+      <div class="prod-body">
+        <div class="prod-name">${p.name}</div>
+        <div><span class="prod-price">₹${p.price||0}</span> <span class="prod-mrp">₹${p.mrp||''}</span></div>
+        <div class="prod-meta">Stock: ${p.stock||0} · ${p.active?'✅ Active':'❌ Inactive'}</div>
+        <label class="prod-toggle"><input type="checkbox" ${p.active?'checked':''} onchange="toggleActive('${p._id}',this.checked)"/> Active</label>
+        <div class="prod-actions">
+          <button class="btn-edit" onclick="openEditProd('${p._id}')">✏️ Edit</button>
+          <button class="btn-del2" onclick="deleteProd('${p._id}')">🗑️ Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function openProdModal(){
+  ['pm-name','pm-desc','pm-price','pm-mrp','pm-stock','pm-images','pm-benefits','pm-ingredients','pm-howtouse','pm-variants'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pm-active').checked=true;
+  document.getElementById('prodModal').dataset.editId='';
+  document.getElementById('pm-title').textContent='➕ Add Product';
+  document.getElementById('prodModal').classList.add('open');
+}
+function openEditProd(id){
+  const p=allProducts.find(x=>x._id===id);if(!p){showToast('Product not found','error');return;}
+  document.getElementById('pm-name').value=p.name||'';
+  document.getElementById('pm-desc').value=p.description||'';
+  document.getElementById('pm-price').value=p.price||'';
+  document.getElementById('pm-mrp').value=p.mrp||'';
+  document.getElementById('pm-stock').value=p.stock||'';
+  document.getElementById('pm-active').checked=p.active!==false;
+  document.getElementById('pm-images').value=(p.images||[]).join('\n');
+  document.getElementById('pm-benefits').value=(p.benefits||[]).join('\n');
+  document.getElementById('pm-ingredients').value=p.ingredients||'';
+  document.getElementById('pm-howtouse').value=p.howToUse||'';
+  document.getElementById('pm-variants').value=(p.variants||[]).map(v=>`${v.label}:${v.price}`).join('\n');
+  document.getElementById('prodModal').dataset.editId=id;
+  document.getElementById('pm-title').textContent='✏️ Edit Product';
+  document.getElementById('prodModal').classList.add('open');
+}
+function closeProdModal(){document.getElementById('prodModal').classList.remove('open');}
+async function saveProduct(){
+  const name=document.getElementById('pm-name').value.trim();
+  if(!name){showToast('Product name required','error');return;}
+  const images=document.getElementById('pm-images').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const benefits=document.getElementById('pm-benefits').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const variants=document.getElementById('pm-variants').value.split('\n').map(s=>s.trim()).filter(Boolean).map(line=>{const[label,price]=line.split(':');return{label:(label||'').trim(),price:parseFloat(price)||0};}).filter(v=>v.label);
+  const payload={name,description:document.getElementById('pm-desc').value.trim(),price:parseFloat(document.getElementById('pm-price').value)||0,mrp:parseFloat(document.getElementById('pm-mrp').value)||0,stock:parseInt(document.getElementById('pm-stock').value)||0,active:document.getElementById('pm-active').checked,images,benefits,variants,ingredients:document.getElementById('pm-ingredients').value.trim(),howToUse:document.getElementById('pm-howtouse').value.trim()};
+  const editId=document.getElementById('prodModal').dataset.editId,isEdit=!!editId;
+  try{
+    const r=await fetch(isEdit?`${API}/api/products/${editId}`:`${API}/api/products`,{method:isEdit?'PUT':'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const d=await r.json();
+    if(d.success){showToast(isEdit?'✅ Updated!':'✅ Created!','success');closeProdModal();loadProducts();}
+    else showToast('Error: '+(d.error||'Unknown'),'error');
+  }catch(e){showToast('Network error: '+e.message,'error');}
+}
+async function deleteProd(id){
+  if(!confirm('Delete this product?'))return;
+  try{const r=await fetch(`${API}/api/products/${id}`,{method:'DELETE'});const d=await r.json();if(d.success){allProducts=allProducts.filter(p=>p._id!==id);renderProducts();showToast('🗑️ Deleted','success');}}
+  catch{showToast('Delete failed','error');}
+}
+async function toggleActive(id,active){
+  const p=allProducts.find(x=>x._id===id);if(!p)return;
+  const payload={name:p.name,description:p.description,price:p.price,mrp:p.mrp,stock:p.stock,active,images:p.images,benefits:p.benefits,ingredients:p.ingredients,howToUse:p.howToUse,variants:p.variants};
+  try{await fetch(`${API}/api/products/${id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});p.active=active;renderProducts();showToast(active?'✅ Activated':'⛔ Deactivated','success');}
   catch{}
-},30000);
-
-// ── VISITOR TRACKING ──
-let vid=sessionStorage.getItem('vk_vid');
-if(!vid){vid='v_'+Date.now()+'_'+Math.random().toString(36).slice(2);sessionStorage.setItem('vk_vid',vid);}
-function pingVisitor(action){
-  const body=JSON.stringify({visitorId:vid,action});
-  if(navigator.sendBeacon){navigator.sendBeacon(API_BASE+'/api/visitors/ping',new Blob([body],{type:'application/json'}));}
-  else{fetch(API_BASE+'/api/visitors/ping',{method:'POST',headers:{'Content-Type':'application/json'},body,keepalive:true}).catch(()=>{});}
 }
-pingVisitor('arrive');
-setInterval(()=>pingVisitor('heartbeat'),25000);
-window.addEventListener('beforeunload',()=>pingVisitor('leave'));
 
-// ── EXIT-INTENT ──
-document.addEventListener('mouseleave',e=>{
-  if(e.clientY<50&&!exitShown&&!document.getElementById('modal-overlay').classList.contains('open')){
-    exitShown=true;
-    setTimeout(()=>document.getElementById('exit-overlay').classList.add('show'),200);
-  }
-});
-// Mobile: back button simulation
-window.addEventListener('popstate',()=>{
-  if(!exitShown&&!document.getElementById('modal-overlay').classList.contains('open')){
-    exitShown=true;document.getElementById('exit-overlay').classList.add('show');
-    history.pushState(null,'',location.href);
-  }
-});
-history.pushState(null,'',location.href);
-function closeExit(){document.getElementById('exit-overlay').classList.remove('show');}
-function exitCTA(){closeExit();setTimeout(()=>openModal('exit_intent'),200);}
+// ── SETTINGS ──
+async function loadSettings(){
+  try{
+    const r=await fetch(API+'/api/meta');const d=await r.json();
+    if(d.success)document.getElementById('meta-pixel-in').value=d.metaPixel||'';
+  }catch{}
+}
+async function saveMeta(){
+  const metaPixel=document.getElementById('meta-pixel-in').value.trim();
+  const statusEl=document.getElementById('meta-save-status');
+  statusEl.textContent='Saving...';statusEl.style.color='var(--muted)';
+  try{
+    const r=await fetch(API+'/api/meta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({metaPixel})});
+    const d=await r.json();
+    if(d.success){statusEl.textContent='✅ Pixel ID saved successfully!';statusEl.style.color='var(--green)';showToast('✅ Pixel saved','success');}
+    else{statusEl.textContent='❌ Save failed: '+(d.error||'');statusEl.style.color='var(--red)';}
+  }catch(e){statusEl.textContent='❌ Network error: '+e.message;statusEl.style.color='var(--red)';}
+}
+async function seedDB(){
+  try{const r=await fetch(API+'/api/seed',{method:'POST',headers:{'Content-Type':'application/json'}});const d=await r.json();showToast(d.message?'✅ '+d.message:'✅ Seeded!','success');loadProducts();}
+  catch{showToast('❌ Seed failed','error');}
+}
+function toggleAutoRefresh(){
+  autoRefreshOn=document.getElementById('auto-refresh-cb').checked;
+  localStorage.setItem('vk_autorefresh',autoRefreshOn?'1':'0');
+  clearInterval(autoRefreshTimer);
+  if(autoRefreshOn){autoRefreshTimer=setInterval(()=>loadOrders(),60000);showToast('✅ Auto-refresh ON (60s)','success');}
+  else showToast('Auto-refresh OFF','');
+}
 
-// ── STICKY BAR ──
-window.addEventListener('scroll',()=>{
-  if(!document.getElementById('modal-overlay').classList.contains('open'))
-    document.getElementById('sticky-bar').classList.toggle('show',window.scrollY>400);
+// ── LIVE VISITORS (from MongoDB — persistent) ──
+function startLiveVisitors(){
+  const poll=async()=>{
+    try{
+      const r=await fetch(API+'/api/visitors/count');
+      const d=await r.json();
+      if(d.success){liveCount=d.count;document.getElementById('live-count').textContent=d.count;}
+    }catch{}
+  };
+  poll();
+  setInterval(poll,10000); // poll every 10s for more real-time feel
+}
+
+// ── AI FIX ──
+function openAI(id){
+  const o=allOrders.find(x=>x._id===id);if(!o)return;
+  aiOrderId=id;
+  document.getElementById('aif-name').value=o.name||'';document.getElementById('aif-address').value=o.address||'';
+  document.getElementById('aif-city').value=o.city||'';document.getElementById('aif-state').value=o.state||'';
+  document.getElementById('aif-pincode').value=o.pincode||'';document.getElementById('ai-status').textContent='';
+  document.getElementById('aiModal').classList.add('open');
+}
+async function runAI(){
+  const st=document.getElementById('ai-status');
+  st.textContent='🤖 Analyzing...';st.style.color='var(--muted)';
+  const addr={name:document.getElementById('aif-name').value,address:document.getElementById('aif-address').value,city:document.getElementById('aif-city').value,state:document.getElementById('aif-state').value,pincode:document.getElementById('aif-pincode').value};
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:'Fix this Indian address for courier delivery. Correct spelling, capitalize properly. Return ONLY valid JSON, no markdown: {"name":"...","address":"...","city":"...","state":"...","pincode":"..."} Address: '+JSON.stringify(addr)}]})});
+    const data=await r.json();
+    const text=(data.content||[]).map(c=>c.text||'').join('').replace(/```json|```/g,'').trim();
+    const fixed=JSON.parse(text);
+    document.getElementById('aif-name').value=fixed.name||addr.name;document.getElementById('aif-address').value=fixed.address||addr.address;
+    document.getElementById('aif-city').value=fixed.city||addr.city;document.getElementById('aif-state').value=fixed.state||addr.state;
+    document.getElementById('aif-pincode').value=fixed.pincode||addr.pincode;
+    st.textContent='✅ AI fix applied. Review and save.';st.style.color='var(--green)';
+  }catch(e){st.textContent='❌ '+e.message;st.style.color='var(--red)';}
+}
+async function saveAIFix(){
+  if(!aiOrderId)return;
+  const payload={name:document.getElementById('aif-name').value,address:document.getElementById('aif-address').value,city:document.getElementById('aif-city').value,state:document.getElementById('aif-state').value,pincode:document.getElementById('aif-pincode').value};
+  try{
+    const r=await fetch(`${API}/api/orders/${aiOrderId}/address`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const d=await r.json();
+    if(d.success){const idx=allOrders.findIndex(o=>o._id===aiOrderId);if(idx>=0)Object.assign(allOrders[idx],payload);renderOrders();renderLatest();document.getElementById('aiModal').classList.remove('open');showToast('✅ Address updated!','success');}
+  }catch{showToast('Network error','error');}
+}
+
+// ── SELLOSHIP ──
+function loadSsConfig(){document.getElementById('ss-key').value=localStorage.getItem('vk_ss_key')||'';}
+function saveSsKey(){localStorage.setItem('vk_ss_key',document.getElementById('ss-key').value.trim());showToast('✅ Key saved','success');}
+async function testSs(){
+  const key=document.getElementById('ss-key').value.trim(),el=document.getElementById('ss-result');
+  el.textContent='Testing...';el.style.color='var(--muted)';
+  try{const r=await fetch(API+'/api/selloship/account',{headers:{'x-selloship-key':key}});const d=await r.json();el.textContent=d.success?'✅ Connected: '+JSON.stringify(d.data).slice(0,100):'❌ '+JSON.stringify(d);el.style.color=d.success?'var(--green)':'var(--red)';}
+  catch(e){el.textContent='❌ '+e.message;el.style.color='var(--red)';}
+}
+function populateSsOrders(){
+  const sel=document.getElementById('ss-ord-sel');
+  const ords=allOrders.filter(o=>['new','confirmed'].includes(o.status));
+  sel.innerHTML=ords.length?ords.map(o=>`<option value="${o._id}">${o.name} — ${o.phone} — ₹${o.totalAmount} (${o.status})</option>`).join(''):'<option>No new/confirmed orders</option>';
+}
+async function createShipment(){
+  const key=localStorage.getItem('vk_ss_key'),id=document.getElementById('ss-ord-sel').value;
+  const o=allOrders.find(x=>x._id===id),el=document.getElementById('ss-ship-res');
+  if(!o){el.textContent='❌ Select an order';el.style.color='var(--red)';return;}
+  el.textContent='🚚 Creating...';el.style.color='var(--muted)';
+  try{const r=await fetch(API+'/api/selloship/create-shipment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({apiKey:key,order:{name:o.name,phone:o.phone,address:o.address,city:o.city,state:o.state,pincode:o.pincode,amount:o.totalAmount,weight:parseInt(document.getElementById('ss-weight').value)||250,cod:parseFloat(document.getElementById('ss-cod').value)||o.totalAmount}})});const d=await r.json();el.textContent=d.awb?'✅ AWB: '+d.awb:'⚠️ '+JSON.stringify(d.raw).slice(0,200);el.style.color=d.awb?'var(--green)':'var(--yellow)';}
+  catch(e){el.textContent='❌ '+e.message;el.style.color='var(--red)';}
+}
+
+// ── SIDEBAR ──
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');}
+
+// Close modals on backdrop click
+document.addEventListener('click',e=>{
+  ['prodModal','ordDetailModal','aiModal'].forEach(id=>{const el=document.getElementById(id);if(e.target===el)el.classList.remove('open');});
 });
 
 // ── TOAST ──
 let toastT;
-function toast(msg,type=''){
+function showToast(msg,type=''){
   const el=document.getElementById('toast-el');
   el.textContent=msg;el.className='toast show '+type;
-  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3500);
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('show'),3000);
 }
 
-// ── INIT ──
-loadProduct();
-loadMeta();
-renderVariants();
-startCountdown();
-startOrdersToday();
+// ── KEYBOARD ──
+document.getElementById('l-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+// ── BOOT ──
+if(checkAuth())showApp();
 </script>
 </body>
 </html>
