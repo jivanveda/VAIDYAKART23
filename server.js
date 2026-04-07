@@ -7,6 +7,20 @@ const fetch = require('node-fetch');
 const app = express();
 app.use(cors());
 app.use(express.json());
+// sendBeacon POSTs with Content-Type: text/plain — parse as JSON so visitor pings are never dropped
+app.use((req, res, next) => {
+  const ct = req.headers['content-type'] || '';
+  if (ct.includes('text/plain')) {
+    let data = '';
+    req.on('data', chunk => { data += chunk; });
+    req.on('end', () => {
+      try { req.body = JSON.parse(data); } catch { req.body = {}; }
+      next();
+    });
+  } else { next(); }
+});
+
+const VISITOR_TIMEOUT_MS = 90000; // 90s — keep in sync with cleanup interval
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ MongoDB connected'))
@@ -57,7 +71,7 @@ const Visitor = mongoose.model('Visitor', visitorSchema);
 // ── Clean stale visitors every 60s ────────────────────────────────────────
 setInterval(async () => {
   try {
-    const cutoff = new Date(Date.now() - 90000); // 90s timeout
+    const cutoff = new Date(Date.now() - VISITOR_TIMEOUT_MS); // 90s timeout
     await Visitor.deleteMany({ lastSeen: { $lt: cutoff } });
   } catch {}
 }, 60000);
@@ -194,7 +208,7 @@ app.post('/api/admin/login', (req, res) => {
 
 app.post('/api/admin/junk-clean', async (req, res) => {
   try {
-    const cutoff = new Date(Date.now() - 90000);
+    const cutoff = new Date(Date.now() - VISITOR_TIMEOUT_MS);
     const vDel = await Visitor.deleteMany({ lastSeen: { $lt: cutoff } });
     const orders = await Order.find();
     let ordersFixed = 0;
@@ -278,7 +292,7 @@ app.post('/api/visitors/ping', async (req, res) => {
   try {
     const { visitorId, action } = req.body;
     if (!visitorId) {
-      const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+      const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-VISITOR_TIMEOUT_MS) } });
       return res.json({ success:true, count });
     }
     if (action === 'leave') {
@@ -286,14 +300,14 @@ app.post('/api/visitors/ping', async (req, res) => {
     } else {
       await Visitor.findOneAndUpdate({ visitorId }, { lastSeen: new Date() }, { upsert:true, new:true });
     }
-    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-VISITOR_TIMEOUT_MS) } });
     res.json({ success:true, count });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
 app.get('/api/visitors/count', async (req, res) => {
   try {
-    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-VISITOR_TIMEOUT_MS) } });
     res.json({ success:true, count });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
