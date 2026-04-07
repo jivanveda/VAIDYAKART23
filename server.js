@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ── MongoDB ───────────────────────────────────────────────────────────────
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ MongoDB connected'))
   .catch(err => console.error('❌ MongoDB error:', err));
@@ -43,29 +42,38 @@ const productSchema = new mongoose.Schema({
 
 const settingSchema = new mongoose.Schema({ metaPixel: { type: String, default: '' } });
 
+// ── VISITOR SCHEMA (persistent — survives server restarts) ─────────────────
+const visitorSchema = new mongoose.Schema({
+  visitorId: { type: String, required: true, unique: true },
+  lastSeen:  { type: Date, default: Date.now }
+});
+visitorSchema.index({ lastSeen: 1 }, { expireAfterSeconds: 300 }); // auto-delete after 5 min
+
 const Order   = mongoose.model('Order',   orderSchema);
 const Product = mongoose.model('Product', productSchema);
 const Setting = mongoose.model('Setting', settingSchema);
+const Visitor = mongoose.model('Visitor', visitorSchema);
 
-// ── Live Visitors ─────────────────────────────────────────────────────────
-const visitors = new Map();
-setInterval(() => {
-  const now = Date.now();
-  for (const [id, ts] of visitors) if (now - ts > 60000) visitors.delete(id);
-}, 30000);
+// ── Clean stale visitors every 60s ────────────────────────────────────────
+setInterval(async () => {
+  try {
+    const cutoff = new Date(Date.now() - 90000); // 90s timeout
+    await Visitor.deleteMany({ lastSeen: { $lt: cutoff } });
+  } catch {}
+}, 60000);
 
-// ══════════════════════════════════════════════════════════════════════════
-// ORDERS  (export/csv BEFORE /:id)
-// ══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// ORDERS — /export/csv BEFORE /:id
+// ═══════════════════════════════════════════════════════════════════════════
 app.get('/api/orders/export/csv', async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
-    const headers = ['OrderID','Name','Phone','Address','City','State','Pincode','Product','Variant','Qty','Price','Total','Status','Date'];
     const esc = s => `"${(s||'').replace(/"/g,'""')}"`;
+    const headers = ['OrderID','Name','Phone','Address','City','State','Pincode','Product','Variant','Qty','Price','Total','Status','Date'];
     const rows = orders.map(o => [o._id, esc(o.name), o.phone, esc(o.address), o.city, o.state, o.pincode, esc(o.productName||o.product), esc(o.variant), o.quantity, o.price, o.totalAmount, o.status, new Date(o.createdAt).toISOString()]);
     const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename="orders.csv"');
+    res.setHeader('Content-Disposition', 'attachment; filename="vaidyakart-orders.csv"');
     res.send(csv);
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
@@ -79,12 +87,12 @@ app.post('/api/orders', async (req, res) => {
       if (existing) return res.status(409).json({ success:false, duplicate:true, error:'Duplicate phone', existingOrderId:existing._id });
     }
     const order = new Order({
-      name: (b.name||'').trim(), phone,
-      address: (b.address||'').trim(), pincode: (b.pincode||'').trim(),
-      city: (b.city||'').trim(), state: (b.state||'').trim(),
-      product: b.product||'AyurSlim Gold', productName: b.productName||'AyurSlim Gold — Ayurvedic Weight Management',
-      productId: b.productId||null, variant: b.variant||'1 Month Pack',
-      quantity: b.quantity||1, price: b.price||799, totalAmount: b.totalAmount||799
+      name:(b.name||'').trim(), phone,
+      address:(b.address||'').trim(), pincode:(b.pincode||'').trim(),
+      city:(b.city||'').trim(), state:(b.state||'').trim(),
+      product:b.product||'AyurSlim Gold', productName:b.productName||'AyurSlim Gold — Ayurvedic Weight Management',
+      productId:b.productId||null, variant:b.variant||'1 Month Pack',
+      quantity:b.quantity||1, price:b.price||799, totalAmount:b.totalAmount||799
     });
     await order.save();
     res.json({ success:true, orderId:order._id });
@@ -95,6 +103,16 @@ app.get('/api/orders', async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
     res.json({ success:true, orders });
+  } catch (e) { res.status(500).json({ success:false, error:e.message }); }
+});
+
+// Bulk status update
+app.post('/api/orders/bulk-status', async (req, res) => {
+  try {
+    const { ids, status } = req.body;
+    if (!ids || !ids.length || !status) return res.status(400).json({ success:false, error:'ids and status required' });
+    await Order.updateMany({ _id: { $in: ids } }, { status });
+    res.json({ success:true, updated:ids.length });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
@@ -123,9 +141,9 @@ app.delete('/api/orders/:id', async (req, res) => {
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
-// ══════════════════════════════════════════════════════════════════════════
-// PRODUCTS  (/all BEFORE /:id)
-// ══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// PRODUCTS — /all BEFORE /:id
+// ═══════════════════════════════════════════════════════════════════════════
 app.get('/api/products/all', async (req, res) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -150,7 +168,6 @@ app.post('/api/products', async (req, res) => {
 
 app.put('/api/products/:id', async (req, res) => {
   try {
-    // Strip immutable mongo fields before update
     const { _id, __v, createdAt, ...updateData } = req.body;
     const product = await Product.findByIdAndUpdate(req.params.id, updateData, { new:true, runValidators:true });
     if (!product) return res.status(404).json({ success:false, error:'Not found' });
@@ -177,21 +194,19 @@ app.post('/api/admin/login', (req, res) => {
 
 app.post('/api/admin/junk-clean', async (req, res) => {
   try {
-    const now = Date.now();
-    let visitorsCleared = 0;
-    for (const [id, ts] of visitors) if (now-ts>60000) { visitors.delete(id); visitorsCleared++; }
-
+    const cutoff = new Date(Date.now() - 90000);
+    const vDel = await Visitor.deleteMany({ lastSeen: { $lt: cutoff } });
     const orders = await Order.find();
     let ordersFixed = 0;
-    for (const order of orders) {
+    for (const o of orders) {
       let changed = false;
       for (const f of ['name','phone','address','city','state','pincode']) {
-        if (typeof order[f]==='string' && order[f]!==order[f].trim()) { order[f]=order[f].trim(); changed=true; }
+        if (typeof o[f]==='string' && o[f]!==o[f].trim()) { o[f]=o[f].trim(); changed=true; }
       }
-      if (changed) { await order.save(); ordersFixed++; }
+      if (changed) { await o.save(); ordersFixed++; }
     }
-    const deleted = await Order.deleteMany({ $and: [{ $or:[{name:''},{name:null}] }, { $or:[{phone:''},{phone:null}] }] });
-    res.json({ success:true, visitorsCleared, ordersFixed, emptyOrders:deleted.deletedCount });
+    const deleted = await Order.deleteMany({ $and:[{$or:[{name:''},{name:null}]},{$or:[{phone:''},{phone:null}]}] });
+    res.json({ success:true, visitorsCleared:vDel.deletedCount, ordersFixed, emptyOrders:deleted.deletedCount });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
@@ -258,20 +273,28 @@ app.post('/api/meta', async (req, res) => {
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
-// ── VISITORS ──────────────────────────────────────────────────────────────
-app.post('/api/visitors/ping', (req, res) => {
+// ── VISITORS (persistent in MongoDB — survives restarts) ──────────────────
+app.post('/api/visitors/ping', async (req, res) => {
   try {
     const { visitorId, action } = req.body;
-    if (visitorId) { if (action==='leave') visitors.delete(visitorId); else visitors.set(visitorId, Date.now()); }
-    res.json({ success:true, count:visitors.size });
+    if (!visitorId) {
+      const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+      return res.json({ success:true, count });
+    }
+    if (action === 'leave') {
+      await Visitor.deleteOne({ visitorId });
+    } else {
+      await Visitor.findOneAndUpdate({ visitorId }, { lastSeen: new Date() }, { upsert:true, new:true });
+    }
+    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+    res.json({ success:true, count });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
-app.get('/api/visitors/count', (req, res) => {
+app.get('/api/visitors/count', async (req, res) => {
   try {
-    const now = Date.now();
-    for (const [id,ts] of visitors) if (now-ts>60000) visitors.delete(id);
-    res.json({ success:true, count:visitors.size });
+    const count = await Visitor.countDocuments({ lastSeen: { $gt: new Date(Date.now()-90000) } });
+    res.json({ success:true, count });
   } catch (e) { res.status(500).json({ success:false, error:e.message }); }
 });
 
